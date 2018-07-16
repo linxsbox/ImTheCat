@@ -1,11 +1,17 @@
 .DS_Store
+
+# build and modules
 node_modules/
 /dist/
+
+# test file
+/test/unit/coverage/
+/test/e2e/reports/
+
+# log file
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/test/unit/coverage/
-/test/e2e/reports/
 selenium-debug.log
 
 # Editor directories and files
@@ -15,3 +21,6 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+
+# github security vulnerability warn
+package-lock.json
