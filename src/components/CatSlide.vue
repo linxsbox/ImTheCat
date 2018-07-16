@@ -59,11 +59,11 @@ export default {
       type: Boolean,
       default: true
     },
-    catMoveX: {
+    catDefaultX: {
       type: Number,
       default: 0
     },
-    catMoveY: {
+    catDefaultY: {
       type: Number,
       default: 0
     }
@@ -75,17 +75,17 @@ export default {
 
     // 设置默认位置 或 初始化位置
     if (this.catX && !this.catY) {
-      this.lastTouchX = this.catMoveX
-      this.touchStyle = {transform:`translate3d(${this.catMoveX}px, 0px, 0px)`}
+      this.lastTouchX = this.catDefaultX
+      this.touchStyle = {transform:`translate3d(${this.catDefaultX}px, 0px, 0px)`}
     }
     if (!this.catX && this.catY) {
-      this.lastTouchY = this.catMoveY
-      this.touchStyle = {transform:`translate3d(0px, ${this.catMoveY}px, 0px)`}
+      this.lastTouchY = this.catDefaultY
+      this.touchStyle = {transform:`translate3d(0px, ${this.catDefaultY}px, 0px)`}
     }
     if (this.catX && this.catY) {
-      this.lastTouchX = this.catMoveX
-      this.lastTouchY = this.catMoveY
-      this.touchStyle = {transform:`translate3d(${this.catMoveX}px, ${this.catMoveY}px, 0px)`}
+      this.lastTouchX = this.catDefaultX
+      this.lastTouchY = this.catDefaultY
+      this.touchStyle = {transform:`translate3d(${this.catDefaultX}px, ${this.catDefaultY}px, 0px)`}
     }
   },
   methods: {
@@ -289,6 +289,30 @@ export default {
         }
         this.$emit('cat-x', this.lastTouchY)
         this.$emit('cat-y', this.lastTouchY)
+      }
+    },
+    catMove (x = 0, y = 0) {
+      if (this.catX && !this.catY) {
+        this.lastTouchX = x
+        this.touchStyle = {
+          transform:`translate3d(${this.lastTouchX}px, 0px, 0px)`,
+          transition: `transform ${.5}s cubic-bezier(0.1, 0.57, 0.1, 1)`
+        }
+      }
+      if (!this.catX && this.catY) {
+        this.lastTouchY = y
+        this.touchStyle = {
+          transform:`translate3d(0px, ${this.lastTouchY}px, 0px)`,
+          transition: `transform ${.5}s cubic-bezier(0.1, 0.57, 0.1, 1)`
+        }
+      }
+      if (this.catX && this.catY) {
+        this.lastTouchX = x
+        this.lastTouchY = y
+        this.touchStyle = {
+          transform:`translate3d(${this.lastTouchX}px, ${this.lastTouchY}px, 0px)`,
+          transition: `transform ${.5}s cubic-bezier(0.1, 0.57, 0.1, 1)`
+        }
       }
     }
   },
