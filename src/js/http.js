@@ -1,19 +1,33 @@
 import axios from 'axios'
+import curl from './curl'
 
-let _http = (param) => new Promise(
-  (resolve, reject) => {
-    axios(param).then(response => {
-      resolve(response)
-    }).catch(error => {
-      reject(error)
-    })
-  })
+const baseUrl = curl.baseUrl
 
-Object.assign(_http, axios)
+axios.defaults.baseURL = baseUrl
+axios.defaults.timeout = (1000 * curl.timeout)
 
-let config = {
-  timeout: 0
-}
-Object.assign(_http, config)
+// the Axios use Hijack requset
+axios.interceptors.request.use(
+  request => {
+    console.log(request)
+    return request
+  },
+  err => {
+    console.log(err)
+    return Promise.reject(err)
+  }
+)
 
-export default _http
+// the Axios use Hijack response
+axios.interceptors.response.use(
+  response => {
+    console.log(response)
+    return response
+  },
+  err => {
+    console.log(err)
+    Promise.reject(err)
+  }
+)
+
+export default axios
