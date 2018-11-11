@@ -1,0 +1,78 @@
+.home-page .banner {
+  height: 40vh;
+  border: 1px solid red;
+  z-index: 10;
+}
+
+.home-page .nav-bar {
+  position: relative;
+  height: 60px;
+  margin-top: -10vh;
+  /* background: #000; */
+  border: 1px solid blue;
+  z-index: 12;
+}
+
+.home-page .contents {
+  height: 300px;
+  margin-top: 0;
+  /* background: #333; */
+  border: 1px solid #333;
+  z-index: 11;
+}
+
+.home-page .banner.trans-static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.home-page .nav-bar.trans-static {
+  position: absolute;
+  top: 30vh;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+}
+
+.home-page .contents.trans-static {
+  position: absolute;
+  top: calc(30vh + 60px);
+  left: 0;
+  right: 0;
+}
+
+.home-page .nav-bar .avatar-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: -1.25rem auto 0 auto;
+  border-radius: 100%;
+}
+
+.home-page .nav-bar .avatar-box>.avatar-img {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: auto;
+  border: .1rem solid rgba(180, 180, 180, .7);
+  border-radius: 100%;
+}
+
+.home-page .nav-bar>.nav-list {
+  text-align: center;
+}
+
+.home-page .nav-bar>.nav-list>.item {
+  display: inline-block;
+  padding: 12px 0;
+  margin: 0 24px;
+  line-height: inherit;
+}
+
+.home-page .nav-bar>.nav-list>.item.space {
+  margin: 0 80px;
+}

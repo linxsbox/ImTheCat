@@ -1,24 +1,40 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-// import HelloWorld from '@/pages/HelloWorld'
-import Home from '@/pages/Home'
+import router from 'vue-router'
+import config from '@/config.json'
+import handle from './handle'
 
-// test component
-import TestComponet from './../../test/page/TestComponet'
+Vue.use(router)
 
-Vue.use(Router)
+// Router the component accept parameter type is Function and not Object
+const view = (view) => {
+  return () => import(`@/views/${view}/index`)
+}
 
-export default new Router({
-  routes: [
-    {
+let routers = new router({
+  // router mode: hash, history, abstract
+  // vue-router https://router.vuejs.org/zh/api/#mode
+  mode: config.routerMode,
+  routes: [{
       path: '/',
       name: 'home',
-      component: Home
+      component: view('home'),
+      meta: {
+        title: ''
+      }
     },
     {
       path: '/test',
       name: 'test',
-      component: TestComponet
+      component: view('test'),
+      meta: {
+        title: ''
+      }
     }
   ]
 })
+
+handle.init(routers)
+
+
+
+export default routers

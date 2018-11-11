@@ -1,0 +1,14 @@
+{
+  "dev": {
+    "url": "http://eyufax.com",
+    "rootpath": "/static",
+    "timeout": 15,
+    "origin": true
+  },
+  "prd": {
+    "url": "",
+    "rootpath": "",
+    "timeout": 15
+  },
+  "routerMode": "history"
+}

@@ -10,11 +10,11 @@
 Html template
 ```html
 <cat-slide
-    :cat-x='Boolean' :cat-y='Boolean'
-    :cat-default-x='Number' :cat-default-y='Number'
-    :cat-move-x='Number' :cat-move-y='Number'
-    @cat-x='function(Number data)' @cat-x='function(Number data)'
-    ref="catSlide">
+  :cat-x='Boolean' :cat-y='Boolean'
+  :cat-default-x='Number' :cat-default-y='Number'
+  :cat-move-x='Number' :cat-move-y='Number'
+  @cat-x='function(Number data)' @cat-x='function(Number data)'
+  ref="catSlide">
 </cat-slide>
 ```
 引入 CatSlide
@@ -28,3 +28,34 @@ import CatSlide from "@/components/CatSlide"
 - **ref**
     - ref.catRefresh 获得最新的猫咪的活动空间
     - ref.catMove 用逗猫棒😻将它引诱到某个地方并给它小鱼干😏 (正确方式！)
+
+
+## Create project
+```
+Vue create projectname
+```
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
