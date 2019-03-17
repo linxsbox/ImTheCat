@@ -1,9 +1,9 @@
 /**
  * Storage v1.0.0
  * (c) 2018 Linxs
- * @license MIT
+ * license MIT
  */
-
+// import sidb from './storageDB'
 'use strict'
 
 const local = window.localStorage
@@ -13,6 +13,11 @@ const cookie = document.cookie
 const WebLocal = function webLocal() {}
 const WebSession = function webSession() {}
 const WebCookies = function webCookies() {}
+// let StorageDB = sidb
+// StorageDB
+
+let cryptkeys = []
+let cryptmaps = {l:[],s:[],c:[]}
 
 // Web local get
 WebLocal.prototype.get = (key) => {
@@ -33,14 +38,25 @@ WebLocal.prototype.set = function (key, value, options = {
   expires: 0,
   encrypt: false
 }) {
-  let args = arguments
-  if (args.length < 2) {
-    storageError('local')
-    return false
+  // let args = arguments
+  // if (args.length < 2) {
+  //   storageError('local')
+  //   return false
+  // }
+
+  key = toStringify(key)
+  value = toStringify(value)
+
+  local.setItem(key, options.encrypt ? valueEncrypt(value) : value)
+  if (options.encrypt) {
+    if (cryptkeys.indexOf(key) === -1){
+      cryptkeys.push(key)
+    }
+    cryptmaps.l.push({key: value})
   }
-  if ((!key && key === null) || (!value && value === null)) return false
-  local.setItem(key, options.encrypt ? valueEncrypt(value) : valueStringify(value))
-  if (options.expires > 0) {}
+  
+
+  if (options.expires > 0) { key }
   return true
 }
 
@@ -66,11 +82,12 @@ WebSession.prototype.set = function (key = '', value, encrypt = false) {
     return false
   }
   if ((!key && key === null) || (!value && value === null)) return false
-  session.setItem(key, encrypt ? valueEncrypt(value) : valueStringify(value))
+  session.setItem(key, encrypt ? valueEncrypt(value) : toStringify(value))
   return true
 }
 
 WebCookies.prototype.get = (key) => {
+  key
   // cookie
 }
 
@@ -88,15 +105,17 @@ WebCookies.prototype.set = function (key, value,
     storageError('cookies')
     return false
   }
-  if (options.expires > 0) {}
-  // cookie
+  if (options.expires > 0) { cookie }
 }
 
-function valueStringify(val) {
-  return typeof val === 'string' ?
-    val : typeof val === 'object' ?
-    Array.isArray(val) ? `[${val.toString()}]` : JSON.stringify(val) :
-    val.toString()
+// will be 'value' stringify
+function toStringify (val) {
+  return val === null ?
+    'null' : val === undefined ?
+    'undefined' : typeof val === 'string' ?
+    val : typeof val === 'object' ? 
+    Array.isArray(val) ? `[${val + ''}]` : JSON.stringify(val):
+    val + ''
 }
 
 function valueParse(val) {
@@ -115,11 +134,16 @@ function valueParse(val) {
   }
 }
 
-function valueEncrypt(val) {}
+function valueEncrypt(val) {
+  return val
+}
 
-function valueDecrypt(val) {}
+function valueDecrypt(val) {
+  return val
+}
 
 function isEncrypt(val) {
+  val
   return true
 }
 
@@ -128,6 +152,7 @@ function storageError(fnName) {
 }
 
 const install = function (Vue, opts = {}) {
+  opts
   Vue.prototype.$session = new WebSession()
   Vue.prototype.$local = new WebLocal()
   Vue.prototype.$cookies = new WebCookies()

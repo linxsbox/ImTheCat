@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import CatSlide from "@/components/CatSlide"
+import CatSlide from '@/components/CatSlide'
 
 export default {
   name: 'CatCalendar',

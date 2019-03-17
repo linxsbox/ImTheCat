@@ -65,3 +65,41 @@
 npm install --save-dev @babel/plugin-syntax-dynamic-import
 ```
 
+## 2018-11-17 18:05
+配置文件夹的更新，路由 verifyRules 规则配置
+
+## 2018-11-17 16:56
+- 了解 indexedDB
+- 创建 indexedDB
+- 存储文件 storageDB
+
+## 2019-03-18 00:25
+重新考虑了 **Vuex** 的使用方式和配置，然后**几乎**是重新写了项目中使用的 **store** 配置。
+
+也重新思考了 **Vuex** 的使用场景，以及需要频繁使用或更改的部分是否可以更方便？
+
+1. 如果场景需要拆分模块，那么如何能够确保模块数据的相互的独立性？
+2. 如需多模块的情况下如何能够减少手动 **import** 方式引用？
+3. **actions, mutations** 的调用能否解决减少因输入导致的“魔法字符串”问题？
+
+> 魔法字符串：指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或数值。风格良好的代码，应该尽量消除魔法字符串，而由含义清晰的常量或变量代替。
+
+- 在思考完后开始动手重写的时候，经历了各种报错、找不到对象以及 undefined 问题。
+- 然后开始考虑通用和抽象化 **store/index.js** ，既我无需每次添加新的 **store/modules** 然后就需要就改一次。
+- 我将其逻辑更改为可读配置来获取**已有或新的 store/modules** ，这样就可以无需过多关注 **store/modules** 的变化。
+- 将 **store/index.js** 抽象化后，我又通过配置信息以及新增 **store/*/handle.types.js** 文件管理，将其调用的方式注册到全局，以此来解决或减少魔法字符串的问题。
+
+``` javascrpit
+// store/index.js
+// 构造独立的 modules，将从 store/store.json 配置文件中读取
+// 只需要将 store 下 modules 文件夹名称写在 配置文件中。类型为对象
+for (const key in store) {
+  if (store.hasOwnProperty(key)) {
+    store[key]['namespaced'] = true
+    store[key]['state'] = require(`./${key}/state`).default
+    store[key]['actions'] = require(`./${key}/actions`).default
+    store[key]['mutations'] = require(`./${key}/mutations`).default
+    store[key]['getters'] = require(`./${key}/getters`).default
+  }
+}
+```

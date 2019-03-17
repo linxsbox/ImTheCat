@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <router-view v-if="isReFresh"></router-view>
+    <layout data-layout="app-layout"></layout>
   </div>
 </template>
 
 <script>
+import layout from '@/layout'
 
 export default {
   name: 'app',
@@ -18,7 +19,7 @@ export default {
       refresh: this.refresh
     }
   },
-  components: {},
+  components: {layout},
   methods: {
     refresh () {
       // when url changing, but router did not jump to page,

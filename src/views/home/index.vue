@@ -1,23 +1,22 @@
 <template>
   <div class="home-page">
-    <div class="container">
-      <div class="banner"> </div>
-      <div class="nav-bar">
-        <div class="avatar-box">
-          <img class="avatar-img" src="">
-        </div>
-        <nav class="nav-list font32">
-          <a href="" class="item">导航1</a>
-          <a href="" class="item">导航2</a>
-          <span class="item space"> </span>
-          <a href="" class="item">导航3</a>
-          <router-link :to="{name:'test'}" class="item">导航4</router-link>
-        </nav>
+    <div class="container tc-container">
+      <div class="contents">
+        <article class="articles cat-flex cat-flex-wrap mag-20-lr">
+          <section class="cat-flex tc-article-card tc-card"
+            v-for="(item, index) in 15" :key="index">
+            <div class="tc-card-media">
+              <!-- <img :src="`../../assets/imgs/image-${item}.jpg`" alt=""> -->
+              <img class="tc-media-img" src="../../assets/imgs/image-1.jpg" alt="">
+              <!-- src\assets\imgs -->
+            </div>
+            <div class="tc-card-body">123456</div>
+          </section>
+        </article>
       </div>
-      <div class="contents"> </div>
     </div>
-    <!-- <div class="maps my-footprint"></div> -->
-    <input type="text" v-model="key" @change="searchCity">
+    <!-- <div class="maps my-footprint"></div>
+    <input type="text" v-model="key" @change="searchCity"> -->
   </div>
 </template>
 
@@ -36,31 +35,30 @@ export default {
   created () {},
   mounted () {
     // maps.drawMap('.maps')
-    // console.log(this.$local)
-    // // localStorage.setItem(0)
-    // console.log(this.$session.get(1))
-    // document.cookie = 'a=1'
-    // document.cookie = 'a1=1'
-    // document.cookie = 'a2=1'
-    // document.cookie = 'a3=1'
-    // let s = new Date()
-    // s.setDate(s.getDate()+1)
-    // document.cookie = ('a4=1;expires='+s.toGMTString())
-    // document.cookie = 'a5=1'
-    // console.log(document.cookie)
+  
+    // console.log(this.$commitTypes.SET_TEST_COMMIT)
+    this.$store.commit(this.$commitTypes.SET_TEST_COMMIT, 'this is commit.')
+    // console.log(this.$actionTypes.SET_TEST_DISPATCH)
+    this.$store.dispatch(this.$actionTypes.SET_TEST_DISPATCH, 'this is dispatch.')
+
+    // console.log(this.$componentTypes)
+    this.$store.commit(this.$componentTypes.COMMIT.SET_TEST_COMMIT, 'this is component commit.')
+    this.$store.dispatch(this.$componentTypes.ACTION.SET_TEST_DISPATCH, 'this is component dispatch.')
+
+    // console.log(this.$layoutTypes)
+    this.$store.commit(this.$layoutTypes.COMMIT.SET_TEST_COMMIT, 'this is layout commit.')
+    this.$store.dispatch(this.$layoutTypes.ACTION.SET_TEST_DISPATCH, 'this is layout dispatch.')
   },
   methods: {
-   searchCity () {
-     console.log(this.key)
-    //  maps.searchCity(this.key)
-   },
+  //  searchCity () {
+  //    console.log(this.key)
+  //    maps.qeuryCity(this.key)
+  //  },
    ttt(){
      this.reload()
    }
   },
-  computed: {
-
-  }
+  computed: {}
 }
 </script>
 
@@ -69,10 +67,4 @@ export default {
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped src="./index.css">
-.my-footprint{
-  width: 800px;
-  height: 600px;
-}
-</style>
-
+<style scoped src="./index.css"></style>

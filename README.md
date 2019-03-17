@@ -19,7 +19,7 @@ Html template
 ```
 引入 CatSlide
 ```javascript
-import CatSlide from "@/components/CatSlide"
+import CatSlide from '@/components/CatSlide'
 ```
 - **:cat-xy** 在不知道猫要往哪里走的时候可以设置它的行动方式 x轴 or y轴
 - **:cat-default-xy** 你第一次看见它的时候是在哪里？😳

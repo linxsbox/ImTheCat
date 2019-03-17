@@ -1,5 +1,5 @@
 import axios from 'axios'
-import config from '@/config.json'
+import config from '@/config/webpack.json'
 
 const env = process.env.NODE_ENV
 const conf = env === 'production' ? config.prd : config.dev

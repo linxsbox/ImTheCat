@@ -9,6 +9,5 @@
     "url": "",
     "rootpath": "",
     "timeout": 15
-  },
-  "routerMode": "history"
+  }
 }

@@ -13,26 +13,26 @@ let routerHandle = (router) => {
   router.beforeEach((to, from, next) => {
     
     if (!vrule.whiteList(to)) {
-      next('/')
+      // next('/')
       return
     }
-    console.log('before to', to)
-    console.log('before from', from)
-    console.log('before next', typeof next)
+    // console.log('before to', to)
+    // console.log('before from', from)
+    // console.log('before next', typeof next)
     next()
   })
 
   router.beforeResolve((to, from, next) => {
-    console.log('resolve to', to)
-    console.log('resolve from', from)
-    console.log('resolve next', next)
+    // console.log('resolve to', to)
+    // console.log('resolve from', from)
+    // console.log('resolve next', next)
     // next(false)
     next()
   })
 
   router.afterEach((to, from) => {
-    console.log('after to', to)
-    console.log('after from', from)
+    // console.log('after to', to)
+    // console.log('after from', from)
   })
 }
 
