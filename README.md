@@ -1,61 +1,21 @@
 # catblog
 一只猫的博客？
 
-## CatSlide
+## 为什么要做这个？
+这是一个预想为blog类型的项目，目前对项目结构以及所用框架技术更新过 **3次** 。
 
-**猫在哪？**
+## 为什么频繁更改？
+因为在不断的学习成长中对事物的理解层次和深度不一样，**以及**在关注技术领域时发现**已更新的或新的技术**可以使用，那么就会项目进行更改尝试。
 
-猫是固体还是液体？它在哪？它要去哪？这是个问题！
+## 频繁更新那么所用技术会也会更换吗？
+目前来说不太会，现在还是以 **vue、vuex、axios、vue-cli** 这一套为基础。
 
-Html template
-```html
-<cat-slide
-  :cat-x='Boolean' :cat-y='Boolean'
-  :cat-default-x='Number' :cat-default-y='Number'
-  :cat-move-x='Number' :cat-move-y='Number'
-  @cat-x='function(Number data)' @cat-x='function(Number data)'
-  ref="catSlide">
-</cat-slide>
-```
-引入 CatSlide
-```javascript
-import CatSlide from '@/components/CatSlide'
-```
-- **:cat-xy** 在不知道猫要往哪里走的时候可以设置它的行动方式 x轴 or y轴
-- **:cat-default-xy** 你第一次看见它的时候是在哪里？😳
-- **:cat-move-xy** 将它引诱到某个地方 (大雾！)
-- **@cat-xy** 它在哪？找到它！😎
-- **ref**
-    - ref.catRefresh 获得最新的猫咪的活动空间
-    - ref.catMove 用逗猫棒😻将它引诱到某个地方并给它小鱼干😏 (正确方式！)
+变更历史: vue1.0 => vue2.0 + vue-cli => vue2.0 + vue-cli + webpack3.0 => vue2.0+vue-cli3 + webpack4.0。
 
+未来还可能加入 **typescript** 使用，在更为熟悉 **typescript** 的时候。
 
-## Create project
-```
-Vue create projectname
-```
+## 怎么项目像残次品啊？
+因工作原因，更新项目的频率不是很高，但目前已经计划有一个大概的结构出来了，然后需要一步一步去实现。
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+## 其他说明
+项目更新所遇到过的问题以及部分解决逻辑都有记录下来。 => [更新记录](./UPDATELOG.md)
