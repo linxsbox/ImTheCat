@@ -1,9 +1,0 @@
-{
-  "routerMode": "history",
-  "routerRule": {
-    "whitelist": [
-      "/", "/index", "/home", "/login"
-    ],
-    "other": ["/test"]
-  }
-}

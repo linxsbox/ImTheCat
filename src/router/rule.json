@@ -1,0 +1,20 @@
+{
+  "routerMode": "history",
+  "routerRule": {
+    "whitelist": [
+      "/", "/index", "/home", "/login"
+    ],
+    "other": ["/test"]
+  },
+  "routerList": [{
+      "path": "/",
+      "name": "home",
+      "title": "首页"
+    },
+    {
+      "path": "test",
+      "name": "test",
+      "title": "测试"
+    }
+  ]
+}

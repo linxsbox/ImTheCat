@@ -1,4 +1,4 @@
-import config from '@/config/router.json'
+import config from './rule.json'
 
 const CONF_RULE = config.routerRule
 // The base router white list.
