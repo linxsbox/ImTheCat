@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import router from 'vue-router'
 import config from './rule.json'
-import {handleInit, routeList, routeView} from './handle'
+import {handleInit, routeList} from './handle'
 
 Vue.use(router)
 

@@ -2,10 +2,14 @@
   <div>
     测试路由跳转
     <button @click="backit">返回</button>
+
+    <button @click="testComponent">测试组件</button>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import toast from '@/components/toast/index.js'
 export default {
   name: 'TextPage',
   data () {
@@ -17,6 +21,11 @@ export default {
   created () {},
   beforeMount () {},
   mounted () {
+    console.log(111)
+    Vue.component(toast.name, toast)
+    Vue.prototype.$toast = toast
+
+    
     console.log(this.$commitTypes.GET_TEST_COMMIT,
       this.$store.getters[this.$commitTypes.GET_TEST_COMMIT])
     console.log(this.$actionTypes.GET_TEST_DISPATCH,
@@ -35,12 +44,18 @@ export default {
   components:{},
   props: {},
   watch: {},
+  computed: {},
   methods: {
     backit () {
       this.$router.go(-1)
+    },
+    testComponent(){
+      this.$toast({
+        message: 'asdasdasdas',
+        duration: 0
+      })
     }
   },
-  computed: {},
   beforeUpdate () {},
   updated () {},
   beforeDestroy () {},

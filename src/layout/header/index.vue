@@ -13,7 +13,7 @@
             <router-link class="tc-nav-link" :to="{name: 'home'}">home</router-link>
           </li>
           <li class="tc-nav-item inline-block">
-            <router-link class="tc-nav-link" to="test">test</router-link>
+            <router-link class="tc-nav-link" :to="{name: 'test'}">test</router-link>
           </li>
           <li class="tc-nav-item inline-block" v-for="(item, index) in 3" :key="index">
             <router-link class="tc-nav-link" to="">nav item {{ item }}</router-link>

@@ -4,7 +4,7 @@
     "whitelist": [
       "/", "/index", "/home", "/login"
     ],
-    "other": ["/test"]
+    "other": ["/t", "/test"]
   },
   "routerList": [{
       "path": "/",
