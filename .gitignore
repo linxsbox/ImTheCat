@@ -25,5 +25,8 @@ selenium-debug.log
 /test/unit/coverage/
 /test/e2e/reports/
 
+# webpack config checked outout file
+output.js
+
 # github security vulnerability warn
 package-lock.json

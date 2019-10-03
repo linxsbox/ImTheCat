@@ -10,12 +10,20 @@
 ## 频繁更新那么所用技术会也会更换吗？
 目前来说不太会，现在还是以 **vue、vuex、axios、vue-cli** 这一套为基础。
 
-变更历史: vue1.0 => vue2.0 + vue-cli => vue2.0 + vue-cli + webpack3.0 => vue2.0+vue-cli3 + webpack4.0。
+变更历史：
+- **vue 2.0 + vue-cli 3.0 + webpack4.0 + TypeScript**
+- **vue 2.0 + vue-cli 3.0 + webpack4.0**
+- **vue 2.0 + vue-cli + webpack 3.0**
+- **vue 2.0 + vue-cli**
+- **vue 1.0**
 
-未来还可能加入 **typescript** 使用，在更为熟悉 **typescript** 的时候。
+<del>未来还可能加入 <strong>typescript</strong> 使用，在更为熟悉 <strong>typescript</strong> 的时候。</del>
+
+现已加入 **TypeScript**，尝试使用 **TypeScript** 将原来的一些逻辑进行重写实现。
 
 ## 怎么项目像残次品啊？
 因工作原因，更新项目的频率不是很高，但目前已经计划有一个大概的结构出来了，然后需要一步一步去实现。
 
 ## 其他说明
-项目更新所遇到过的问题以及部分解决逻辑都有记录下来。 => [更新记录](./UPDATELOG.md)
+项目更新所遇到过的问题以及部分解决逻辑都有记录下来。
+如想了解，请查看[更新记录](./UPDATELOG.md)。
