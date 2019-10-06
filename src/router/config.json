@@ -1,20 +1,29 @@
 {
-  "routerMode": "history",
-  "routerRule": {
-    "whitelist": [
-      "/", "/index", "/home", "/login"
-    ],
-    "other": ["/t", "/test"]
-  },
-  "routerList": [{
-      "path": "/",
-      "name": "home",
+  "mode": "history",
+  "routeRule": {},
+  "routePreset": [{
+    "path": "/404",
+    "name": "404",
+    "title": "404",
+    "filePath": "layout/error/404"
+  }],
+  "routeList": [{
+    "path": "/",
+    "name": "home",
+    "meta": {
       "title": "首页"
     },
-    {
-      "path": "test",
-      "name": "test",
+    "filePath": ""
+  }, {
+    "path": "test",
+    "name": "test",
+    "meta": {
       "title": "测试"
-    }
-  ]
+    },
+    "filePath": ""
+  }],
+  "whitelist": [
+    "/", "/404", "/index", "/home", "/login"
+  ],
+  "other": ["/t", "/test"]
 }

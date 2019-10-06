@@ -1,43 +1,46 @@
 <template>
   <div id="app">
-    <!-- <layout data-layout="app-layout"></layout> -->
+    <layout data-layout="app-layout"></layout>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide } from 'vue-property-decorator';
-// import layout from '@/layout';
-import test from 'cps/test.vue';
+// Provide
+import { Vue, Component } from 'vue-property-decorator';
+import layout from '@/layout/index.vue';
+// import test from 'cps/test.vue';
 
 @Component({
-  // components: {layout},
   components: {
-    test,
+    layout,
+    // test,
   },
 })
 export default class App extends Vue {
   // data 数据字段
-  isReFresh = true;
+  // isAcitve = true;
 
   // Provide
-  @Provide() rfes = this.refresh;
+  // @Provide() refresh = this.refreshView;
 
   // constructor 构造函数
-  constructor () {
-    super();
-  }
+  // constructor () {
+  //   super();
+  // }
 
-  // methods
-  refresh () {
-    // when url changing, but router did not jump to page,
-    // you can use it inject refresh the page.
-    this.isReFresh = false;
-    this.$nextTick(() => {
-      this.isReFresh = true;
-    });
-  }
+  // mounted () {}
+
+  // // methods
+  // refreshView () {
+  //   // when url changing, but router did not jump to page,
+  //   // you can use it inject refresh the page.
+  //   this.isAcitve = false;
+  //   this.$nextTick(() => {
+  //     this.isAcitve = true;
+  //   });
+  // }
 }
 </script>
 <style>
-@import url('~/css/index.css');
+@import url('assets/css/index.css');
 </style>

@@ -1,0 +1,64 @@
+#app {
+  position: relative;
+  height: inherit;
+}
+
+.tc-view-container {
+  position: relative;
+}
+
+.tc-container {
+  position: relative;
+  max-width: 1080px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: content-box;
+}
+
+.tc-container>:last-child {
+  margin-bottom: 0;
+}
+
+.tc-card {
+  flex: 1 1 320px;
+  flex-direction: column;
+  min-height: 300px;
+  margin: 0 20px 40px;
+  color: #666;
+  overflow: hidden;
+  background: #fff center;
+  background-size: cover;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+  transition: all .5s ease;
+}
+
+.tc-card {
+  
+}
+
+.tc-card .tc-card-media {
+  max-width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.tc-card .tc-card-media .tc-media-img {
+  max-width: 100%;
+}
+
+.tc-card .tc-card-body {
+  padding: 20px;
+}
+
+.tc-card .tc-card-body .tc-card-header{
+
+}
+
+@media (min-width: 1920px) {
+  .tc-container {
+    max-width: 1440px;
+  }
+}
