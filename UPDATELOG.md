@@ -553,6 +553,50 @@ webpack 别名设置问题，配置完成后报错信息为找不到 **module**�
 - **buildRouteList** 通过配置文件构建路由对象信息，除必要属性外其他属性通过对象合并的方式处理。
 - **buildRouteView** 构建路由视图组件，主要还是通过 **import** 的方式导入，由于 **import()** 返回一个 **Promise** 对象，所以在找不到 **name** 或 **filePath** 的情况下进行了 **catch** 处理，将路由跳转到 404 页面。
 
+---
 
+## 2019-10-13 22:01
+在看了一下新的 Vue TypeScript 语法后发现写起来有那么一点不方便，不像之前的方式可以通过预置的简写语法块生成。
+https://github.com/kaorun343/vue-property-decorator
+https://github.com/vuejs/vue-class-component
 
+---
+
+## 2019-10-14 23:47
+由于之前在网上看到一篇文章写到过可以自己生成语法模板，但只是有映像而已。所以就去搜索了一下如何用 nodejs 生成模板。
+唉，这不搜不要紧，一搜就有意思了。我发现有 **nodejs 命令行交互式应用**，一看发现是通过**命令行QA**的方式来获取信息并生成结果。
+看看看着觉得有点眼熟，然后想了想，哎哟，这不就是 **vue-cli create** 项目的方式吗？哪这个就是真的有意思了，赶紧就转换思路去搜索相关的结果。但是大多数结果告诉我是使用 **prompt** 或者 **Inquirer** 库来实现，用库实现确实方便，但是我自己觉得没必要再去引一些库来实现一些额外的功能。
+
+https://github.com/SBoudrias/Inquirer.js
+https://github.com/flatiron/prompt
+
+所以我就去查看了他们的源码实现发现都是使用 nodejs 里的 readline。
+
+nodejs API 走起一看 readline -> readline.Interface 示例：微型 CLI。
+http://nodejs.cn/api/readline.html#readline_example_tiny_cli
+
+那就什么都别说了，看着 API 撸一个就好。
+
+起初还以为撸一个有点难度，谁知道撸下来并没太难，还顺手优化了一下加了一些输入验证和默认值的判断。
+
+---
+
+## 2019-10-15 20:56
+完成了之后每次都要通过命令行进入执行文件所在目录再通过 nodejs 来执行脚本，实在是麻烦，索性又去搜索了一下关于npm脚本路径配置，最后在 package.json 中加入了脚本命令。
+
+```json
+"scripts": {
+  // 如需使用 npm 命令的话则需要在 package.json scripts 中加入你的命令名称和脚本位置。
+  // 脚本位置的话不能直接使用 ./path 或 /path 这样会无法识别。
+  // 需要使用 node path/name.xxx，这样 node 就会将脚本位置定位至当前项目开始。
+  "tplgo": "node build/index.js"
+}
+```
+执行脚本的命令
+```command
+npm run tplgo
+```
+
+微型的 QA 式 CLI 是完成了，但是关于生成模板这块还没有完成，目前预想的难度是在路径匹配还有文件检查这一块。
+模板的内容倒是现用字符串模板的方式写好了，就剩下处理路径和如何写入生成文件了。
 

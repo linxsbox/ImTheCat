@@ -1,0 +1,141 @@
+// 控制台命令行
+const readline = require('readline');
+
+// 实现小型 Cli | x1B/033
+// 如需使用 npm 命令的话则需要在 package.json scripts 中加入你的命令名称和脚本位置。
+// 脚本位置的话不能直接使用 ./path 或 /path 这样会无法识别。
+// 需要使用 node path/name.xxx，这样 node 就会将脚本位置定位至当前项目开始。
+// 然后可以通过对输入流的监听来实现一个简单的问答式 Cli
+// http://nodejs.cn/api/readline.html#readline_example_tiny_cli
+
+// readline.createInterface
+// 它会创建一个接口的实例，用于处理流信息，例：输入、输出、提示字符串、自动补全、历史记录等。
+const rli = readline.createInterface({
+  // 要监听的可读流。此选项是必需的。
+  input: process.stdin,
+  // 将逐行读取数据写入的可写流。
+  output: process.stdout
+  // prompt // 要使用的提示字符串。默认值: '> '。
+  // historySize  //保留的最大历史记录行数。 要禁用历史记录，请将此值设置为 0。
+  // completer // 用于 Tab 自动补全的可选函数。
+});
+
+// 问题步长记录，每次符合确认内容时则 + 1
+let stepQuestion = 0;
+// 问题文字内容
+const questionText = [
+  '组件名称？',
+  '指定文件夹路径？',
+  '代码文件类型？',
+  '样式表类型？',
+  '是否创建单独的Api文件？',
+]
+// 问题的总数
+const lenQuestion = questionText.length - 1
+// 问题输出提示内容
+const setBeforeQuestion = [
+  `\x1B[32m?\x1B[97m ${questionText[0]}\x1B[32m[template]`,
+  `\x1B[32m?\x1B[97m ${questionText[1]}\x1B[32m[./view/]`,
+  `\x1B[32m?\x1B[97m ${questionText[2]}\x1B[32m[JS/ts]`,
+  `\x1B[32m?\x1B[97m ${questionText[3]}\x1B[32m[CSS/less/sass/scss]`,
+  `\x1B[32m?\x1B[97m ${questionText[4]}\x1B[32m[y/N]`,
+];
+
+// 无有效输入时使用的默认内容
+const defAnswer = {
+  fileName: 'template',
+  path: './view/',
+  coreType: 'js',
+  cssType: 'css',
+  fileApi: false,
+};
+
+// 记录问题的回答内容
+const answer = {
+  fileName: '',
+  path: '',
+  coreType: '',
+  cssType: '',
+  cssType: '',
+  fileApi: false,
+};
+
+// 通过正则检查输入字符
+const checkLineSrt = (regexp, str) => {
+  let resultReg = str.match(regexp);
+  return resultReg ? resultReg.length > 0 : false;
+}
+
+// 检查是否符合规则，并处理答案默认选项
+const checkAnswer = (step, content) => {
+  // if (step > 1) { content = content.toLowerCase() }
+  switch (step) {
+    case 0:
+      return answer.fileName = checkLineSrt(/[a-zA-Z]{1,40}/ig, content)
+        ? content : defAnswer.fileName;
+    case 1:
+      return answer.path = content ? checkLineSrt(/\.\/[a-zA-Z]{1,40}(\/[a-zA-Z]{1,40})*/ig, content)
+        ? content : `${defAnswer.path}${content}`
+        : `${defAnswer.path}${answer.fileName}`;
+    case 2:
+      content = content.toLowerCase()
+      return answer.coreType = checkLineSrt(/js|ts/ig, content)
+        ? `index.${content}` : `index.js`;
+    case 3:
+      content = content.toLowerCase()
+      return answer.cssType = checkLineSrt(/css|less|sass|scss/ig, content)
+        ? `index.${content}` : `index.css`;
+    case 4:
+      if (checkLineSrt(/y|Y|n|N/ig, content.substr(0, 1))) {
+        const tempYN = content.toLowerCase()
+        answer.fileApi = tempYN === 'y' ? true : false
+        return content
+      } else {
+        answer.fileApi = false
+        return 'N'
+      }
+  };
+};
+
+readline.cursorTo(process.stdout, 0, 0);
+readline.clearScreenDown(process.stdout);
+
+// 初始化第一个问题。
+console.log(setBeforeQuestion[stepQuestion]);
+// 设定输入内容样式
+console.log('\x1B[36m');
+
+// on 函数是为需要监听的指令
+// line 是能接受到当前命令行中的输入流信息，通过函数回调的方式返回处理过的字符串。
+rli.on('line', line => {
+  const line2str = line.trim()
+  let tempAnswer = '';
+
+  // 将检查处理后的答案信息存储用于后续命令行内容输出
+  tempAnswer = checkAnswer(stepQuestion, line2str);
+
+  // 将光标移入上一次步骤的位置，可以造成用户已经选择完成的效果。
+  readline.cursorTo(process.stdout, 0, stepQuestion);
+  // 清理之前的输入内容。
+  readline.clearScreenDown(process.stdout);
+  // 选择完成后输出选择后的结果信息。
+  console.log(`\x1B[32m?\x1B[97m ${questionText[stepQuestion]}\x1B[36m%s`, tempAnswer);
+
+  // 重置控制台样式。
+  console.log('\x1B[0m');
+
+  // 如果当问题的步骤小于问题的长度时，则问题步长 + 1。
+  if (stepQuestion < lenQuestion) {
+    stepQuestion++;
+    // 输出下一个问题内容
+    console.log(setBeforeQuestion[stepQuestion]);
+  } else {
+    // 否则可以认为已经选择完成
+    console.log('再见! %o', answer);
+    process.exit(0);
+  }
+}).on('close', () => {
+  console.log('您已中断模板创建任务，感谢您的使用再见!');
+  process.exit(0);
+});
+

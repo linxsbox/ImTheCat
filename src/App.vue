@@ -28,7 +28,11 @@ export default class App extends Vue {
   //   super();
   // }
 
-  // mounted () {}
+  mounted () {
+    console.log('\x1B[32m%s', 123);
+    console.log('line2str'.substr(0, 1));
+    console.log('');
+  }
 
   // // methods
   // refreshView () {
