@@ -140,10 +140,14 @@ rli.on('line', line => {
     // 输出下一个问题内容
     console.log(setBeforeQuestion[stepQuestion]);
   } else {
+    // async function a () {
+    //   await 
+    // }
+
     tpl.bulidTpl(answer);
-    // 否则可以认为已经选择完成
-    console.log('再见! %o', answer);
-    process.exit(0);
+      // 否则可以认为已经选择完成
+      console.log('再见! %o', answer);
+      process.exit(0);
   }
 }).on('close', () => {
   console.log('\x1B[0m');
