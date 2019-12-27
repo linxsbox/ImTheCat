@@ -645,3 +645,25 @@ NodeJs v12.9.0 64-bit 有内存溢出问题慎用！又换了个 v11.10.0 版本
 尝试修改 **buildTemplate** 的时候思考了一下，发现使用 **promise** 进行处理并不合适，然后改为尝使用 **async/await** 来对写入文件部分进行处理。
 
 目前还有一个问题需要考虑，就是 **fs.writeFile** 的函数是异步的，要考虑如何在所有写入任务完成后统一返回结果，最后再将函数信息 return 出去以结束同步状态，让调用方继续执行后续代码。
+
+## 2019-12-27 21:15
+尝试更新引用包版本的时候发现报错了，然后看了一下错误日志，是文件引用了不存在的链接。
+然后使用 **npm-check -u** 命令发现 @vue 更新后变化太大，提示了我 **Major Update Potentially breaking API changes. Use caution.**
+然后在我尝试了几个升级后依然无法正确更新引用包，依然是是文件引用了不存在的链接。我就查看 **npm debug.log** 的日志文件发现如下包错误：
+```
+tsserver -> typescript
+lint-staged
+sass-loader
+node-sass
+@vue/cli-service 
+@vue/cli-plugin-babel
+@vue/cli-plugin-e2e-nightwatch
+@vue/cli-plugin-pwa
+@vue/cli-plugin-typescript
+@vue/cli-plugin-unit-mocha
+```
+当我尝试使用 **npm uninstall package -D** 移除这些引用，居然直接报错无法移除！那么看来只能手动删除相关的包了。
+
+手动删除相关的包后，重新 **npm install package -D** 以上相关包，就可以正常运行项目了。
+
+---

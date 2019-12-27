@@ -49,5 +49,5 @@ export class TaskList extends Vue {
 }
 </script>
 <style>
-  @import url('index./css');
+  @import url('index.css');
 </style>
