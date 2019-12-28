@@ -7,7 +7,7 @@
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
-import * as h from './index';
+// import * as h from './index';
 
 @Component
 export class TaskList extends Vue {

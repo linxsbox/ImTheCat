@@ -147,7 +147,7 @@ rli.on('line', line => {
     tpl.bulidTpl(answer);
       // 否则可以认为已经选择完成
       console.log('再见! %o', answer);
-      process.exit(0);
+      // process.exit(0);
   }
 }).on('close', () => {
   console.log('\x1B[0m');

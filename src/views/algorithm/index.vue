@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Vue } from 'vue-property-decorator';
-import * as asort from './algorithm';
+// import * as asort from './algorithm';
 
 export class Algorithm extends Vue {
   arr1 = [9, 4, 3, 1, 6, 8, 5, 0, 7, 2]; // 乱序

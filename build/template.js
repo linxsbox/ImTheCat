@@ -32,7 +32,7 @@ import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 import * as h from './index';
 
 @Component
-export class ${tempPascalName} extends Vue {
+export default class ${tempPascalName} extends Vue {
 
   // data
   name = '${tempPascalName}';
@@ -65,13 +65,13 @@ export class ${tempPascalName} extends Vue {
   }
 
   @Emit()
-  returnValue() {
+  returnValue () {
     return '${fileName}';
   }
 }
 </script>
 <style${cssType !== 'css' ? ' lang="' + cssType + '"' : ''}>
-  @import url('index./${cssType}');
+  @import url('index.${cssType}');
 </style>
 `;
 

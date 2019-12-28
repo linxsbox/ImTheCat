@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import { initRouterRules } from './handle';
 
-
 // console.dir(Router);
 
 Vue.use(Router);
@@ -15,5 +14,16 @@ export default initRouterRules();
 //   routes: [{
 //     path: '/',
 //     name: 'home',
+//     component: asd,
+//   },
+//   {
+//     path: '/a',
+//     name: 'a',
+//     component: a,
+//   },
+//   {
+//     path: '/b',
+//     name: 'b',
+//     component: b,
 //   }],
 // });

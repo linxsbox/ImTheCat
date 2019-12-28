@@ -21,6 +21,13 @@
       "title": "测试"
     },
     "filePath": ""
+  }, {
+    "path": "a",
+    "name": "a",
+    "meta": {
+      "title": "测试"
+    },
+    "filePath": "views/a"
   }],
   "whitelist": [
     "/", "/404", "/index", "/home", "/login"

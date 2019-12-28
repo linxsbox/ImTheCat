@@ -16,22 +16,23 @@ const buildRouteView = (view?: any) => {
   // What is returned is the import information of the view component, which returns a promise object.
   // 返回的是视图组件的导入信息，它返回一个Promise对象。
   const viewPath = view.filePath ? view.filePath : `views/${view.name}`;
-  return () => import(`@/${viewPath}.vue`)
+  
+  return () => import(`@/${viewPath}${!view.filePath ? '/index' : ''}.vue`)
     .then(data => {
       return data;
     })
-    .catch(() => {
+    .catch(err => {
       // Cannot find module or folder.
       // 找不到模块或文件夹，则将其加入丢失模块列表。
       console.error(`[Build Router View]: Cannot find module or folder, Please check 'views/${view.name}'.`);
-      vRouter.push({ name: '404' });
+      // vRouter.push({ name: '404' });
       return {};
     });
 };
 
 // Build routing object information from a configuration file.
-// 通过配置文件构建路由对象信息。
-const buildRouteList = () => {
+// 通过配置文件构建路由对象信息。多个路由配置信息会执行多次。
+const buildRouteList = () => {  
   const routePreset = config.routePreset;
   const routeList = config.routeList;
 
@@ -45,9 +46,6 @@ const buildRouteList = () => {
         ? `${item.path}` : `/${item.path}`
       : `/${item.name}`;
 
-    // Processing route name.
-    const tempName = item.name ? `${item.name}` : `route${index}`;
-
     if (item.children) {
       buildRoutingObject(item.children);
     } else {
@@ -56,7 +54,7 @@ const buildRouteList = () => {
         // 路由路径
         path: tempPath,
         // 路由名称
-        name: tempName,
+        name: `${item.name ? item.name : 'route' + index}`,
         // 需载入组件
         component: item.name ? buildRouteView(item) : {},
       });
@@ -96,7 +94,7 @@ const handleRoute = (router: Router) => {
   router.beforeEach((to, from, next) => {
     // If the access to.path is on the whitelist.
     if (!routeWhiteList(to)) {
-      // next('/');
+      // next('/404 ');
       return;
     }
     console.log('before to', to);
