@@ -1,7 +1,6 @@
 <template>
   <div class="home-container">
     {{ name }}
-    asdasd
   </div>
 </template>
 
@@ -11,7 +10,7 @@
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 
 @Component
-export default class B extends Vue {
+export default class Home extends Vue {
   // data
   name = 'Home';
   msg = '你好';
@@ -47,6 +46,7 @@ export default class B extends Vue {
   }
 }
 </script>
+
 <style>
   @import url('index.css');
 </style>

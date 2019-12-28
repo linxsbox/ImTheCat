@@ -10,7 +10,7 @@ import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 // import * as h from './index';
 
 @Component
-export class TaskList extends Vue {
+export default class TaskList extends Vue {
 
   // data
   name = 'TaskList';

@@ -40,7 +40,7 @@ const setBeforeQuestion = [
   `\x1B[32m?\x1B[97m ${questionText[1]}(最大深度：4)\x1B[32m[./view/]`,
   `\x1B[32m?\x1B[97m ${questionText[2]}\x1B[32m[JS/ts]`,
   `\x1B[32m?\x1B[97m ${questionText[3]}\x1B[32m[CSS/less/sass/scss]`,
-  `\x1B[32m?\x1B[97m ${questionText[4]}\x1B[32m[y/N]`,
+  // `\x1B[32m?\x1B[97m ${questionText[4]}\x1B[32m[y/N]`, // api 文件写入部分暂不考虑，目前还未想好该如何设计
 ];
 
 // 无有效输入时使用的默认内容
@@ -144,10 +144,20 @@ rli.on('line', line => {
     //   await 
     // }
 
-    tpl.bulidTpl(answer);
+    tpl.bulidTpl(answer)
+    .then(() => {
       // 否则可以认为已经选择完成
-      console.log('再见! %o', answer);
-      // process.exit(0);
+      // console.log('再见! %o', answer);
+      console.log('再见!');
+      console.log('\x1B[0m');
+      process.exit(0);
+    })
+    .catch(err => {
+      console.log(`\x1B[31m${err.message}`);
+      console.log(`\x1B[31m${err.error}`);
+      console.log('\x1B[0m');
+      process.exit(0);
+    });
   }
 }).on('close', () => {
   console.log('\x1B[0m');

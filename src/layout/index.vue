@@ -3,8 +3,6 @@
     <!-- <layout-header></layout-header> -->
     <router-view class="cat-view-container" :class="viewClass" v-if="isAcitve"></router-view>
     <!-- <layout-footer></layout-footer> -->
-    {{isAcitve}}
-    {{viewClass}}
   </div>
 </template>
 
