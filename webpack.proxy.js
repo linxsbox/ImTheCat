@@ -26,5 +26,4 @@ if (Object.keys(proxyConfig).length > 0) {
   console.log('webpack.proxy rules: ', Object.keys(proxyConfig).length)
 }
 
-
 module.exports = devServer

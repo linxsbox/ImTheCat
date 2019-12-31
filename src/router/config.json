@@ -28,9 +28,15 @@
       "title": "测试"
     },
     "filePath": "views/a"
+  }, {
+    "path": "learn",
+    "name": "learn",
+    "meta": {
+      "title": "Vue 学习"
+    }
   }],
   "whitelist": [
     "/", "/404", "/index", "/home", "/login"
   ],
-  "other": ["/t", "/test"]
+  "other": ["/t", "/test", "/learn"]
 }

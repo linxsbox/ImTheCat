@@ -25,7 +25,7 @@ const buildRouteView = (view?: any) => {
       // Cannot find module or folder.
       // 找不到模块或文件夹，则将其加入丢失模块列表。
       console.error(`[Build Router View]: Cannot find module or folder, Please check 'views/${view.name}'.`);
-      // vRouter.push({ name: '404' });
+      vRouter.push({ name: '404' });
       return {};
     });
 };
@@ -97,23 +97,28 @@ const handleRoute = (router: Router) => {
       // next('/404 ');
       return;
     }
+    console.log('%c路由导航守卫规则: %cbeforeEach', 'color:#42b983;', 'font-weight:bolder;');
     console.log('before to', to);
-    // console.log('before from', from);
+    console.log('before from', from);
     // console.log('before next', typeof next);
+    console.log('%c----------', 'color:#42b983;');
     next();
   });
 
   router.beforeResolve((to, from, next) => {
+    console.log('%c路由导航守卫规则: %cbeforeResolve', 'color:#42b983;', 'font-weight:bolder;');
     console.log('resolve to', to);
-    // console.log('resolve from', from);
+    console.log('resolve from', from);
     // console.log('resolve next', next);
-    // next(false);
+    console.log('%c----------', 'color:#42b983;');
     next();
   });
 
   router.afterEach((to, from) => {
+    console.log('%c路由导航守卫规则: %cafterEach', 'color:#42b983;', 'font-weight:bolder;');
     console.log('after to', to);
     // console.log('after from', from);
+    console.log('%c----------', 'color:#42b983;');
   });
 };
 
@@ -130,7 +135,7 @@ export function initRouterRules (base?: '/') {
     ALL_WHITELIST = config.whitelist.concat(config.other);
   }
 
-  // console.log(buildRouteList());
+  console.log(buildRouteList());
 
   vRouter = new Router({
     mode: config.mode,

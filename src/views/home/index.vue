@@ -1,6 +1,7 @@
 <template>
   <div class="home-container">
     {{ name }}
+    <router-link :to="{name: 'learn'}">go to learn</router-link>
   </div>
 </template>
 
@@ -23,11 +24,11 @@ export default class Home extends Vue {
   }
 
   created () {
-    console.log('this is created');
+    console.log('%cthis is created from Home', 'color:red;font-weight:bolder;');
   }
   // mounted
   mounted () {
-    console.log('this is mounted');
+    console.log('%cthis is mounted from Home', 'color:red;font-weight:bolder;');
   }
 
   // computed
