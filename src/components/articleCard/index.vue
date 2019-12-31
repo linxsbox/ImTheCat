@@ -1,5 +1,5 @@
 <template>
-  <section class="article-card" @click="helloWorld">
+  <section class="article-card">
     <div class="article-card-media" ref="media-box">
       <img class="article-media-img"
         :src="loadImgSrc ? loadImgSrc : ''"
@@ -68,8 +68,6 @@ export default class ArticleCard extends Vue {
 
   // methods
   helloWorld () {
-    console.log(111);
-    
     return 'Hello World';
   }
 
