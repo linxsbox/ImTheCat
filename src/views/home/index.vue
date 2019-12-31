@@ -1,6 +1,12 @@
 <template>
   <div class="home-container">
-    {{ name }}
+    <div class="container">
+      <article class="articles cat-flex cat-flex-wrap">
+        <article-card class="cat-flex" v-for="(item, index) in 15" :key="index">
+          article {{ item }}
+        </article-card>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -8,8 +14,11 @@
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
+import articleCard from 'cps/articleCard/index.vue';
 
-@Component
+@Component({
+  components: { articleCard },
+})
 export default class Home extends Vue {
   // data
   name = 'Home';
@@ -37,6 +46,8 @@ export default class Home extends Vue {
 
   // methods
   helloWorld () {
+    console.log('helloWorld');
+    
     return 'Hello World';
   }
 
