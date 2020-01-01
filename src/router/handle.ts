@@ -25,7 +25,7 @@ const buildRouteView = (view?: any) => {
       // Cannot find module or folder.
       // 找不到模块或文件夹，则将其加入丢失模块列表。
       console.error(`[Build Router View]: Cannot find module or folder, Please check 'views/${view.name}'.`);
-      // vRouter.push({ name: '404' });
+      vRouter.push({ name: '404' });
       return {};
     });
 };
@@ -83,7 +83,9 @@ const buildRouteList = () => {
 // Check route whitelist.
 // 检查路由白名单。
 const routeWhiteList = (to: any) => {
+  const tempNameList = ['index', 'home'];
   if (!to.path) { return false; }
+  if (to.path === '/' && to.name &&  tempNameList.indexOf(to.name) === -1) { return false; }
   if (ALL_WHITELIST.indexOf(to.path) === -1) { return false; }
   return true;
 };
@@ -94,7 +96,7 @@ const handleRoute = (router: Router) => {
   router.beforeEach((to, from, next) => {
     // If the access to.path is on the whitelist.
     if (!routeWhiteList(to)) {
-      // next('/404 ');
+      next('/404');
       return;
     }
     console.log('before to', to);

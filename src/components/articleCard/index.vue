@@ -1,5 +1,7 @@
 <template>
-  <section class="article-card">
+  <section class="article-card"
+
+    v-on:click="eventClick">
     <div class="article-card-media" ref="media-box">
       <img class="article-media-img"
         :src="loadImgSrc ? loadImgSrc : ''"
@@ -15,7 +17,7 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch, Model, Emit } from 'vue-property-decorator';
 // import * as h from './index';
 
 @Component
@@ -29,15 +31,9 @@ export default class ArticleCard extends Vue {
     height: 'auto',
   };
 
-  // @Prop(String) readonly text: string | undefined;
+  // props
   @Prop({type: String, default: '' }) readonly text: string | undefined;
   @Prop({type: String, default: '' }) readonly imgSrc!: string;
-  // @Prop(String) readonly text: string | undefined;
-
-  @Watch('imgSrc')
-  onChildChanged (val: number, oldVal: number) {
-    console.log(`newValue: ${val}, oldValue: ${oldVal}`);
-  }
 
   // created
   created () {
@@ -48,7 +44,8 @@ export default class ArticleCard extends Vue {
   mounted () {
     this.loadImage();
   }
-  
+
+  // load Image src evenet
   loadImage () {
     // 新建图像对象
     const tempImg = new Image();
@@ -66,19 +63,10 @@ export default class ArticleCard extends Vue {
     };
   }
 
-  // methods
-  helloWorld () {
-    return 'Hello World';
-  }
-
-  // computed
-  get helloArticleCard () {
-    return 'get articleCard';
-  }
-
-  @Emit()
-  returnValue () {
-    return 'articleCard';
+  // emit
+  @Emit('click')
+  eventClick (e: Event) {
+    return e;
   }
 }
 </script>

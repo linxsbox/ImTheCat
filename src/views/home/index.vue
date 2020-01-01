@@ -2,7 +2,8 @@
   <div class="home-container">
     <div class="container">
       <article class="articles cat-flex cat-flex-wrap">
-        <article-card class="cat-flex" v-for="(item, index) in 15" :key="index">
+        <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
+          @click="gotoDetail">
           article {{ item }}
         </article-card>
       </article>
@@ -45,10 +46,8 @@ export default class Home extends Vue {
   }
 
   // methods
-  helloWorld () {
-    console.log('helloWorld');
-    
-    return 'Hello World';
+  gotoDetail (e: Event) {
+    this.$router.push({name: 'article'});
   }
 
   @Emit()
