@@ -3,6 +3,7 @@
     <div>hello vue</div>
 
     {{ name }}
+    <div>{{msgTwo}}</div>
     
   <div>
     <router-link :to="{name: 'learn'}">go to learn</router-link>
@@ -33,7 +34,7 @@ export default class Home extends Vue {
   // data
   name = 'Home';
   msg = '你好';
-
+  msgTwo = '今天天气真好';
   @Prop(Number) readonly propA: number | undefined;
 
   @Watch('propA')
