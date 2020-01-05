@@ -30,7 +30,7 @@ const buildQuestion = () => {
   // 问题文字内容、提示、类型
   const questionText = [
     {question: '组件名称？', tips: '', type: '[template]'},
-    {question: '指定文件夹路径？', tips: '(最大深度：4)', type: '[./view/]'},
+    {question: '指定文件夹路径？', tips: '(最大深度：4)', type: '[./views/]'},
     {question: '代码文件类型？', tips: '', type: '[JS/ts]'},
     {question: '样式表类型？', tips: '', type: '[CSS/less/sass/scss]'},
     // {question: '是否创建单独的Api文件？', tips: '', type: '[y/N]'} // 暂时未想好该如何处理 API 文件的构建和写入
