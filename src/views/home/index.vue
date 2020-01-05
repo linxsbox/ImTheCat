@@ -1,6 +1,7 @@
 <template>
   <div class="home-container">
     {{ name }}
+    <div>{{msgTwo}}</div>
     <router-link :to="{name: 'learn'}">go to learn</router-link>
   </div>
 </template>
@@ -15,7 +16,7 @@ export default class Home extends Vue {
   // data
   name = 'Home';
   msg = '你好';
-
+  msgTwo = '今天天气真好';
   @Prop(Number) readonly propA: number | undefined;
 
   @Watch('propA')
