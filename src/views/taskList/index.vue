@@ -1,6 +1,6 @@
 <template>
   <div class="taskList-container">
-
+    the aim is to do what?
   </div>
 </template>
 <script lang="ts">
@@ -13,7 +13,7 @@ import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 export default class TaskList extends Vue {
 
   // data
-  name = 'TaskList';
+  name = 'taskList';
   msg = '你好';
 
   @Prop(Number) readonly propA: number | undefined;
