@@ -11,7 +11,7 @@
     "path": "/",
     "name": "home",
     "meta": {
-      "title": "首页"
+      "title": ""
     },
     "filePath": ""
   }, {
@@ -33,10 +33,28 @@
     "name": "learn",
     "meta": {
       "title": "Vue 学习"
-    }
+    }, 
+    "filePath": ""
+  },{
+    "path": "sport",
+    "name": "sport",
+    "meta": {
+      "title": "Vue 学习"
+    }, 
+    "filePath": ""
+  },
+
+    {
+    "path": "taskList",
+    "name": "taskList",
+    "meta": {        
+      "title": ""
+    },
+      "filePath": ""
+    
   }],
   "whitelist": [
     "/", "/404", "/index", "/home", "/login"
   ],
-  "other": ["/t", "/test", "/learn"]
+  "other": ["/t", "/test", "/learn","/sport","/taskList"]
 }
