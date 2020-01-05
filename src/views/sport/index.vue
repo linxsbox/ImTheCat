@@ -1,8 +1,7 @@
 <template>
   <div class="learn-container">
     <div>Vue 学习</div>
-    {{ msg }} {{ name }}
-    <div>my name is {{name}}</div>
+    hehe
     <div></div>
     <div>
       <router-link to="/">go to index</router-link>
@@ -21,7 +20,7 @@ import { Vue } from 'vue-property-decorator';
 // TypeScript 混合模式
 // Vue 组件生命周期理解学习
 export default Vue.extend({
-  name: 'Learn', // 组件名
+  name: 'sport', // 组件名
   data () { // 数据对象
     return {
       name: 'LinShuai',

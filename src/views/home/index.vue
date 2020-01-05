@@ -1,8 +1,26 @@
 <template>
   <div class="home-container">
+    <div>hello vue</div>
+
     {{ name }}
     <div>{{msgTwo}}</div>
+    
+  <div>
     <router-link :to="{name: 'learn'}">go to learn</router-link>
+  </div>
+  <div>
+    <router-link :to="{name: 'taskList'}">go to taskList </router-link>
+  </div>
+    <router-link :to="{name: 'learn'}">go to learn</router-link>
+  <div>
+    <router-link :to="{name: 'sport'}">sport</router-link>
+  </div>
+  <div>
+    <router-link :to="{name: 'taskList'}">taskList</router-link>
+  </div>
+
+
+
   </div>
 </template>
 
