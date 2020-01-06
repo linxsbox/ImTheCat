@@ -1,26 +1,17 @@
 <template>
   <div class="home-container">
-    <div>hello vue</div>
+    <div>
+      <router-link to="/404"> 跳转学习页面 </router-link>
+    </div>
 
-    {{ name }}
-    <div>{{msgTwo}}</div>
-    
-  <div>
-    <router-link :to="{name: 'learn'}">go to learn</router-link>
-  </div>
-  <div>
-    <router-link :to="{name: 'taskList'}">go to taskList </router-link>
-  </div>
-    <router-link :to="{name: 'learn'}">go to learn</router-link>
-  <div>
-    <router-link :to="{name: 'sport'}">sport</router-link>
-  </div>
-  <div>
-    <router-link :to="{name: 'taskList'}">taskList</router-link>
-  </div>
-
-
-
+    <div class="container">
+      <article class="articles cat-flex cat-flex-wrap">
+        <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
+          @click="gotoDetail">
+          article {{ item }}
+        </article-card>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -28,20 +19,15 @@
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
+import articleCard from 'cps/articleCard/index.vue';
 
-@Component
+@Component({
+  components: { articleCard },
+})
 export default class Home extends Vue {
   // data
   name = 'Home';
-  msg = '你好';
-  msgTwo = '今天天气真好';
-  @Prop(Number) readonly propA: number | undefined;
-
-  @Watch('propA')
-  onChildChanged (val: number, oldVal: number) {
-    console.log(`newValue: ${val}, oldValue: ${oldVal}`);
-  }
-
+  
   created () {
     console.log('%cthis is created from Home', 'color:red;font-weight:bolder;');
   }
@@ -52,12 +38,12 @@ export default class Home extends Vue {
 
   // computed
   get helloHome () {
-    return this.msg + 'home';
+    return 'home';
   }
 
   // methods
-  helloWorld () {
-    return 'Hello World';
+  gotoDetail (e: Event) {
+    this.$router.push({name: 'article'});
   }
 
   @Emit()

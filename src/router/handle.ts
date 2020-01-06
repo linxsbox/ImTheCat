@@ -83,7 +83,9 @@ const buildRouteList = () => {
 // Check route whitelist.
 // 检查路由白名单。
 const routeWhiteList = (to: any) => {
+  const tempNameList = ['index', 'home'];
   if (!to.path) { return false; }
+  if (to.path === '/' && to.name &&  tempNameList.indexOf(to.name) === -1) { return false; }
   if (ALL_WHITELIST.indexOf(to.path) === -1) { return false; }
   return true;
 };
@@ -94,7 +96,7 @@ const handleRoute = (router: Router) => {
   router.beforeEach((to, from, next) => {
     // If the access to.path is on the whitelist.
     if (!routeWhiteList(to)) {
-      // next('/404 ');
+      next('/404');
       return;
     }
     console.log('%c路由导航守卫规则: %cbeforeEach', 'color:#42b983;', 'font-weight:bolder;');
