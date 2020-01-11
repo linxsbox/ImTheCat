@@ -4,14 +4,14 @@ import router from './router';
 // import './registerServiceWorker';
 
 // web storage
-// import storage from '@/core/http/storage';
+import core from '@/core';
 
 // App page
 import App from './App.vue';
 
 Vue.config.productionTip = false;
 
-// Vue.use(storage);
+Vue.use(core);
 
 new Vue({
   router,

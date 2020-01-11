@@ -689,9 +689,24 @@ node-sass
 
 ## 2019-12-31 20:50
 更新了构建模板的写入内容，加入少量注释
+
 ---
 
+## 2020-01-11 17:56
+将之前未完成的 **web storage** 改写成 **TypeCcript** 版本, 然后将其注册至 Vue 下。
+写完的时候直接使用是可以将数据写入 **web storage** 中，但是在 **.vue** 文件中未能识别出，导致在控制台会输出错误。
+这个主要是因为 **TypeScript** 本身不支持额外的类型定义，所以需要自己提供一个 **\*.d.ts** 文件来描述定义的类型。主要是将相关的 **export declare interface、class、type** 等在类型定义文件中重新描述。以及再通过 **declare module 'path'** 来指定关联的模块和接口，就可以完成对该类型的定义了。
+```javascript
+export declare class WebLocals {
+  set (key: string, value: any, opts?: Options): void;
+  get (key: string): object | string | undefined;
+}
 
-## 2020-01-01 17:56
+declare module 'vue/types/vue' {
+  interface Vue {
+    $webLocals: WebLocals
+  }
+}
+```
 
 ---
