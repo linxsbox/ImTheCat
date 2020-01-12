@@ -1,5 +1,8 @@
 <template>
   <div class="home-container">
+    <div>
+      <router-link :to="{path: '/articles', params: {id: '123'}}">666</router-link>
+    </div>
     <div class="container">
       <article class="articles cat-flex cat-flex-wrap">
         <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
