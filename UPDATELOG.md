@@ -689,9 +689,34 @@ node-sass
 
 ## 2019-12-31 20:50
 更新了构建模板的写入内容，加入少量注释
+
 ---
 
+## 2020-01-11 23:02
+将之前未完成的 **web storage** 改写成 **TypeCcript** 版本, 然后将其注册至 Vue 下。
+写完的时候直接使用是可以将数据写入 **web storage** 中，但是在 **.vue** 文件中未能识别出，导致在控制台会输出错误。
+这个主要是因为 **TypeScript** 本身不支持额外的类型定义，所以需要自己提供一个 **\*.d.ts** 文件来描述定义的类型。主要是将相关的 **export declare interface、class、type** 等在类型定义文件中重新描述。以及再通过 **declare module 'path'** 来指定关联的模块和接口，就可以完成对该类型的定义了。
+```javascript
+export declare class WebLocals {
+  set (key: string, value: any, opts?: Options): void;
+  get (key: string): object | string | undefined;
+}
 
-## 2020-01-01 17:56
+declare module 'vue/types/vue' {
+  interface Vue {
+    $webLocals: WebLocals
+  }
+}
+```
+
+---
+
+## 2020-01-12 11:00
+昨天让小队成员尝试使用我自己封装处理了一下的 **Vue-Router** 功能，定义的一级路由的可以正常访问没有问题的，然而在使用多级路由或者子级路由的时候无法正常解析从而无法判断是否是合法跳转而导致直接**404**或者控制台输出了**错误信息**。
+回来了以后我好好思考了一下，又对着官方文档以及源码 **Routes** 部分尝试理解他们。最后我发现还是我想得太多了，然后导致了过度设计过度考虑，以至于是以我个人的想法来限定了使用行为，这是非常不好的。
+所以，我就用 **TypeScript** 重新将 **Router** 封装了一下，只处理必要的导航部分，对白名单、访问权限、身份等进行处理，而将过度设计的动态构建 **Routes-View** 全部删除。
+
+- 新增 routes.config.ts 文件用来编写 **Routes** 部分，用以以实现 **Routes** 接口。
+- 更新 config.json 文件，删除不必要的 **key/value** 内容，只保留用于处理对白名单、访问权限、身份等列表。
 
 ---
