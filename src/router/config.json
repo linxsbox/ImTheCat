@@ -1,60 +1,89 @@
 {
   "mode": "history",
   "routeRule": {},
-  "routePreset": [{
-    "path": "/404",
-    "name": "404",
-    "title": "404",
-    "filePath": "layout/error/404"
-  }],
-  "routeList": [{
-    "path": "/",
-    "name": "home",
-    "meta": {
-      "title": ""
-    },
-    "filePath": ""
-  }, {
-    "path": "test",
-    "name": "test",
-    "meta": {
-      "title": "测试"
-    },
-    "filePath": ""
-  }, {
-    "path": "a",
-    "name": "a",
-    "meta": {
-      "title": "测试"
-    },
-    "filePath": "views/a"
-  }, {
-    "path": "learn",
-    "name": "learn",
-    "meta": {
-      "title": "Vue 学习"
-    }, 
-    "filePath": ""
-  },{
-    "path": "sport",
-    "name": "sport",
-    "meta": {
-      "title": "Vue 学习"
-    }, 
-    "filePath": ""
-  },
-
+  "routePreset": [
     {
-    "path": "taskList",
-    "name": "taskList",
-    "meta": {        
-      "title": ""
-    },
-      "filePath": ""
-    
-  }],
-  "whitelist": [
-    "/", "/404", "/index", "/home", "/login"
+      "path": "/404",
+      "name": "404",
+      "title": "404",
+      "filePath": "layout/error/404"
+    }
   ],
-  "other": ["/t", "/test", "/learn","/sport","/taskList"]
+  "routeList": [
+    {
+      "path": "/",
+      "name": "home",
+      "meta": {
+        "title": ""
+      },
+      "filePath": ""
+    },
+    {
+      "path": "test",
+      "name": "test",
+      "meta": {
+        "title": "测试"
+      },
+      "filePath": ""
+    },
+    {
+      "path": "a",
+      "name": "a",
+      "meta": {
+        "title": "测试"
+      },
+      "filePath": "views/a"
+    },
+    {
+      "path": "learn",
+      "name": "learn",
+      "meta": {
+        "title": "Vue 学习"
+      },
+      "filePath": ""
+    },
+    {
+      "path": "sport",
+      "name": "sport",
+      "meta": {
+        "title": "Vue 学习"
+      },
+      "filePath": ""
+    },
+    {
+      "path": "taskList",
+      "name": "taskList",
+      "meta": {
+        "title": ""
+      },
+      "filePath": ""
+    },
+    {
+      "path": "profile",
+      "name": "profile"
+    },
+    {
+      "path": "/edit/:userName",
+      "name": "edit",
+      "props": true
+    }
+  ],
+  "whitelist": [
+    "/",
+    "/404",
+    "/index",
+    "/home",
+    "/login",
+    "profile",
+    "/edit",
+    "/edit/123456"
+  ],
+  "other": [
+    "/t",
+    "/test",
+    "/learn",
+    "/sport",
+    "/taskList",
+    "/profile"
+  ]
 }

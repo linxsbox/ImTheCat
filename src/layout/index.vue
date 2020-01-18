@@ -11,6 +11,15 @@ import { Vue, Component, Provide } from 'vue-property-decorator';
 // import layoutHeader from './header'
 // import layoutFooter from './footer'
 
+function buildName (firstName: string = 'Tom', lastName: string) {
+    return firstName + ' ' + lastName;
+}
+const tomcat = buildName('Tom', 'Cat');
+const cat = buildName(undefined, 'Cat');
+console.log(cat);
+console.log(tomcat);
+
+
 @Component({
   components: {
     // layoutHeader,
