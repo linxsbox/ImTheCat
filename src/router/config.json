@@ -9,10 +9,7 @@
     "/index",
     "/home",
     "/login",
-    "profile",
-    "/edit",
-    "/profile",
-    "/edit"
+    "/userResume"
   ],
   "other": [
     "/t", "/test"

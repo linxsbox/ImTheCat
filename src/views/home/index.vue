@@ -3,7 +3,7 @@
     <div>
       <router-link to="/404"> 跳转学习页面 </router-link>
     </div>
-    <input type="button" value="查看用户信息" @click= "viewProfile">
+    <input type="button" value="查看简历" @click= "goToResume">
 
     <div>
       <router-link :to="{path: '/articles', params: {id: '123'}}">666</router-link>
@@ -53,8 +53,8 @@ export default class Home extends Vue {
     this.$router.push({name: 'article'});
   }
 
-  viewProfile (): void {
-    this.$router.push({name: 'profile'});
+  goToResume (): void {
+    this.$router.push({name: 'userResume'});
   }
 
   @Emit()
