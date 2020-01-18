@@ -20,10 +20,6 @@
 import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
 // import * as h from './index';
 
-// 防报错
-console.log(Watch, Model);
-
-
 @Component
 export default class ArticleCard extends Vue {
 

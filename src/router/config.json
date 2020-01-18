@@ -11,7 +11,8 @@
     "/login",
     "profile",
     "/edit",
-    "/edit/123456"
+    "/profile",
+    "/edit"
   ],
   "other": [
     "/t", "/test"
