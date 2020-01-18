@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import { initRouterRules } from './handle';
+import router from './handle';
 
 import { Component } from 'vue-property-decorator';
 
@@ -15,14 +15,4 @@ Component.registerHooks([
     'beforeRouteUpdate', // for vue-router 2.2+
 ]);
 
-export default initRouterRules();
-
-// export default new Router({
-//   mode: 'history',
-//   base: process.env.BASE_URL,
-//   routes: [{
-//     path: '/',
-//     name: 'home',
-//     component: asd,
-//   }],
-// });
+export default router.initRouter();

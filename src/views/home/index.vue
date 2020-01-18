@@ -4,6 +4,10 @@
       <router-link to="/404"> 跳转学习页面 </router-link>
     </div>
     <input type="button" value="查看用户信息" @click= "viewProfile">
+
+    <div>
+      <router-link :to="{path: '/articles', params: {id: '123'}}">666</router-link>
+    </div>
     <div class="container">
       <article class="articles cat-flex cat-flex-wrap">
         <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"

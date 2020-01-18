@@ -17,7 +17,7 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Prop, Watch, Model, Emit } from 'vue-property-decorator';
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
 // import * as h from './index';
 
 // 防报错

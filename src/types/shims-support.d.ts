@@ -5,19 +5,19 @@ declare module '*.vue' {
 }
 
 // This will allow you to load `.json` files from disk.
-declare module "*.json"
+declare module '*.json'
 { const value: any;
   export default value;
 }
 
 // This will allow you to load JSON from remote URL responses.
-declare module "json!*" {
+declare module 'json!*' {
   const value: any;
   export default value;
 }
 
 // This will allow you to load TEXT from remote URL responses.
-declare module "*!text" {
+declare module '*!text' {
   const content: string;
   export default content;
 }
