@@ -47,6 +47,11 @@ routes.push(...[
     name: 'taskList',
     component: () => import(/* webpackChunkName: "taskList" */ '@/views/taskList/index.vue'),
   },
+  {
+    path: '/userResume',
+    name: 'userResume',
+    component: () => import('@/views/userResume/index.vue'),
+  },
 ]);
 
 export default routes;

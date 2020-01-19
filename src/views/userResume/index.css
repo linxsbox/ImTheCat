@@ -1,0 +1,107 @@
+.my-resume-box {
+  width: 100%;
+  background-color: rgb(238, 238, 238);
+  font-size: 16px;
+}
+
+/* 基本信息 */
+.my-resume-box .my-info {
+  padding: 20px;
+}
+
+.my-resume-box .my-info .lxfs-item {
+  display: inline-block;
+  padding: 6px 0;
+  margin: 0 20px 0 0;
+}
+
+.my-resume-box .my-info .my-name {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.my-resume-box .my-info .my-jobs {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.my-resume-box .my-info .my-edu {
+  margin-top: 8px;
+}
+
+/* 联系方式 */
+.my-resume-box .my-info .my-lxfs-box {
+  margin: 8px 0;
+}
+
+.my-resume-box .my-info .label-lxfs {
+  display: inline-block;
+}
+
+.my-resume-box .my-info .value-lxfs {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* 能力介绍 */
+.my-resume-box .my-info .description {
+  /* list-style: desc; */
+  padding-left: 20px;
+  margin: 0;
+}
+
+.my-resume-box .my-info .desc-item {
+  padding: 2px 0;
+}
+
+/* 工作经验 */
+
+.my-resume-box .exp-title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.my-resume-box .jobs-box,
+.my-resume-box .project-box {
+  padding: 20px;
+  /* margin-bottom: 20px; */
+}
+
+.my-resume-box .jobs-box .jobs-item,
+.my-resume-box .project-box .project-item {
+  margin-bottom: 10px;
+}
+
+.my-resume-box .jobs-box .jobs-item .item-header,
+.my-resume-box .project-box .project-item .item-header {
+  position: relative;
+  padding: 4px 0 8px;
+  border-bottom: 1px solid rgb(53, 52, 52);
+}
+
+.my-resume-box .jobs-box .jobs-item .item-header .period,
+.my-resume-box .project-box .project-item .item-header .period {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+}
+
+.my-resume-box .jobs-box .company-name {}
+
+.my-resume-box .jobs-box .job-info {}
+
+.my-resume-box .jobs-box .period {}
+
+.my-resume-box .jobs-box .jobs-detail,
+.my-resume-box .project-box .project-detail {
+  padding: 10px;
+}
+
+/* 项目经验 */
+
+.my-resume-box .project-box .project-name {}
+
+.my-resume-box .project-box .company-name {}

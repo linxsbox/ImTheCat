@@ -1,0 +1,38 @@
+{
+  "name": "黄盛业",
+  "job": "前端开发工程师",
+  "gender": "男",
+  "university": "深圳大学",
+  "education": "化学学士",
+  "phoneNum": "15013424114",
+  "mailAddress": "493490244@qq.com",
+  "gitAccount": "https://github.com/SoBrilliantGUN",
+  "ability": [
+    "自学Python实现了一个邮件群发器，为朋友公司提供了短暂的邮件群发服务",
+    "拥有日语N1证书，能够帮助公司与境外客户(日本)进行沟通",
+    "...",
+    "..."
+  ],
+  "jobExp": [
+    {
+      "company": "中国平安",
+      "jobInfo": "WEB前端开发工程师",
+      "startDate": "2019/10/30",
+      "endDate": "2020/01/09",
+      "description": "<p>工作职责</p><ul class=' list-paddingleft-2'><li><p>负责前端页面开发以及还原设计稿</p></li><li><p>负责部分组件和模块开发</p></li><li><p>负责部分前端项目页面重构</p></li><li><p>与同事协同工作，共同完成项目任务</p></li></ul><p>主要贡献</p><ul class=' list-paddingleft-2'><li><p>项目重构完成后，上线顺利，提高用户体验，以及页面流畅程度。</p></li><li><p>参与项目技术选型提出方案，并展示了预备的demo以供参考</p></li><li><p>搭建l新项目的前端脚手架</p></li></ul><p><br></p>"
+    }
+  ],
+  "project": [
+    {
+      "company": "中国平安",
+      "projectName": "KYS从业人员行为管理系统",
+      "description": "<p>使用技术：jQuery boostrap echarts JSP</p><p>通过数字化信息系统，记录从业人员行为的预防和管理，使得管理数据可视化，让相关负责人通过可视化数据进行风险的预判和分析。</p><p>我完成了什么功能？</p><p>遇到了什么问题？我怎么解决？</p><p>最后的结果如何？<br></p>"
+    },
+    {
+      "company": "中国平安",
+      "projectName": "KYS从业人员行为管理系统",
+      "description": "项目的前端更换为Vue框架，使用了Vue全家桶(Vue-cli,Vuex,Vue-router和Axios)和ElementUI,我负责项目前端的重构"
+    }
+  ],
+  "selfEvaluation": "热爱学习，对代码品质有强烈追求。"
+}

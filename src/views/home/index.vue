@@ -3,6 +3,7 @@
     <div>
       <router-link to="/404"> 跳转学习页面 </router-link>
     </div>
+    <input type="button" value="查看简历" @click= "goToResume">
 
     <div>
       <router-link :to="{path: '/articles', params: {id: '123'}}">666</router-link>
@@ -23,6 +24,9 @@
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 import articleCard from 'cps/articleCard/index.vue';
+
+// 防提醒
+console.log(Prop, Watch);
 
 @Component({
   components: { articleCard },
@@ -47,6 +51,10 @@ export default class Home extends Vue {
   // methods
   gotoDetail (e: Event) {
     this.$router.push({name: 'article'});
+  }
+
+  goToResume (): void {
+    this.$router.push({name: 'userResume'});
   }
 
   @Emit()
