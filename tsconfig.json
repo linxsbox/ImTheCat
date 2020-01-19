@@ -40,7 +40,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx", "src/router/verifyRules.js", "src/router/index.ts", "src/router/handle.js"
+    "tests/**/*.tsx",
   ],
   "exclude": [
     "node_modules"

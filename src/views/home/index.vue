@@ -1,13 +1,10 @@
 <template>
   <div class="home-container">
     <div>
-      <router-link to="/404"> 跳转学习页面 </router-link>
+      <router-link :to="{name: 'resume'}"> 跳转简历父模板页面 </router-link>
     </div>
     <input type="button" value="查看简历" @click= "goToResume">
 
-    <div>
-      <router-link :to="{path: '/articles', params: {id: '123'}}">666</router-link>
-    </div>
     <div class="container">
       <article class="articles cat-flex cat-flex-wrap">
         <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
@@ -34,7 +31,16 @@ console.log(Prop, Watch);
 export default class Home extends Vue {
   // data
   name = 'Home';
-  
+  msg = '你好';
+  rname = '';
+
+  @Prop(Number) readonly propA: number | undefined;
+
+  @Watch('propA')
+  onChildChanged (val: number, oldVal: number) {
+    console.log(`newValue: ${val}, oldValue: ${oldVal}`);
+  }
+
   created () {
     console.log('%cthis is created from Home', 'color:red;font-weight:bolder;');
   }
