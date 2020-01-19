@@ -720,3 +720,11 @@ declare module 'vue/types/vue' {
 - 更新 config.json 文件，删除不必要的 **key/value** 内容，只保留用于处理对白名单、访问权限、身份等列表。
 
 ---
+
+## 2020-01-12 11:00
+
+引用的包有大量更新，直接使用命令更新则无法完成，还会报错。
+要先删除既有 **node_modules** 然后使用 **npm i** 更新，更新完成后再使用 **npm-check -u** 将剩余包选择更新即可。
+记得先删除 **package-lock.json** 文件
+
+---

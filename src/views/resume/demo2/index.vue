@@ -1,21 +1,18 @@
 <template>
-  <div class="taskList-container">
-    <div v-for="(item, index) in [1, 2, 3, 4, 5]" :key="index">
-      {{ item }}
-    </div>
+  <div class="demo2-container">
+    这是 Demo2 页面
   </div>
 </template>
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
-// import * as h from './index';
 
 @Component
 export default class TaskList extends Vue {
 
   // data
-  name = 'TaskList';
+  name = 'Demo2';
   msg = '你好';
 
   @Prop(Number) readonly propA: number | undefined;
@@ -29,14 +26,10 @@ export default class TaskList extends Vue {
   created () {
     console.log('this is created');
   }
+
   // mounted
   mounted () {
     console.log('this is mounted');
-  }
-  
-  // computed
-  get helloTaskList () {
-    return this.msg + 'taskList';
   }
 
   // methods
@@ -46,10 +39,9 @@ export default class TaskList extends Vue {
 
   @Emit()
   returnValue () {
-    return 'taskList';
+    return 'demo2';
   }
 }
 </script>
 <style>
-  @import url('index.css');
 </style>
