@@ -42,8 +42,6 @@
     "curly": true,
     "triple-equals": true,
     "comment-format": true,
-    "no-unused-variable": true,
-    "no-use-before-declare": true,
     "no-unnecessary-initializer": true,
     "prefer-const": true,
     "no-shadowed-variable": true,

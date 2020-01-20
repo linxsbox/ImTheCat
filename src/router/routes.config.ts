@@ -39,7 +39,7 @@ routes.push(...[
   },
   {
     path: '/articles/:id',
-    name: 'articles',
+    name: 'articleDetail',
     component: () => import(/* webpackChunkName: "articles" */ '@/views/articles/index.vue'),
   },
   {
@@ -51,6 +51,17 @@ routes.push(...[
     path: '/userResume',
     name: 'userResume',
     component: () => import('@/views/userResume/index.vue'),
+  },
+  // resume
+  {
+    path: '/resume',
+    name: 'resume',
+    component: () => import(/* webpackChunkName: "resume" */ '@/views/resume/index.vue'),
+  },
+  {
+    path: '/resume/:id',
+    name: 'childResume',
+    component: () => import(/* webpackChunkName: "resume" */ '@/views/resume/index.vue'),
   },
 ]);
 
