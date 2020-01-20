@@ -29,7 +29,8 @@
 [eslint-rules](https://eslint.org/docs/rules/)
 - 更新 **npm install eslint -g**
 - 引入 eslint 规则 **eslint --init** 之后会给予选择
-```commond
+
+```bash
 // 你想要怎么样配置 ESLint?
 ? How would you like to configure ESLint? (Use arrow keys)
   Use a popular style guide // 流行的风格
@@ -37,7 +38,7 @@
   Inspect your JavaScript file(s) // 检查你的 JavaScript 文件
 ```
 
-```commond
+```bash
 ? Which version of ECMAScript do you use? ES2018
 ? Are you using ES6 modules? Yes
 ? Where will your code run? Browser
@@ -71,7 +72,7 @@
 > **注意**  
 如果您使用的是 Babel，你将需要添加 **syntax-dynamic-import** 插件，才能使 Babel 可以正确地解析语法。
 
-```commond
+```bash
 npm install --save-dev @babel/plugin-syntax-dynamic-import
 ```
 
@@ -736,5 +737,13 @@ declare module 'vue/types/vue' {
 新增了简历模板父页面，通过路由访问动态加载组件的方式来加载子页面模板。提供了 demo 便于查看实现效果。
 
 **重要！** 更新了引入包的版本，请参考更新日志！！！
+
+---
+
+## 2020-01-20 16:32
+
+正式将 web storage 的逻辑从项目中移除，web storage 已提交至 npm package 可通过 npm install 方式获取使用。
+对 key/value 存储内容加密函数还未实现。
+非插件集成方式目前还未实现，未来会考虑是否可以将这部分进行补充完善。
 
 ---
