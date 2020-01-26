@@ -1,5 +1,5 @@
 <template>
-  <div>404</div>
+  <div>这里是 404 页面噢！</div>
 </template>
 
 <script lang="ts">

@@ -9,9 +9,9 @@ import webStorage from 'cat-web-storage';
 // App page
 import App from './App.vue';
 
-Vue.config.productionTip = false;
-
 Vue.use(webStorage);
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,

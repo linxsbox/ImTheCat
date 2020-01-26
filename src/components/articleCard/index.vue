@@ -37,7 +37,7 @@ export default class ArticleCard extends Vue {
 
   // created
   created () {
-    console.log('this is created');
+    // console.log('this is created');
   }
 
   // mounted

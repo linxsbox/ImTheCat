@@ -10,6 +10,8 @@
           <router-link :to="{name: 'childResume', params: {id: 'demo2'}}">demo2</router-link>
           &nbsp;
           <router-link :to="{name: 'resume'}">resume</router-link>
+          &nbsp;
+          <router-link :to="{name: 'index'}">index</router-link>
         </div>
       </div>
 
