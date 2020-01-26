@@ -723,7 +723,6 @@ declare module 'vue/types/vue' {
 ---
 
 ## 2020-01-18 13:42
-
 引用的包有大量更新，直接使用命令更新则无法完成，还会报错。
 要先删除既有 **node_modules** 然后使用 **npm i** 更新，更新完成后再使用 **npm-check -u** 将剩余包选择更新即可。
 记得先删除 **package-lock.json** 文件
@@ -731,7 +730,6 @@ declare module 'vue/types/vue' {
 ---
 
 ## 2020-01-19 22:33
-
 更新了编程路由的配置实现，使得可以用过配置路由的方式进行编写路由访问。
 
 新增了简历模板父页面，通过路由访问动态加载组件的方式来加载子页面模板。提供了 demo 便于查看实现效果。
@@ -741,9 +739,27 @@ declare module 'vue/types/vue' {
 ---
 
 ## 2020-01-20 16:32
-
 正式将 web storage 的逻辑从项目中移除，web storage 已提交至 npm package 可通过 npm install 方式获取使用。
 对 key/value 存储内容加密函数还未实现。
 非插件集成方式目前还未实现，未来会考虑是否可以将这部分进行补充完善。
+
+---
+
+## 2020-01-26 13:17
+引入 **axios** ，简单进行封装，实现了拦截器的简单处理，后续还需要进行拦截器的具体实现处理。
+例如：token，cookie，oAuth2 等。
+
+更新了项目中的配置调整构建后的基础路径以便适应web容器。
+重新处理了白名单的匹配机制，以便适应调整构建后的基础路径。
+
+```nginx
+location /blog {
+  // $uri = website/blog
+  // $uri/ = website/blog/
+  try_files $uri $uri/ /blog/index.html;
+  alias /www/文件路径/dist;
+  index index.html;
+}
+```
 
 ---
