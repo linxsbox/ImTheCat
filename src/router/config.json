@@ -1,6 +1,7 @@
 {
   "mode": "history",
-  "PermissionList": [
+  "base": "/blog",
+  "permissionList": [
     "/articles", "/taskList"
   ],
   "whitelist": [

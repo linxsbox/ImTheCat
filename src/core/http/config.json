@@ -1,0 +1,14 @@
+{
+  "development": {
+    "baseURL": "http://www.baidu.com",
+    "timeout": 60
+  },
+  "production": {
+    "baseURL": "",
+    "timeout": 30
+  },
+  "test": {
+    "baseURL": "",
+    "timeout": 30
+  }
+}

@@ -2,6 +2,8 @@ import Router, { Route } from 'vue-router';
 import routesConfig from './routes.config';
 import config from './config.json';
 
+const env = process.env.NODE_ENV === 'production';
+const webBase = env ? config.base : '';
 interface IRouter {
   router: Router;
   initRouter (): Router;
@@ -9,7 +11,7 @@ interface IRouter {
 
 class RouterManager implements IRouter {
   router: Router;
-  PermissionList: string[]; // 需要权限访问的列表
+  permissionList: string[]; // 需要权限访问的列表
   whitelist: string[]; // 白名单列表
   other: string[]; // 其他可访问列表
   mixinAccessibleList: string[] = []; 
@@ -17,10 +19,10 @@ class RouterManager implements IRouter {
   constructor () {
     this.router = new Router({
       mode: config.mode,
-      base: '/' || process.env.BASE_URL,
+      base: webBase + '/',
       routes: routesConfig,
     });
-    this.PermissionList = config.PermissionList;
+    this.permissionList = config.permissionList;
     this.whitelist = config.whitelist;
     this.other = config.other;
     this.mixinAccessibleList.push(...this.whitelist, ...this.other);
@@ -32,7 +34,8 @@ class RouterManager implements IRouter {
   // 检查白名单
   checkWhiteList (to: Route): boolean {
     if (!to.path) { return false; }
-    const tempPath = to.path.split('/')[1];
+    const tempPath = to.path.replace(env ? webBase : '', '')
+      .split('/')[1];
     if (this.mixinAccessibleList.indexOf(`/${tempPath}`) === -1) { return false; }
     return true;
   }
@@ -55,7 +58,8 @@ class RouterManager implements IRouter {
     this.router.beforeEach((to, from, next) => {
       // If the access to.path is on the whitelist.
       if (!this.checkWhiteList(to)) {
-        next('/404');
+        // next('/404');
+        next({name: '404'});
         return;
       }
       next();

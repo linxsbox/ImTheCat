@@ -1,10 +1,10 @@
 
-const env = process.env.NODE_ENV === 'production'
 const path = require('path');
 const devServer = require('./webpack.proxy.js');
+const env = process.env.NODE_ENV === 'production';
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.join(__dirname, dir);
 }
 
 // see https://cli.vuejs.org/zh/config/
@@ -15,9 +15,10 @@ module.exports = {
   // filenameHashing: true, // 生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。要求 index 的 HTML 是被 Vue CLI 自动生成的。
   // lintOnSave: true, // eslint-loader 配置 true | false | 'error'
   // productionSourceMap: false, // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
+  publicPath: env ? '/blog/' : '/',
   // 开发 web 服务配置
   devServer: devServer,
-  configureWebpack: () => {
+  configureWebpack: config => {
     if (env) {
       // 为生产环境修改配置...
     } else {
@@ -29,7 +30,7 @@ module.exports = {
       // @  .  ~ 三者在默认环境中以实现相关配置规则，覆盖则会导致错误
       // https://cli.vuejs.org/zh/guide/html-and-static-assets.html#url-%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99
       .set('cps', resolve('./src/components'))
-      .set('assets', resolve('./src/assets'))
+      .set('assets', resolve('./src/assets'));
 
     config.module // 图片载入配置
       .rule('images')
@@ -37,6 +38,6 @@ module.exports = {
       .loader('url-loader')
       .tap(options => Object.assign(options, {
         limit: 40960 // 小于 40kb 的文件内联
-      }))
+      }));
   }
 }
