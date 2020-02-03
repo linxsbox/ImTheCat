@@ -23,7 +23,7 @@ fi
 
 cat ./log/z-tmp.log >> ./log/z-update.log
 
-ISUP=`grep -c 'Already' z-tmp.log`
+ISUP=`grep -c 'Already' ./log/z-tmp.log`
 
 # 如果已经是最新代码则也不进行重复构建
 if [ $ISUP -ne 0 ]
@@ -56,7 +56,7 @@ updateModule() {
 }
 
 # package.json is update
-# PISU=`grep -ine 'package.json' z-tmp.log`
+# PISU=`grep -ine 'package.json' ./log/z-tmp.log`
 # echo $PISU
 PISU=`grep -c 'package.json' ./log/z-tmp.log`
 
