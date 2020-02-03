@@ -15,14 +15,21 @@ echo '----- '`date +%Y-%m-%d%t%H:%M:%S)`' -----' >> ./log/z-update.log
 
 git pull > ./log/z-tmp.log 2>&1
 
-# git status
-
+# 如果执行失败则退出
 if [ $? -ne 0 ]
 then
   exit 1
 fi
 
 cat ./log/z-tmp.log >> ./log/z-update.log
+
+ISUP=`grep -c 'Already' z-tmp.log`
+
+# 如果已经是最新代码则也不进行重复构建
+if [ $PISU -ne 0 ]
+then
+  exit 1
+fi
 
 # 安装所需包
 installPackage() {
