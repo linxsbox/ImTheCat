@@ -26,7 +26,7 @@ cat ./log/z-tmp.log >> ./log/z-update.log
 ISUP=`grep -c 'Already' z-tmp.log`
 
 # 如果已经是最新代码则也不进行重复构建
-if [ $PISU -ne 0 ]
+if [ $ISUP -ne 0 ]
 then
   exit 1
 fi
