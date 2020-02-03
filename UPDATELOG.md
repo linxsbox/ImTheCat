@@ -775,3 +775,17 @@ Unbuntu npm install 权限问题
 后来发现是 **node_module --global** 文件夹的所属并非为当前用户而是 **1001** ，通过 **chown** 将其修改为当前用户后，设置为默认 755 权限实现了解决。
 
 ---
+
+## 2020-01-31 02:27
+更新 shell 脚本判断如果是最新代码则不进行更新
+```bash
+ISUP=`grep -c 'Already' z-tmp.log`
+
+# 如果已经是最新代码则也不进行重复构建
+if [ $ISUP -ne 0 ]
+then
+  exit 1
+fi
+```
+
+---
