@@ -68,7 +68,7 @@ const answer = {
 
 // 拼接路径
 let findChatIndex = (str, chat, num) => {
-  if (str.match(/\\/g).length <= num) return str;
+  if (str.match(/\\|\//g).length <= num) return str;
 
   let chatIndex = str.indexOf(chat);
   for (let index = 0; index < num; index++) {
@@ -90,7 +90,7 @@ const checkAnswer = (step, content) => {
     case 1:
       return answer.filePath = path.join(
         findChatIndex(
-          path.join(defAnswer.filePath, content), '\\', 3),
+          path.join(defAnswer.filePath, content), '\\|\/', 3),
         answer.fileName);
     case 2:
       content = content.toLowerCase()
