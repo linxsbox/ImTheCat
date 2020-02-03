@@ -776,7 +776,7 @@ Unbuntu npm install 权限问题
 
 ---
 
-## 2020-01-31 02:27
+## 2020-02-03 16:09
 更新 shell 脚本判断如果是最新代码则不进行更新
 ```bash
 ISUP=`grep -c 'Already' z-tmp.log`
@@ -786,6 +786,21 @@ if [ $ISUP -ne 0 ]
 then
   exit 1
 fi
+```
+
+**package.json: "lint-staged": "^10.0.1",** 在版本 10.0.0 之前，**git add** 作为最后一步需要手动配置，而后则已集成到lint阶段本身中，所以需要将 **git add** 从配置中移除。
+
+```json
+"lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint"
+      // "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint"
+      // "git add"
+    ]
+  }
 ```
 
 ---
