@@ -29,7 +29,8 @@
 [eslint-rules](https://eslint.org/docs/rules/)
 - 更新 **npm install eslint -g**
 - 引入 eslint 规则 **eslint --init** 之后会给予选择
-```commond
+
+```bash
 // 你想要怎么样配置 ESLint?
 ? How would you like to configure ESLint? (Use arrow keys)
   Use a popular style guide // 流行的风格
@@ -37,7 +38,7 @@
   Inspect your JavaScript file(s) // 检查你的 JavaScript 文件
 ```
 
-```commond
+```bash
 ? Which version of ECMAScript do you use? ES2018
 ? Are you using ES6 modules? Yes
 ? Where will your code run? Browser
@@ -71,7 +72,7 @@
 > **注意**  
 如果您使用的是 Babel，你将需要添加 **syntax-dynamic-import** 插件，才能使 Babel 可以正确地解析语法。
 
-```commond
+```bash
 npm install --save-dev @babel/plugin-syntax-dynamic-import
 ```
 
@@ -678,5 +679,128 @@ node-sass
 将路由的组件钩子进行了注册，然后可以在组件内使用 **TypeScript** 版本的路由钩子。
 重新思考了 **微型 CLI** 的文件写入处理逻辑，使用 **Promise** 配合 **async/await** 获取异步文件写入结果再通过 **resolve/reject** 的方式来确认所有文件是否已经完成或者失败，最终再统一输出结果调用结束关闭命令行模式。
 文件构建模板重新进行编写，然后支持了 **TypeScript** 的混写方式，即可以用 **Vue.js** 的方式。
+
+---
+
+## 2019-12-31 20:27
+之前更新的时候把首页都给删除了，后来在本地中也没找到备份，一度都以为要重写来着了。但是没想到在查 git commit 记录的时候发现有提交记录。
+现在将首页内容进行重新改写，将文章卡片部分单独作为一个组件。使用了 new Image 来对图片部分进行载入，目前还没发现数量过大时产生的性能问题，未来会考虑使用异步的方式。
+
+---
+
+## 2019-12-31 20:50
+更新了构建模板的写入内容，加入少量注释
+
+---
+
+## 2020-01-11 23:02
+将之前未完成的 **web storage** 改写成 **TypeCcript** 版本, 然后将其注册至 Vue 下。
+写完的时候直接使用是可以将数据写入 **web storage** 中，但是在 **.vue** 文件中未能识别出，导致在控制台会输出错误。
+这个主要是因为 **TypeScript** 本身不支持额外的类型定义，所以需要自己提供一个 **\*.d.ts** 文件来描述定义的类型。主要是将相关的 **export declare interface、class、type** 等在类型定义文件中重新描述。以及再通过 **declare module 'path'** 来指定关联的模块和接口，就可以完成对该类型的定义了。
+```javascript
+export declare class WebLocals {
+  set (key: string, value: any, opts?: Options): void;
+  get (key: string): object | string | undefined;
+}
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $webLocals: WebLocals
+  }
+}
+```
+
+---
+
+## 2020-01-12 11:00
+昨天让小队成员尝试使用我自己封装处理了一下的 **Vue-Router** 功能，定义的一级路由的可以正常访问没有问题的，然而在使用多级路由或者子级路由的时候无法正常解析从而无法判断是否是合法跳转而导致直接**404**或者控制台输出了**错误信息**。
+回来了以后我好好思考了一下，又对着官方文档以及源码 **Routes** 部分尝试理解他们。最后我发现还是我想得太多了，然后导致了过度设计过度考虑，以至于是以我个人的想法来限定了使用行为，这是非常不好的。
+所以，我就用 **TypeScript** 重新将 **Router** 封装了一下，只处理必要的导航部分，对白名单、访问权限、身份等进行处理，而将过度设计的动态构建 **Routes-View** 全部删除。
+
+- 新增 routes.config.ts 文件用来编写 **Routes** 部分，用以以实现 **Routes** 接口。
+- 更新 config.json 文件，删除不必要的 **key/value** 内容，只保留用于处理对白名单、访问权限、身份等列表。
+
+---
+
+## 2020-01-18 13:42
+引用的包有大量更新，直接使用命令更新则无法完成，还会报错。
+要先删除既有 **node_modules** 然后使用 **npm i** 更新，更新完成后再使用 **npm-check -u** 将剩余包选择更新即可。
+记得先删除 **package-lock.json** 文件
+
+---
+
+## 2020-01-19 22:33
+更新了编程路由的配置实现，使得可以用过配置路由的方式进行编写路由访问。
+
+新增了简历模板父页面，通过路由访问动态加载组件的方式来加载子页面模板。提供了 demo 便于查看实现效果。
+
+**重要！** 更新了引入包的版本，请参考更新日志！！！
+
+---
+
+## 2020-01-20 16:32
+正式将 web storage 的逻辑从项目中移除，web storage 已提交至 npm package 可通过 npm install 方式获取使用。
+对 key/value 存储内容加密函数还未实现。
+非插件集成方式目前还未实现，未来会考虑是否可以将这部分进行补充完善。
+
+---
+
+## 2020-01-26 13:17
+引入 **axios** ，简单进行封装，实现了拦截器的简单处理，后续还需要进行拦截器的具体实现处理。
+例如：token，cookie，oAuth2 等。
+
+更新了项目中的配置调整构建后的基础路径以便适应web容器。
+重新处理了白名单的匹配机制，以便适应调整构建后的基础路径。
+
+```nginx
+location /blog {
+  // $uri = website/blog
+  // $uri/ = website/blog/
+  try_files $uri $uri/ /blog/index.html;
+  alias /www/文件路径/dist;
+  index index.html;
+}
+```
+
+---
+
+## 2020-01-31 02:27
+更新了 **shell** 脚本 **aub.sh** 作为自动化更新构建脚本
+更新了忽略规则，对脚本日志进行忽略
+
+Unbuntu npm install 权限问题
+应用商店自带的 nodejs 版本太低，所以就自己通过官网安装包进行配置 nodejs，随后配置完成后大部分命令使用正常。
+在进行构建项目的时候出现了权限问题，主要是因为 **"@vue/cli-plugin-unit-mocha": "^4.1.1",** 这个包会用到本地文件访问命令。
+然后百度了一下可通过修改 **node_module** 文件权限实现解决，但是然并卵。
+后来发现是 **node_module --global** 文件夹的所属并非为当前用户而是 **1001** ，通过 **chown** 将其修改为当前用户后，设置为默认 755 权限实现了解决。
+
+---
+
+## 2020-02-03 16:09
+更新 shell 脚本判断如果是最新代码则不进行更新
+```bash
+ISUP=`grep -c 'Already' z-tmp.log`
+
+# 如果已经是最新代码则也不进行重复构建
+if [ $ISUP -ne 0 ]
+then
+  exit 1
+fi
+```
+
+**package.json: "lint-staged": "^10.0.1",** 在版本 10.0.0 之前，**git add** 作为最后一步需要手动配置，而后则已集成到lint阶段本身中，所以需要将 **git add** 从配置中移除。
+
+```json
+"lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint"
+      // "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint"
+      // "git add"
+    ]
+  }
+```
 
 ---

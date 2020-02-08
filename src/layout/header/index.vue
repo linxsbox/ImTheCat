@@ -1,45 +1,56 @@
 <template>
-  <header class="header">
-    <div class="tc-banner"></div>
-    <div class="tc-container">
-      <nav class="tc-nav-bar">
-        <div>
-          <div class="pad20">&nbsp;</div>
-          <h1>林小帅的博客</h1>
-          <div class="pad20">&nbsp;</div>
-        </div>
-        <ul class="tc-nav-box unstyle mag-20-lr">
-          <li class="tc-nav-item inline-block">
-            <router-link class="tc-nav-link" :to="{name: 'home'}">home</router-link>
-          </li>
-          <li class="tc-nav-item inline-block">
-            <router-link class="tc-nav-link" :to="{name: 'test'}">test</router-link>
-          </li>
-          <li class="tc-nav-item inline-block" v-for="(item, index) in 3" :key="index">
-            <router-link class="tc-nav-link" to="">nav item {{ item }}</router-link>
-          </li>
-        </ul>
-      </nav>
-    </div>
+  <header class="layout-header">
+    
   </header>
 </template>
 
-<script>
-export default {
-  name: 'layoutHeader',
-  // data() {
-  //   return {
-  //   }
-  // },
-  // provide() {
-  //   return {
-  //   }
-  // },
-  // components: {
-  // },
-  // methods: {
-  // }
-};
+<script lang="ts">
+import { Vue, Component, Provide } from 'vue-property-decorator';
+// import layoutHeader from './header'
+// import layoutFooter from './footer'
+
+@Component({
+  components: {
+    // layoutHeader,
+    // layoutFooter,
+  },
+})
+export default class Layout extends Vue {
+  name = 'layout';
+  isAcitve = true;
+  viewClass = 'view-default';
+
+  // Provide
+  @Provide() refresh = this.refreshView;
+
+  mounted () {
+    console.log('layout');
+  }
+
+  // methods
+  refreshView () {
+    // when url changing, but router did not jump to page,
+    // you can use it inject refresh the page.
+    this.isAcitve = false;
+    this.$nextTick(() => {
+      this.isAcitve = true;
+    });
+  }
+
+  beforeUpdate () {
+    this.updateViewClass();
+  }
+
+  updateViewClass () {
+    const tempViewName = this.$route.name;
+    if (!tempViewName || tempViewName === '/') {
+      this.viewClass = 'view-default';
+      return;
+    }
+    this.viewClass = `view-${tempViewName}`;
+  }
+}
 </script>
+
 <style scoped src="./index.css"></style>
 

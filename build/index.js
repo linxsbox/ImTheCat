@@ -24,24 +24,28 @@ const rli = readline.createInterface({
 
 // 问题步长记录，每次符合确认内容时则 + 1
 let stepQuestion = 0;
-// 问题文字内容
-const questionText = [
-  '组件名称？',
-  '指定文件夹路径？',
-  '代码文件类型？',
-  '样式表类型？',
-  '是否创建单独的Api文件？',
-]
+
+// 构建问题列表
+const buildQuestion = () => {
+  // 问题文字内容、提示、类型
+  const questionText = [
+    {question: '组件名称？', tips: '', type: '[template]'},
+    {question: '指定文件夹路径？', tips: '(最大深度：4)', type: '[./views/]'},
+    {question: '代码文件类型？', tips: '', type: '[JS/ts]'},
+    {question: '样式表类型？', tips: '', type: '[CSS/less/sass/scss]'},
+    // {question: '是否创建单独的Api文件？', tips: '', type: '[y/N]'} // 暂时未想好该如何处理 API 文件的构建和写入
+  ];
+
+  return questionText.map(item => {
+    return { text: item.question, question: `\x1B[32m?\x1B[97m ${item.question}${item.tips}\x1B[32m${item.type}` }
+  });
+}
+
+// 问题列表
+let questionList = buildQuestion();
+
 // 问题的总数
-const lenQuestion = questionText.length - 1
-// 问题输出提示内容
-const setBeforeQuestion = [
-  `\x1B[32m?\x1B[97m ${questionText[0]}\x1B[32m[template]`,
-  `\x1B[32m?\x1B[97m ${questionText[1]}(最大深度：4)\x1B[32m[./view/]`,
-  `\x1B[32m?\x1B[97m ${questionText[2]}\x1B[32m[JS/ts]`,
-  `\x1B[32m?\x1B[97m ${questionText[3]}\x1B[32m[CSS/less/sass/scss]`,
-  // `\x1B[32m?\x1B[97m ${questionText[4]}\x1B[32m[y/N]`, // api 文件写入部分暂不考虑，目前还未想好该如何设计
-];
+const lenQuestion = questionList.length - 1
 
 // 无有效输入时使用的默认内容
 const defAnswer = {
@@ -112,7 +116,7 @@ readline.cursorTo(process.stdout, 0, 0);
 readline.clearScreenDown(process.stdout);
 
 // 初始化第一个问题。
-console.log(setBeforeQuestion[stepQuestion]);
+console.log(questionList[stepQuestion].question);
 // 设定输入内容样式
 console.log('\x1B[36m');
 
@@ -129,7 +133,7 @@ rli.on('line', line => {
   // 清理之前的输入内容。
   readline.clearScreenDown(process.stdout);
   // 选择完成后输出选择后的结果信息。
-  console.log(`\x1B[32m?\x1B[97m ${questionText[stepQuestion]}\x1B[36m%s`, tempAnswer);
+  console.log(`\x1B[32m?\x1B[97m ${questionList[stepQuestion].text}\x1B[36m%s`, tempAnswer);
 
   // 重置控制台样式。
   console.log('\x1B[0m');
@@ -138,7 +142,7 @@ rli.on('line', line => {
   if (stepQuestion < lenQuestion) {
     stepQuestion++;
     // 输出下一个问题内容
-    console.log(setBeforeQuestion[stepQuestion]);
+    console.log(questionList[stepQuestion].question);
   } else {
     // async function a () {
     //   await 
