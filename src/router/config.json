@@ -8,6 +8,7 @@
     "/", "/404", "/index", "/home", "/login"
   ],
   "other": [
-    "/t", "/test", "/resume"
+    "/t", "/test", "/resume",
+    "/articles", "/taskList"
   ]
 }

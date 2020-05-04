@@ -204,7 +204,7 @@ ${codeType === 'ts' ? tplTypeScript : tplECMAScript}
   const cssTpl = `.${fileName}-container{ }`;
 
   // js 模板
-  const jsTpl = `import * as apis from '@apis/${fileName}';
+  const jsTpl = `import * as apis from '@/apis/${fileName}';
 
 function getFn () { return ['${fileName}']; }
 

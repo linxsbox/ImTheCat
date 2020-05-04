@@ -62,7 +62,6 @@ const answer = {
   filePath: '',
   codeType: '',
   cssType: '',
-  cssType: '',
   fileApi: false,
 };
 
@@ -144,10 +143,6 @@ rli.on('line', line => {
     // 输出下一个问题内容
     console.log(questionList[stepQuestion].question);
   } else {
-    // async function a () {
-    //   await 
-    // }
-
     tpl.bulidTpl(answer)
     .then(() => {
       // 否则可以认为已经选择完成
@@ -168,4 +163,3 @@ rli.on('line', line => {
   console.log('【信息】您已中断模板创建任务，感谢您的使用再见!');
   process.exit(0);
 });
-

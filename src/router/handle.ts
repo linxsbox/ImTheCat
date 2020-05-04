@@ -1,6 +1,7 @@
 import Router, { Route } from 'vue-router';
 import routesConfig from './routes.config';
 import config from './config.json';
+import website from '@/website.json';
 
 const env = process.env.NODE_ENV === 'production';
 const webBase = env ? config.base : '';
@@ -14,7 +15,7 @@ class RouterManager implements IRouter {
   permissionList: string[]; // 需要权限访问的列表
   whitelist: string[]; // 白名单列表
   other: string[]; // 其他可访问列表
-  mixinAccessibleList: string[] = []; 
+  mixinAccessibleList: string[] = [];
 
   constructor () {
     this.router = new Router({
@@ -71,6 +72,9 @@ class RouterManager implements IRouter {
   
     this.router.afterEach((to, from) => {
       // console.log('after from', from);
+      if (to.meta.title) {
+        document.title = `${website.name} - ${to.meta.title}`;
+      }
     });
   }
 }
