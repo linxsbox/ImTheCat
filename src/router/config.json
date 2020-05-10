@@ -13,6 +13,7 @@
     "/userResume"
   ],
   "other": [
-    "/t", "/test", "/resume"
+    "/t", "/test", "/resume",
+    "/articles", "/taskList"
   ]
 }

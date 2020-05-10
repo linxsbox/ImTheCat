@@ -1,4 +1,4 @@
-// import * as apis from '@apis/articles';
+// import * as apis from '@/apis/Articles';
 
 function getFn () { return ['articles']; }
 

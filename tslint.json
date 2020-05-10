@@ -38,7 +38,6 @@
       0
     ],
     "no-inferrable-types": false,
-    // [true, "ignore-properties"]
     "curly": true,
     "triple-equals": true,
     "comment-format": true,
