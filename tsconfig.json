@@ -21,10 +21,10 @@
       "@/*": [
         "src/*"
       ],
-      "cps/": [
+      "cps/*": [
         "src/components/*"
       ],
-      "assets": [
+      "assets/*": [
         "src/assets/*"
       ]
     },

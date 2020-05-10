@@ -6,8 +6,6 @@
 
 <script lang="ts">
 import { Vue, Component, Provide } from 'vue-property-decorator';
-// import layoutHeader from './header'
-// import layoutFooter from './footer'
 
 @Component({
   components: {
@@ -15,7 +13,7 @@ import { Vue, Component, Provide } from 'vue-property-decorator';
     // layoutFooter,
   },
 })
-export default class Layout extends Vue {
+export default class Header extends Vue {
   name = 'layout';
   isAcitve = true;
   viewClass = 'view-default';
@@ -27,6 +25,10 @@ export default class Layout extends Vue {
     console.log('layout');
   }
 
+  beforeUpdate () {
+    this.updateViewClass();
+  }
+
   // methods
   refreshView () {
     // when url changing, but router did not jump to page,
@@ -35,10 +37,6 @@ export default class Layout extends Vue {
     this.$nextTick(() => {
       this.isAcitve = true;
     });
-  }
-
-  beforeUpdate () {
-    this.updateViewClass();
   }
 
   updateViewClass () {

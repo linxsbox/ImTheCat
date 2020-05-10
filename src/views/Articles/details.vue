@@ -10,7 +10,7 @@
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 import { Commits } from 'cat-vuex-decorator'; // Vuex Decorator
-import { toStr } from '@/filters/index'; // Filters
+import { toStr } from '@/filters'; // Filters
 
 // import * as h from './index';
 
