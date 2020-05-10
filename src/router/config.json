@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "mode": "history",
   "base": "/blog",
@@ -16,4 +17,19 @@
     "/t", "/test", "/resume",
     "/articles", "/taskList"
   ]
+=======
+{
+  "mode": "history",
+  "base": "/blog",
+  "permissionList": [
+    "/articles", "/taskList"
+  ],
+  "whitelist": [
+    "/", "/404", "/index", "/home", "/login"
+  ],
+  "other": [
+    "/t", "/test", "/resume",
+    "/articles", "/taskList"
+  ]
+>>>>>>> origin
 }
