@@ -1,6 +1,7 @@
 <template>
   <div class="articles-container">
-    {{ msg }} {{ name }}
+    <div>{{ msg }} {{ name }}</div>
+    <div>文章标题 {{ $route.params.id | toStr }}</div>
   </div>
 </template>
 
@@ -8,13 +9,20 @@
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
+import { Commits } from 'cat-vuex-decorator'; // Vuex Decorator
+import { toStr } from '@/filters'; // Filters
+
 // import * as h from './index';
 
-@Component
-export default class Articles extends Vue {
+@Component({
+  components: { },
+  filters: { toStr },
+})
+export default class ArticleDetails extends Vue {
+  @Commits('setWebsiteTitle') setWebsiteTitle: any;
 
   // data
-  name = 'Articles';
+  name = 'ArticleDetails';
   msg = '你好';
 
   @Prop(Number) readonly propA: number | undefined;
@@ -31,21 +39,11 @@ export default class Articles extends Vue {
   // mounted
   mounted () {
     console.log('this is mounted');
+    this.setWebsiteTitle(this.$route.params.id);
   }
 
-  // methods
-  helloWorld () {
-    return 'Hello World';
-  }
-
-  // computed
-  get helloArticles () {
-    return this.msg + 'articles';
-  }
-
-  @Emit()
-  returnValue () {
-    return 'articles';
+  beforeDestroy () {
+    console.log(123);
   }
 }
 </script>

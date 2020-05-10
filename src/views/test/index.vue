@@ -1,13 +1,6 @@
 <template>
-  <div class="home-container">
-    <div class="container">
-      <article class="articles cat-flex cat-flex-wrap">
-        <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
-          @click="gotoDetail">
-          article {{ item }}
-        </article-card>
-      </article>
-    </div>
+  <div class="test-container">
+    {{ msg }} {{ name }}
   </div>
 </template>
 
@@ -15,16 +8,16 @@
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
-import articleCard from 'cps/articleCard/index.vue';
+import { Getters, Commits, Actions } from 'cat-vuex-decorator';
+import * as h from './index';
 
-@Component({
-  components: { articleCard },
-})
-export default class Home extends Vue {
+@Component
+export default class Test extends Vue {
+  @Getters('getTest') g: any ;
+
   // data
-  name = 'Home';
+  name = 'Test';
   msg = '你好';
-  rname = '';
 
   @Prop(Number) readonly propA: number | undefined;
 
@@ -33,6 +26,7 @@ export default class Home extends Vue {
     console.log(`newValue: ${val}, oldValue: ${oldVal}`);
   }
 
+  // created
   created () {
     console.log('this is created');
   }
@@ -41,19 +35,19 @@ export default class Home extends Vue {
     console.log('this is mounted');
   }
 
-  // computed
-  get helloHome () {
-    return this.msg + 'home';
+  // methods
+  helloWorld () {
+    return 'Hello World';
   }
 
-  // methods
-  gotoDetail (e: Event) {
-    this.$router.push({name: 'article'});
+  // computed
+  get helloTest () {
+    return this.msg + 'test';
   }
 
   @Emit()
   returnValue () {
-    return 'home';
+    return 'test';
   }
 }
 </script>
