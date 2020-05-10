@@ -1,6 +1,6 @@
 import Axios, { AxiosStatic } from 'axios';
 import interceptors from './interceptors';
-import batchAxios from './batchAxios';
+// import batchAxios from './batchAxios';
 
 // config
 import config from './config.json';
