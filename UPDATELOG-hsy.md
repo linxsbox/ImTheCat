@@ -42,3 +42,8 @@ git merge upstream/master // 与自己的分支合并
 5. 多与同事交流，了解项目情况。
 
 ---
+
+## 2020-02-22 19:00
+1. 在element分支上使用ElementUI编写了导航菜单样例
+
+---
