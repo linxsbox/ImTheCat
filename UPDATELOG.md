@@ -850,3 +850,66 @@ fi
 - 是否是自己臆想出来的伪需求？
 
 ---
+
+## 2020-05-16 16:41
+将组件构建CLI 花了大概一天重新实现了一下（改动巨大）。
+**utils.js** 将一些通用且可修改配置的代码拆分出来，如：输入规则、路径处理、将问题配置 json 转换成问题列表、输入答案检查/默认值、代码模板字符串等。
+
+**QA2CLI.js** 将 CLI 部分单独拿出来，仅有 CLI 的处理逻辑。
+
+**config.json** 将问题的构建、路径别名、组件文件名，这类可以自定义配置的内容单独提取出来作为配置文件。
+
+**buildTpl.js** 改动最大的就是这个了。首先精简了代码，将一些耦合较高的代码全部拆分了出来。其次，新增了可以批量构建组件的处理逻辑。现存 3 个构建规则：
+- **buildTplBase** 将**答案/配置**文件信息**转换/处理**为构建组件以及代码内容所需的信息。
+- **checkFolder** 检查组件文件是否存在，如不存在则直接创建组件文件（可批量）。
+- **buildCpsFiles** 生成组件所需文件（可批量）如：index.vue、index.css、index.js等。
+
+因为 nodejs 对于文件处理 fs 都是异步的（官方不推荐使用同步），所以就需要考虑到处理异步状态的问题了。之前的实现是简单的通过 **Promise/async/await** 来进行处理，但是后来在实现批量处理的时候发现 **Promise/async/await** 无法满足需求。思来想去，发现可以通过 Proxy 监听对象属性来实现。
+```javascript
+// 我的想法就是：需要监听多少文件都是可以提前预知的，因为批量生成是可以通过配置文件中需要生成的组件数量来确定，所以就直接考虑监听长度，长度与组件数量相等即可 resolve 结束。
+
+// 检查任务列表代理
+const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
+  return new Proxy(targetArray, {
+    set(target, key, value, proxy) {
+      if (target.length === tasksNum) {
+        resolve(true);
+        return true;
+      }
+      return Reflect.set(target, key, value, proxy);
+    }
+  });
+};
+```
+
+**如何使用**
+原命令保持不动，如无命令参数则使用 QA CLI 模式生成组件。新增命令参数符 **“-c”** 加上文件路径即可。 假设：`npm run ctpl -c a.json`
+
+```json
+// 单组件配置
+{
+  "fileName": "cpsName", // 组件名称
+  "filePath": "cpsPath", // 组件路径，默认为 ./viewx/ 下，支持别名 @ , cps
+  "codeType": "", // 代码类型 js / ts
+  "cssType": "", // 样式表类型 css / less / sass / scss
+  "fileApi": false // 是否生成 API 文件，生成内容规则尚未完善，目前仅生成文件
+}
+// 批量组件配置
+[{
+  "fileName": "cpsName1",
+  "filePath": "cpsPath1",
+  "codeType": "",
+  "cssType": "",
+  "fileApi": false
+}, {
+  "fileName": "cpsName2",
+  "filePath": "cpsPath1",
+  "codeType": "",
+  "cssType": "",
+  "fileApi": false
+}, {
+  // ......
+}]
+```
+
+---
