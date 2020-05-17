@@ -5,6 +5,21 @@ const {
   checkAnswerRules
 } = require('./utils.js');
 
+// 问题步长记录，每次符合确认内容时则 + 1
+let stepQuestion = 0;
+// 问题列表
+const questionList = buildQuestionList();
+// 问题的总数
+const lenQuestion = questionList.length - 1;
+// 记录问题的回答内容
+const answer = {
+  fileName: '',
+  filePath: '',
+  codeType: '',
+  cssType: '',
+  fileApi: false,
+};
+
 // 实现小型 CLI | x1B/033
 // 如需使用 npm 命令的话则需要在 package.json scripts 中加入你的命令名称和脚本位置。
 // 脚本位置的话不能直接使用 ./filePath 或 /filePath 这样会无法识别。
@@ -24,21 +39,6 @@ const instanceCLI = () => {
     // historySize  //保留的最大历史记录行数。 要禁用历史记录，请将此值设置为 0。
     // completer // 用于 Tab 自动补全的可选函数。
   });
-
-  // 问题步长记录，每次符合确认内容时则 + 1
-  let stepQuestion = 0;
-  // 问题列表
-  const questionList = buildQuestionList();
-  // 问题的总数
-  const lenQuestion = questionList.length - 1;
-  // 记录问题的回答内容
-  const answer = {
-    fileName: '',
-    filePath: '',
-    codeType: '',
-    cssType: '',
-    fileApi: false,
-  };
 
   readline.cursorTo(process.stdout, 0, 0);
   readline.clearScreenDown(process.stdout);
