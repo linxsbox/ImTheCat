@@ -49,6 +49,7 @@
     "object-literal-sort-keys": false,
     "new-parens": true,
     "use-isnan": true,
+    "prefer-for-of": false,
     "forin": true,
     "no-for-in-array": true,
     "no-construct": true,

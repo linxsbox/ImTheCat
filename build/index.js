@@ -16,8 +16,8 @@ const prcCfgArgvIndex = prcCfgArgv.indexOf('-c');
 // 命令参数符后的配置文件路径
 let cfgPath = '';
 
-console.log(prcArgv);
-console.log(prcCfgArgv);
+// console.log(prcArgv);
+// console.log(prcCfgArgv);
 
 // 参数判定：如果没有指定命令参数符则可以直接调用 问答式的CLI 进行代码模板的构建
 if (prcArgvIndex > -1 && prcArgvIndex + 1) {

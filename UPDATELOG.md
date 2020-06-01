@@ -883,8 +883,16 @@ const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
 ```
 
 **如何使用**
-原命令保持不动，如无命令参数则使用 QA CLI 模式生成组件。新增命令参数符 **“-c”** 加上文件路径即可。 假设：`npm run ctpl -c a.json`
+原命令保持不动，如无命令参数则使用 QA CLI 模式生成组件。`npm run ctpl`
 
+```json
+// package.json
+"scripts": {
+  "ctpl": "node build/index.js"
+}
+```
+
+新增命令参数符 **“-c”** 加上文件路径即可。 `npm run ctpl -c a.json`
 ```json
 // 单组件配置
 {
@@ -894,7 +902,7 @@ const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
   "cssType": "", // 样式表类型 css / less / sass / scss
   "fileApi": false // 是否生成 API 文件，生成内容规则尚未完善，目前仅生成文件
 }
-// 批量组件配置
+// 批量生成组件配置
 [{
   "fileName": "cpsName1",
   "filePath": "cpsPath1",
@@ -911,5 +919,146 @@ const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
   // ......
 }]
 ```
+
+---
+
+## 2020-05-30 14:58
+图标规格
+- favicon: 16x16 | 32x32
+- android-chrome: 192x192 | 512x512
+- apple-touch-icon: 60x60 | 76x76 | 120x120 | 152x152 | 180x180(default not size) 非透明底
+- safari-pinned-tab: svg
+- msapplication-icon: 144x144
+- mstile: 150x150
+
+使用
+```html
+favicon: => <link rel="icon" type="image/png" sizes="size" href="url">
+android-chrome: 
+apple-touch-icon: => <link rel="apple-touch-icon" href="url">
+safari-pinned-tab: => <link rel="mask-icon" href="url" color="color">
+msapplication-icon: => <meta name="msapplication-TileImage" content="url">
+mstile: => <meta name="msapplication-TileColor" content="color">
+
+manifest: => <link rel="manifest" href="url.json">
+```
+
+vue.config.js 中配置，即可重新设定图标 icon
+```javascript
+module.exports = {
+  // 其他配置 ......
+  pwa: {
+    // pwa
+    iconPaths: {
+      favicon32: 'favicon.ico',
+      favicon16: 'favicon.ico',
+      appleTouchIcon: 'favicon.ico',
+      maskIcon: 'favicon.ico',
+      msTileImage: 'favicon.ico'
+    }
+  }
+}
+```
+
+---
+
+## 2020-05-31 23:11
+尝试把tslint 换成了 eslint发现还是挺多问题的，我发现的主要有以下几点：
+1、强制性不够，就算出现警告和错误，不会在控制台中输出该信息，需要自己在信息栏(vscode)中查看。
+2、需要安装的支持包太多了，卸载了1个然后安装了4个，包括转换和语言支持以及规则。
+3、自身冲突，如果需要达到输入即检查并提示修复方案需要再额外使用一个prettier的包，eslint配置完成后会与其冲突，然后就还需要再配置一套与eslint规则相同的prettier 规则。
+
+## 2020-06-01 22:01
+人肉探索了一波以后，终于把之前的 tslint 规则转换到 eslint 了。
+抛弃 cli 生成的内容，自定义 .eslintrc.js 内容
+1、extends 只用定义 plugin:vue/essential、eslint:recommended、@vue/typescript/recommended
+2、rules 部分未兼容合并的规则可以使用 @typescript-eslint/* 
+
+eslint 规则定义参考：https://eslint.bootcss.com/docs/rules/eslint.bootcss.com/docs/rules
+eslint-tslint 规则定义参考：https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
+
+```javascript
+// .eslintrc.js 配置
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es6: true,
+    node: true
+  },
+  extends: [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
+  },
+  parserOptions: {
+    ecmaVersion: 2020
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'indent': ['error', 2], // 缩进2个空格
+    'semi': ['error', 'always'], // 强制使用分号
+    'eqeqeq': 'error', // 强制使用全等操作符
+    'curly': 'error', // 强制使用大括号
+    'guard-for-in': 'error', // 强制使用 for in 约束
+    'default-case': 'error', // 强制 Switch 语句中有 Default 分支
+    'quotes': ['error', 'single', {
+      avoidEscape: true,
+      allowTemplateLiterals: true
+    }], // 尽量使用单引号
+    // 'quote-props': ['error', 'consistent-as-needed'], // 对象字面量属性名称用引号括起来
+    'object-curly-newline': ['error', { 'consistent': true }], // 对象括号换行规则
+    'array-bracket-newline': ['error', 'consistent'], // 数组括号换行规则
+    'space-before-function-paren': 'error', // 函数参数前强制空格
+    'spaced-comment': ['error', 'always'], // 注释体内强制使用空格
+    'no-var': 'error', // 禁止使用 var
+    'no-eval': 'error', // 禁止使用 eval()
+    'no-empty': 'error', // 禁止使用空的块
+    'no-empty-function': 'error', // 禁止使用空函数
+    // 'no-empty-interface': 'error', // 禁止使用空接口
+    'no-trailing-spaces': 'error', // 禁止结尾出现空格
+    'no-whitespace-before-property': 'error', // 禁止属性前出现空白
+    'no-multiple-empty-lines': 'error', // 禁止使用多个空行
+    'no-tabs': 'error', // 禁止在代码中使用 tabs 制表
+    'no-use-before-define': 'error', // 禁止在声明前使用
+    'no-undefined': 'error', // 禁止使用 undefined 作为声明标识符
+    'no-label-var': 'error', // 禁止声明与变量同名的标签
+    'no-shadow': 'error', // 禁止声明影子变量
+    'no-multi-assign': 'error', // 禁止连续赋值
+    '@typescript-eslint/no-var-requires': 0, // 允许 requires 指定包
+    '@typescript-eslint/no-explicit-any': 'off', // 允许显示使用 any
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // 显式定义模块边界类型，强制使用 return
+    '@typescript-eslint/no-empty-interface': 'error', // 禁止结尾出现空格
+    // '@typescript-eslint/no-empty': 'error', // 禁止使用空函数
+    // '@typescript-eslint/no-empty-function': 'error', // 禁止使用空接口
+    // '@typescript-eslint/class-name': 'error', // 类名与接口名必须为驼峰式
+    // '@typescript-eslint/no-unsafe-finally': 'error', // 禁止在 finally 语句块中出现控制流语句
+    // '@typescript-eslint/no-mergeable-namespace': 'error', // 禁止合并相同的命名空间
+    // '@typescript-eslint/no-trailing-whitespace': 'error',  // 禁止属性前出现空白
+    // '@typescript-eslint/no-irregular-whitespace': 'error', // 禁止不规则的空格
+  }
+};
+
+```
+
+vue.config.js 中配置
+```javascript
+module.exports = {
+  // 其他配置 ......
+  chainWebpack: config => {
+    // 其他配置 ......
+    config.module
+      .rule('eslint')
+      .use('eslint-loader')
+      .loader('eslint-loader');
+  }
+}
+```
+然而并没有什么卵用！！！
 
 ---

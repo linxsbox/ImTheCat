@@ -43,7 +43,7 @@ class RouterManager implements IRouter {
 
   // 权限验证
   permissionValidation () {
-    // 
+    //
   }
   
   // 初始化路由

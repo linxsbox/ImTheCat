@@ -1,4 +1,4 @@
-import * as apis from '@/apis/asidebar';
+// import * as apis from '@/apis/asidebar';
 
 function getFn () { return ['asidebar']; }
 

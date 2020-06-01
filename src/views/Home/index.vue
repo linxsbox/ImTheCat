@@ -8,6 +8,7 @@
         <router-link :to="{name: 'articles'}"> 所有 </router-link>
         <router-link :to="{name: 'articles', params: { type: '1'}}"> 分类一 </router-link>
         <router-link :to="{name: 'articles', params: { type: '2'}}"> 分类二 </router-link>
+        <router-link :to="{name: 'imgPreview', params: { type: '2'}}"> 图片预览 </router-link>
       </div>
       <article class="articles cat-flex cat-flex-wrap">
         <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
@@ -22,7 +23,7 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Mixins } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
 import articleCard from 'cps/ArticleCard/index.vue';
 import {MixinsArticles} from '@/mixins/articles';
 
