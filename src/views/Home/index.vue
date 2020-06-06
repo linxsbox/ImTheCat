@@ -16,6 +16,8 @@
           article {{ item }}
         </article-card>
       </article>
+
+      <asidebar></asidebar>
     </div>
   </div>
 </template>
@@ -25,10 +27,11 @@
 // https://github.com/vuejs/vue-class-component
 import { Component, Mixins } from 'vue-property-decorator';
 import articleCard from 'cps/ArticleCard/index.vue';
+import Asidebar from 'cps/Asidebar/index.vue';
 import {MixinsArticles} from '@/mixins/articles';
 
 @Component({
-  components: { articleCard },
+  components: { articleCard, Asidebar },
 })
 export default class Home extends Mixins(MixinsArticles) {
   // data

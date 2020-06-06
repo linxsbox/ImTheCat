@@ -1,5 +1,3 @@
-
-
 // 冒泡排序
 export function BubbleSort (arr: number[]) {
   // 空间复杂度：O(1)，直接在给定的数组里交换，无需额外空间。
@@ -65,7 +63,6 @@ export function insertionSort (arr: number[]) {
       arr[j + 1] = arr[j];
     }
     // console.log('---')
-    // 
     arr[j + 1] = item;
     console.log('---', j, j + 1);
 

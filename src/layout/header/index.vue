@@ -1,7 +1,5 @@
 <template>
-  <header class="layout-header">
-    
-  </header>
+  <header class="layout-header"></header>
 </template>
 
 <script lang="ts">

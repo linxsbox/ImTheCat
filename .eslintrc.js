@@ -1,3 +1,4 @@
+// ESLint Configuration
 module.exports = {
   root: true,
   env: {
@@ -5,17 +6,19 @@ module.exports = {
     es6: true,
     node: true
   },
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
+  },
   extends: [
     'plugin:vue/essential',
     'eslint:recommended',
     '@vue/typescript/recommended',
   ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
-  },
+  plugins: ['typescript', '@typescript-eslint'],
   parserOptions: {
-    ecmaVersion: 2020
+    ecmaVersion: 2020,
+    ecmaFeatures: true,
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

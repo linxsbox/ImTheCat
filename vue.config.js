@@ -47,6 +47,8 @@ module.exports = {
     // 删除构建时默认产生的 preload & prefetch 类型是 link 的标签。
     config.plugins.delete('preload');
     config.plugins.delete('prefetch');
+
+    config.resolve.symlinks(false);
   },
   pwa: {
     // pwa

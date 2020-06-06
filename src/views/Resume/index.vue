@@ -41,7 +41,7 @@ export default class Resume extends Vue {
   @Prop(Number) readonly propA: number | undefined;
 
   @Watch('$route.params')
-  watchRouteChange (val: {[key: string]: any}, oldVal: {}) {
+  watchRouteChange (val: {[key: string]: any}, oldVal: {[key: string]: any}) {
     this.componentId = h.getComponentInfo(val.id);
   }
 
@@ -50,7 +50,7 @@ export default class Resume extends Vue {
     console.log('this is created');
     this.componentId = h.getComponentInfo(this.$route.params.id);
   }
-  
+
   // mounted
   mounted () {
     console.log('this is mounted');

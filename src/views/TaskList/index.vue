@@ -33,7 +33,7 @@ export default class TaskList extends Vue {
   mounted () {
     console.log('this is mounted');
   }
-  
+
   // computed
   get helloTaskList () {
     return this.msg + 'taskList';

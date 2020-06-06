@@ -45,7 +45,7 @@ class RouterManager implements IRouter {
   permissionValidation () {
     //
   }
-  
+
   // 初始化路由
   initRouter (): Router {
     return this.router;
@@ -65,11 +65,11 @@ class RouterManager implements IRouter {
       }
       next();
     });
-  
+
     this.router.beforeResolve((to, from, next) => {
       next();
     });
-  
+
     this.router.afterEach((to, from) => {
       // console.log('after from', from);
       if (to.meta.title) {

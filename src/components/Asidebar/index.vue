@@ -1,14 +1,15 @@
 <template>
-  <div class="asidebar-container">
+  <aside class="asidebar">
     {{ msg }} {{ name }}
-  </div>
+  </aside>
 </template>
 
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
-// https://github.com/vuejs/vue-class-component
+// https://github.com/vuejs/vue-class-component\
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
-import * as h from './index';
+import { Getters } from 'cat-vuex-decorator';
+// import * as h from './index';
 
 @Component
 export default class Asidebar extends Vue {
@@ -16,6 +17,8 @@ export default class Asidebar extends Vue {
   // data
   name = 'Asidebar';
   msg = '你好';
+
+  @Getters('getViewLayout') readonly getViewLayout: Element | undefined;
 
   @Prop(Number) readonly propA: number | undefined;
 
@@ -31,6 +34,13 @@ export default class Asidebar extends Vue {
   // mounted
   mounted () {
     console.log('this is mounted');
+    this.initAddBody();
+  }
+
+  initAddBody () {
+    const tempBox = this.getViewLayout;
+    if (!tempBox) { return; }
+    tempBox.appendChild(this.$el);
   }
 
   // methods
