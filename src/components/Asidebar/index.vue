@@ -1,6 +1,14 @@
 <template>
   <aside class="asidebar">
-    {{ msg }} {{ name }}
+    {{ msg }} {{ name }}、
+    <nav class="nav-dock">
+      <ul class="nav-list">
+        <li></li>
+      </ul>
+    </nav>
+    <nav></nav>
+    <div></div>
+    <div></div>
   </aside>
 </template>
 
@@ -18,7 +26,7 @@ export default class Asidebar extends Vue {
   name = 'Asidebar';
   msg = '你好';
 
-  @Getters('getViewLayout') readonly getViewLayout: Element | undefined;
+  @Getters('getViewLayout') readonly getViewLayout!: Element;
 
   @Prop(Number) readonly propA: number | undefined;
 
@@ -34,10 +42,11 @@ export default class Asidebar extends Vue {
   // mounted
   mounted () {
     console.log('this is mounted');
-    this.initAddBody();
+    this.initAddLayout();
   }
 
-  initAddBody () {
+  // 初始化后将自己加入 View-Layout 元素中
+  initAddLayout () {
     const tempBox = this.getViewLayout;
     if (!tempBox) { return; }
     tempBox.appendChild(this.$el);
@@ -60,6 +69,4 @@ export default class Asidebar extends Vue {
 }
 </script>
 
-<style>
-  @import url('index.css');
-</style>
+<style lang="scss" socpe src="./index.scss"></style>
