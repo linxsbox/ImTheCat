@@ -1,0 +1,41 @@
+@mixin pad($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  @if $top>0 {
+    padding-top: $top + px;
+  }
+
+  @if $right>0 {
+    padding-right: $right + px;
+  }
+
+  @if $bottom>0 {
+    padding-bottom: $bottom + px;
+  }
+
+  @if $left>0 {
+    padding-left: $left + px;
+  }
+}
+
+@mixin mag($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  @if $top>0 {
+    margin-top: $top + px;
+  }
+
+  @if $right>0 {
+    margin-right: $right + px;
+  }
+
+  @if $bottom>0 {
+    margin-bottom: $bottom + px;
+  }
+
+  @if $left>0 {
+    margin-left: $left + px;
+  }
+}
+
+@mixin border-radius($radius: 6) {
+  border-radius: $radius + px;
+}
+
+$box-shadow-default: 0 5px 15px rgba(0, 0, 0, .1);

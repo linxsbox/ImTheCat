@@ -50,8 +50,8 @@
     {
       "Q": "样式表类型？",
       "tips": "",
-      "type": "[CSS/less/sass/scss]",
-      "typeList": ["css", "less", "sass", "scss"],
+      "type": "[CSS/less/scss/sass]",
+      "typeList": ["css", "less", "scss", "sass"],
       "defaultValue": "css",
       "defaultDisplay": "css",
       "field": "cssType",

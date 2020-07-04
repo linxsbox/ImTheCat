@@ -30,7 +30,7 @@ const pathSpecifyRules = (cpsName = '', inputPath = '', defaultValue) => {
   let isReplaceAliasPath = false;
   if (pathAlias[deepPath[0]]) {
     deepPath[0] = pathAlias[deepPath[0]];
-    isReplaceAliasPath = true
+    isReplaceAliasPath = true;
   }
 
   // 以官网例子组件名以及组件文件夹均为“大驼峰”式命名。
@@ -63,7 +63,7 @@ const inputRulesFn = (item) => {
       return pathSpecifyRules(cpsName, inputPath, defaultValue);
     };
   }
-}
+};
 
 // 构建问题列表
 const buildQuestionList = () => {
@@ -112,6 +112,14 @@ const checkAnswerRules = (step, content, answer) => {
 
 // 以 TypeScript class 命名规则“大驼峰”式命名类
 const pascalName = className => className.replace(className[0], className[0].toUpperCase());
+
+const pascalMinName = className => {
+  const splitStr = className.split('');
+  const regz = /^[A-Z]+$/;
+  return splitStr.map((item, index) => {
+    return regz.test(item) ? `${index !== 0 ? '-' : ''}${item.toLowerCase()}` : item;
+  }).join('');
+};
 
 /**
  * 代码写入模板
@@ -196,7 +204,7 @@ export default class ${pascalName} extends Vue {
 `;
   // 视图模板
   const viewTpl = `<template>
-  <div class="${fileName}-container">
+  <div class="${pascalMinName(fileName)}-container">
     {{ msg }} {{ name }}
   </div>
 </template>
@@ -239,8 +247,8 @@ function submit${pascalName} (params) {
   })
 }` : '';
 
-  return { viewTpl, cssTpl, jsTpl, apisTpl }
-}
+  return { viewTpl, cssTpl, jsTpl, apisTpl };
+};
 
 module.exports = {
   pathSpecifyRules,

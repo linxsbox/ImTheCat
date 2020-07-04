@@ -3,7 +3,7 @@
 * Author: Lin.xs
 * Version: 1.0.2
 * Create: 2016-08-29 10:53
-* LastUpdate: 2016-10-09 17:58:40
+* LastModified: 2020-07-04 16:16:40
 */
 
 html,
@@ -190,98 +190,11 @@ pre[contenteditable="true"] {
   display: block;
 }
 
-.center-block {
+.block-h-center {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
-
-/* padding and margin */
-.pad10 {
-  padding: 10px;
-}
-
-.pad10-lr {
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.pad10-tb {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.pad15 {
-  padding: 15px;
-}
-
-.pad15-lr {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.pad15-tb {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.pad20 {
-  padding: 20px;
-}
-
-.pad20-lr {
-  padding-right: 20px;
-  padding-left: 20px;
-}
-
-.pad20-tb {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.pad10 {
-  margin: 10px;
-}
-
-.pad10-lr {
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.pad10-tb {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.pad15 {
-  margin: 15px;
-}
-
-.pad15-lr {
-  margin-right: 15px;
-  margin-left: 15px;
-}
-
-.pad15-tb {
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.mag20 {
-  margin: 20px;
-}
-
-.mag20-lr {
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.mag20-tb {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 
 /* font size  */
 .font012 {
@@ -687,22 +600,6 @@ input[type="button"].button:active {
 .badge:empty {
   display: none;
 }
-
-
-/* fullpage wallpapers */
-.fullpage {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  -ms-touch-action: none;
-  touch-action: none;
-}
-
-.wallpapers {
-  background-image: url(http://www.liebao.cn/newtab/background/rain2.jpg);
-  background-size: cover;
-}
-
 
 /* shade mode init and style */
 .shade {

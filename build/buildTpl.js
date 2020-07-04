@@ -49,7 +49,7 @@ const buildTplBase = options => {
  * @param {object} cpsBase 组件信息
  * @param {string} cpsBase.folderPath 组件文件路径
  * @param {string} cpsBase.fileName 组件名/名
- * @param {Array} cpsBase.fileList 组件文件列表
+ * @param {array} cpsBase.fileList 组件文件列表
  * @param {boolean} isBatch 是否批量
  */
 const checkFolder = (cpsBase, isBatch = false) => {
@@ -65,7 +65,7 @@ const checkFolder = (cpsBase, isBatch = false) => {
         } else {
           console.log('【信息】组件目录创建成功！', folderPath);
           if (isBatch) { tasksAsyncList.push(folderPath); }
-          else { resolve(true) }
+          else { resolve(true); }
         }
       });
     };
@@ -78,7 +78,7 @@ const checkFolder = (cpsBase, isBatch = false) => {
           console.log('【信息】组件目录不存在，尝试创建组件目录 %s。', item.fileName);
           mkDir(item.folderPath, tsnAsyncList);
         } else { tsnAsyncList.push(item); }
-      })
+      });
     } else if (!isBatch) {// 非批量生成组件
       if (!fs.existsSync(cpsBase.folderPath)) { // 检查组件目录是否存在
         console.log('【信息】组件目录不存在，尝试创建组件目录 %s。', cpsBase.fileName);
@@ -93,7 +93,7 @@ const checkFolder = (cpsBase, isBatch = false) => {
  * @param {object} cpsBase 组件信息
  * @param {string} cpsBase.folderPath 组件文件路径
  * @param {string} cpsBase.fileName 组件名/文件名
- * @param {Array} cpsBase.fileList 组件文件列表
+ * @param {array} cpsBase.fileList 组件文件列表
  * @param {boolean} isBatch 是否批量
  */
 const buildCpsFiles = (cpsBase, isBatch = false) => {
@@ -101,7 +101,7 @@ const buildCpsFiles = (cpsBase, isBatch = false) => {
     console.log('【信息】开始生成组件文件，请稍后……');
     // 批量写入组件文件
     const batchWriteCpsFile = (cpsBase, tasksAsyncList = []) => {
-    cpsBase.fileList.forEach((item, index) => {
+      cpsBase.fileList.forEach((item, index) => {
         // 写入文件路径，将组件目录路径和文件名合并，生成完整文件路径
         const writeFilePath = path.join(cpsBase.folderPath, item.fileName);
         // 异步写入文件
@@ -126,7 +126,7 @@ const buildCpsFiles = (cpsBase, isBatch = false) => {
       const tsnAsyncList = checkTasksListProxy([], cpsCount, resolve);
       cpsBase.forEach(item => {
         batchWriteCpsFile(item, tsnAsyncList);
-      })
+      });
     } else if (!isBatch) {// 非批量生成组件
       const tsnAsyncList = checkTasksListProxy([], cpsBase.fileList.length, resolve);
       batchWriteCpsFile(cpsBase, tsnAsyncList);
@@ -139,7 +139,7 @@ const initBuilder = async (options, isBatch = false) => {
     const cpsBaseList = [];
     options.forEach(item => {
       cpsBaseList.push(buildTplBase(item));
-    })
+    });
     // 批量检查组件文件目录
     await checkFolder(cpsBaseList, isBatch);
     return await buildCpsFiles(cpsBaseList, isBatch);
@@ -147,6 +147,6 @@ const initBuilder = async (options, isBatch = false) => {
   const tplBase = buildTplBase(options);
   await checkFolder(tplBase);
   return await buildCpsFiles(tplBase);
-}
+};
 
 module.exports = initBuilder;

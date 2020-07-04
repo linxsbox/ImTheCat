@@ -28,7 +28,7 @@ routeOptions.push({
   },
 });
 
-// routeOptions
+// nav routeOptions
 routeOptions.push(...[
   {
     path: '/',
@@ -40,6 +40,50 @@ routeOptions.push(...[
       chunkName: 'home',
     },
   },
+  {
+    path: '/gallery',
+    name: 'gallery',
+    meta: {
+      title: '摄影作品',
+      isViews: true,
+      viewsPath: 'Gallery/index',
+      chunkName: 'gallery',
+    },
+  },
+  {
+    path: '/about',
+    name: 'about',
+    meta: {
+      title: '关于我们',
+      isViews: true,
+      viewsPath: 'About/index',
+      chunkName: 'about',
+    },
+  },
+  {
+    path: '/contactUs',
+    name: 'contactUs',
+    meta: {
+      title: '联系我们',
+      isViews: true,
+      viewsPath: 'ContactUs/index',
+      chunkName: 'contactUs',
+    },
+  },
+  {
+    path: '/barrageRoom',
+    name: 'barrageRoom',
+    meta: {
+      title: '弹幕娱乐',
+      isViews: true,
+      viewsPath: 'BarrageRoom/index',
+      chunkName: 'barrageRoom',
+    },
+  },
+]);
+
+// routeOptions
+routeOptions.push(...[
   {
     path: '/articles',
     name: 'articles',
@@ -113,7 +157,6 @@ routeOptions.push(...[
   },
 ]);
 
-const a = '@/views/Home/index.vue';
 const routes = routeOptions.map(route => {
   const prefix = route.meta.isViews
     ? `views/` : ``;
