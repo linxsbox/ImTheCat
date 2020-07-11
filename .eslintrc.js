@@ -56,7 +56,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off', // 允许显示使用 any
     '@typescript-eslint/explicit-module-boundary-types': 'off', // 显式定义模块边界类型，强制使用 return
     '@typescript-eslint/no-empty-interface': 'error', // 禁止结尾出现空格
-    // '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     // '@typescript-eslint/no-empty': 'error', // 禁止使用空函数
     // '@typescript-eslint/no-empty-function': 'error', // 禁止使用空接口
     // '@typescript-eslint/class-name': 'error', // 类名与接口名必须为驼峰式

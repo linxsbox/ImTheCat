@@ -6,18 +6,20 @@
 * LastModified: 2020-07-04 16:16:40
 */
 
-html,
-body {
+html {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: Consolas, Microsoft YaHei, 'Helvetica Neue', Helvetica, Arial, SimSun, sans-serif;
+  font-family: Consolas, Microsoft YaHei, Helvetica Neue, PingFang SC, Arial, SimSun, sans-serif;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
+  width: 100%;
+  height: 100%;
   position: relative;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -56,7 +58,7 @@ em,
 strong,
 i {
   font-size: inherit;
-  cursor: default;
+  /* cursor: default; */
 }
 
 form,

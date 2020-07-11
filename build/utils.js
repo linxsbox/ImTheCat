@@ -218,8 +218,8 @@ import * as h from './index';
 ${codeType === 'ts' ? tplTypeScript : tplECMAScript}
 </script>
 
-<style${cssType !== 'css' ? ' lang="' + cssType + '"' : ''}>
-  @import url('index.${cssType}');
+<style ${cssType !== 'css' ? 'lang="' + cssType + '"' : ''} scoped src="./index.${cssType}">
+  /* @import url('index.${cssType}'); */
 </style>
 `;
 

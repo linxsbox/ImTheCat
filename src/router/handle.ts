@@ -56,7 +56,7 @@ class RouterManager implements IRouter {
   // 根据 Vue-Router 官方文档中的说明，如果使用 path 进行了导航，那么声明的 params 会被忽略。
   // https://router.vuejs.org/zh/guide/essentials/navigation.html
   handleRoute () {
-    this.router.beforeEach((to, from, next) => {
+    this.router.beforeEach((to: Route, from: Route, next: (x?: any) => void) => {
       // If the access to.path is on the whitelist.
       if (!this.checkWhiteList(to)) {
         // next('/404');
@@ -66,11 +66,11 @@ class RouterManager implements IRouter {
       next();
     });
 
-    this.router.beforeResolve((to, from, next) => {
+    this.router.beforeResolve((to: Route, from: Route, next: (x?: any) => void) => {
       next();
     });
 
-    this.router.afterEach((to, from) => {
+    this.router.afterEach((to: Route, from: Route) => {
       // console.log('after from', from);
       if (to.meta.title) {
         document.title = `${website.name} - ${to.meta.title}`;
