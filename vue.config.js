@@ -24,12 +24,16 @@ module.exports = {
       // 为开发环境修改配置...
     }
   },
+  // https://github.com/neutrinojs/webpack-chain
   chainWebpack: config => {
     config.resolve.alias // 别名配置
       // @  .  ~ 三者在默认环境中以实现相关配置规则，覆盖则会导致错误
       // https://cli.vuejs.org/zh/guide/html-and-static-assets.html#url-%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99
       .set('cps', resolve('./src/components'))
       .set('assets', resolve('./src/assets'));
+
+    config.resolve.extensions
+      .add('.ts');
 
     config.module // 图片载入配置
       .rule('images')

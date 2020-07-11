@@ -1,0 +1,14 @@
+.home-container {
+  .article-card {
+    &-title {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    &-summary-info {
+      color: #757677;
+      font-size: 14px;
+      padding-top: .04rem;
+    }
+  }
+}

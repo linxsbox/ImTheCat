@@ -1,15 +1,22 @@
 <template>
-  <header class="layout-header">
-    <div class="header-container">
-      <nav class="nav-header">
-        <ul class="nav-menu-box">
-          <li class="nav-menu-box-list" v-for="(item, index) in navList" :key="index">
-            <router-link class="nav-menu-link" :to="{name: item['name']}">{{ item['label'] }}</router-link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div class="layout-header">
+    <header class="header-box-fixed">
+      <div class="header-container">
+        <a class="header-logo" href=""></a>
+        <nav class="header-nav">
+          <ul class="nav-menu-box">
+            <li>
+              <ul>
+                <li class="nav-menu-box-list" v-for="(item, index) in navList" :key="index">
+                  <router-link class="nav-menu-link" :to="{name: item['name']}">{{ item['label'] }}</router-link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </div>
 </template>
 
 <script lang="ts">

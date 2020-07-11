@@ -13,7 +13,7 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Mixins, Prop, Watch, Emit } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import articleCard from 'cps/ArticleCard/index.vue';
 import {MixinsArticles} from '@/mixins/articles'; // Mixins
 
@@ -37,11 +37,11 @@ export default class Articles extends Mixins(MixinsArticles) {
 
   // created
   created () {
-    console.log('this is created');
+    console.log('this is created from Articles');
   }
   // mounted
   mounted () {
-    console.log('this is mounted');
+    console.log('this is mounted from Articles');
   }
 }
 </script>

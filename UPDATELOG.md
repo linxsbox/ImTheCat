@@ -964,17 +964,18 @@ module.exports = {
 
 ## 2020-05-31 23:11
 尝试把tslint 换成了 eslint发现还是挺多问题的，我发现的主要有以下几点：
-1、强制性不够，就算出现警告和错误，不会在控制台中输出该信息，需要自己在信息栏(vscode)中查看。
-2、需要安装的支持包太多了，卸载了1个然后安装了4个，包括转换和语言支持以及规则。
-3、自身冲突，如果需要达到输入即检查并提示修复方案需要再额外使用一个prettier的包，eslint配置完成后会与其冲突，然后就还需要再配置一套与eslint规则相同的prettier 规则。
+1. 强制性不够，就算出现警告和错误，不会在控制台中输出该信息，需要自己在信息栏(vscode)中查看。
+2. 需要安装的支持包太多了，卸载了1个然后安装了4个，包括转换和语言支持以及规则。
+3. 自身冲突，如果需要达到输入即检查并提示修复方案需要再额外使用一个prettier的包，eslint配置完成后会与其冲突，然后就还需要再配置一套与eslint规则相同的prettier 规则。
 
 ## 2020-06-01 22:01
 人肉探索了一波以后，终于把之前的 tslint 规则转换到 eslint 了。
 抛弃 cli 生成的内容，自定义 .eslintrc.js 内容
-1、extends 只用定义 plugin:vue/essential、eslint:recommended、@vue/typescript/recommended
-2、rules 部分未兼容合并的规则可以使用 @typescript-eslint/* 
+1. extends 只用定义 plugin:vue/essential、eslint:recommended、@vue/typescript/recommended
+2. rules 部分未兼容合并的规则可以使用 @typescript-eslint/* 
 
 eslint 规则定义参考：https://eslint.bootcss.com/docs/rules/eslint.bootcss.com/docs/rules
+
 eslint-tslint 规则定义参考：https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
 
 ```javascript
@@ -1160,5 +1161,37 @@ module.exports = {
   }
 };
 ```
+
+---
+
+## 2020-07-04 22:38
+将部分 css 改用 SCSS 实现
+1. 全局性重复性属性值单独提取出来作为 SCSS 变量定义
+2. 使用 @mixin 定义一些通用样式属性，例如 padding/margin/border 等，作为 @include 加入需要使用的类中
+3. 新建一个 index.scss 用于编写一些适用度较高的原子性较强的 class 定义
+
+页面 footer 实现，显示数据可通过配置 website.json 读取，虽然可能万年不改
+
+---
+
+## 2020-07-11 12:53
+删除了之前定义的 img.scss/color.scss/box.scss ，主要考虑还是因为配置过于零散，此部分如果未强制引用在编译时会将其忽略，所以将这部分内容合并起来 -> define.scss
+
+1. 主要定义了 基础颜色/图片/可复用的 @mixin 定义
+2. 实现了一个 @function px2rem 的函数定义
+3. 一些效果/风格定义也会逐渐实现加入其中
+
+关于 @function px2rem 主要还是想做一些自适应，目前将 html 字体更改为 625% 此时 1rem = 100px。为何这样考虑？主要还是因为浏览器默认字体大小限制。
+
+大部分浏览器默认字体最小号为 12px。但如果将 html 字体更改为 62.5% 看上去的话会以为 1rem = 10px 更合适控制比例，结果会是 1rem = 12px 计算起来更麻烦且如果用户更改过浏览器最小字体或者该浏览器默认最小字体不是 12px 的情况都会受到影响。
+
+```scss
+// 传入 px 时，除以 100 得到当前值 + 上 rem
+@function px2rem($px: 0) {
+  @return $px / 100+rem;
+}
+```
+
+新增了 websocket 的简单实现，使用单例模式获取 ws 的实例，避免产生多个 ws 对象同时发起连接的情况。
 
 ---
