@@ -43,6 +43,22 @@ const instanceCLI = () => {
   readline.cursorTo(process.stdout, 0, 0);
   readline.clearScreenDown(process.stdout);
 
+  if (stepQuestion === 0) {
+    const welcomeText = `
+------------------------------
+  欢迎使用 CTPL 快速创建模板
+
+支持批量创建: \x1B[36mnpm run ctpl -c filePath\x1B[0m
+默认创建路径：\x1B[36m./src/Views/
+
+\x1B[0m目前支持别名路径：
+@ => \x1B[36m./src/\x1B[0m
+cps => \x1B[36m./src/components/\x1B[0m
+------------------------------
+`;
+    console.log(welcomeText);
+  }
+
   // 初始化第一个问题。
   console.log(questionList[stepQuestion].question);
   // 设定输入内容样式
