@@ -24,6 +24,10 @@
 ## 怎么项目像残次品啊？
 因工作原因，更新项目的频率不是很高，但目前已经计划有一个大概的结构出来了，然后需要一步一步去实现。
 
+## 额外使用
+- [cat-web-storage](https://github.com/linxsbox/cat-web-storage) 是一个轻量级的 Web 存储工具库，它对 web storage API 进行了封装，简化了所需额外编码处理存储数据的操作。
+- [cat-vuex-decorator](https://github.com/linxsbox/cat-vuex-decorator) 是一个针对于使用 TypeScript 来编写 Vue 的 Vuex 封装实现。
+
 ## 其他说明
 项目更新所遇到过的问题以及部分解决逻辑都有记录下来。
 如想了解，请查看[更新记录](./UPDATELOG.md)。

@@ -1,0 +1,50 @@
+@import "@/assets/css/define.scss";
+
+.cat-footer {
+  >.footer-container {
+    position: relative;
+    width: inherit;
+    height: 1.6rem;
+    @include fontSize(14);
+    color: $color-ef;
+    background: $bg-img-sea-1920-160;
+    background-size: cover;
+
+    .footer-wrapper {
+      border-bottom: 1px solid rgba(255, 255, 255, .3);
+    }
+
+    .copy-right {}
+
+    .footer-beian {
+      @include fontSize(12);
+
+      .police {
+        padding-left: .2rem;
+        background: $icon-ggwab;
+        background-size: contain;
+      }
+
+      i {
+        display: inline-block;
+        width: 1px;
+        height: .12rem;
+        margin: 0 .2rem;
+        vertical-align: middle;
+        background-color: $color-ef;
+      }
+    }
+  }
+
+  .link {
+    color: $color-ef;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom .5s .25s ease-out;
+
+    &:hover {
+      // text-decoration-line: underline;
+      border-bottom: 1px solid $color-ef;
+      transition: border-bottom 0s linear;
+    }
+  }
+}

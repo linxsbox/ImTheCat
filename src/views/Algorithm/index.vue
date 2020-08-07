@@ -13,7 +13,7 @@ export default class Algorithm extends Vue {
 
   mounted () {
     console.log('algorithm');
-    
+
     // asort.BubbleSort(arr1); // 乱序：O(n)，需要 n-1 次比较，0 次交换，其中 n 为数据个数
     // asort.BubbleSort(arr2); // 顺序：O(n^2) -
     // asort.BubbleSort(arr3); // 逆序：O(n^2) -

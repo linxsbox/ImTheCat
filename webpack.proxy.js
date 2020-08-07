@@ -54,7 +54,7 @@ let devServer = {
 if (Object.keys(proxyConfig).length > 0) {
   devServer['proxy'] = proxyConfig; // url or options
 } else {
-  console.log('webpack.proxy rules: ', Object.keys(proxyConfig).length);
+  console.log('webpack.proxy rules: %s\n', Object.keys(proxyConfig).length);
 }
 
 module.exports = devServer;

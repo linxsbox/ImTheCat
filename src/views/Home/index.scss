@@ -1,0 +1,15 @@
+@import "@/assets/css/define.scss";
+
+.home-container {
+  .article-card {
+    &-title {
+      margin: 0;
+    }
+
+    &-summary-info {
+      color: #757677;
+      @include fontSize(14);
+      padding-top: .04rem;
+    }
+  }
+}

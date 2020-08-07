@@ -1,8 +1,6 @@
 export default {
-  common: {
-    website: {
-      title: '',
-    },
+  website: {
+    title: '',
   },
   test: '',
   list: [],

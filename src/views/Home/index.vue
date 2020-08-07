@@ -1,25 +1,15 @@
 <template>
   <div class="home-container">
-    <div>
-      <router-link :to="{name: 'resume'}"> 跳转简历父模板页面 </router-link>
-    </div>
-    <input type="button" value="查看简历" @click= "goToResume">
-
-    <div class="container">
-      <div>
-        <router-link :to="{name: 'test'}"> test </router-link>
-      </div>
-      <div>
-        <router-link :to="{name: 'articles'}"> 所有 </router-link>
-        <router-link :to="{name: 'articles', params: { type: '1'}}"> 分类一 </router-link>
-        <router-link :to="{name: 'articles', params: { type: '2'}}"> 分类二 </router-link>
-      </div>
+    <div class="container pad-t40">
       <article class="articles cat-flex cat-flex-wrap">
-        <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
+        <article-card class="cat-flex pointer" v-for="(item, index) in articleList" :key="index"
           @click="gotoArticleDetails(index)">
-          article {{ item }}
+          <h3 class="article-card-title">{{ item['title'] }}</h3>
+          <p class="article-card-summary-info">{{ item['summaryInfo'] }}</p>
         </article-card>
       </article>
+
+      <asidebar v-if="false"></asidebar>
     </div>
   </div>
 </template>
@@ -27,20 +17,32 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Mixins } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
 import articleCard from 'cps/ArticleCard/index.vue';
+<<<<<<< HEAD
 import { MixinsArticles } from '@/mixins/articles';
+=======
+import Asidebar from 'cps/Asidebar/index.vue';
+import { MixinsArticles } from '@/mixins/articles';
+import h from './index';
+>>>>>>> dev
 
 @Component({
-  components: { articleCard },
+  components: { articleCard, Asidebar },
 })
 export default class Home extends Mixins(MixinsArticles) {
   // data
   name = 'Home';
   msg = '你好';
+  articleList: any = [];
 
   created () {
+<<<<<<< HEAD
     console.log('%cthis is created from Home', 'color:red;font-weight:bolder;');
+=======
+    console.log('this is created');
+    this.articleList = h;
+>>>>>>> dev
   }
   // mounted
   mounted () {
@@ -63,6 +65,4 @@ export default class Home extends Mixins(MixinsArticles) {
 }
 </script>
 
-<style>
-  @import url('index.css');
-</style>
+<style lang="scss" scope src="./index.scss"></style>
