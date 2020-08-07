@@ -1195,3 +1195,22 @@ module.exports = {
 新增了 websocket 的简单实现，使用单例模式获取 ws 的实例，避免产生多个 ws 对象同时发起连接的情况。
 
 ---
+
+## 2020-07-28 23:23
+提交代码至 Github 的时候命令行报出错误信息
+```bash
+fatal: HttpRequestException encountered.
+   发送请求时出错。
+Counting objects: 6, done.
+```
+搜索得到的结果是因为：Github 禁用了TLS v1.0 and v1.1，必须更新Windows的git凭证管理器。
+https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases
+下载 [Git Credential Manager for Windows](https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases) Windows Git凭证管理器更新后即可。
+
+这个错误挺突然的，上周都还是可以正常操作的，就今天提交代码出现了这个错误。但是我发现即使出现了这个错误，但是代码还是提交到 Github 远端仓库上了并且有记录信息。
+
+这个应该可以算是一个 Bug 了，我应该是反馈给 git 呢？还是 github 呢？
+
+---
+
+
