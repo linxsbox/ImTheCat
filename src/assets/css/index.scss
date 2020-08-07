@@ -10,6 +10,10 @@ html {
   font-size: 625%;
 }
 
+body {
+  @include fontSize(16);
+}
+
 #app {
   position: relative;
   height: inherit;
@@ -299,6 +303,30 @@ a {
 
 .mag-lr20 {
   @include mag(0, 20, 0, 20);
+}
+
+.fs012 {
+  @include fontSize(12, true);
+}
+
+.fs014 {
+  @include fontSize(14, true);
+}
+
+.fs016 {
+  @include fontSize(16, true);
+}
+
+.fs018 {
+  @include fontSize(18, true);
+}
+
+.fs020 {
+  @include fontSize(20, true);
+}
+
+.fs024 {
+  @include fontSize(24, true);
 }
 
 .ellipsis {

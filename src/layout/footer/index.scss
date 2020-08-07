@@ -5,7 +5,7 @@
     position: relative;
     width: inherit;
     height: 1.6rem;
-    font-size: 14px;
+    @include fontSize(14);
     color: $color-ef;
     background: $bg-img-sea-1920-160;
     background-size: cover;
@@ -17,7 +17,7 @@
     .copy-right {}
 
     .footer-beian {
-      font-size: 12px;
+      @include fontSize(12);
 
       .police {
         padding-left: .2rem;

@@ -16,7 +16,7 @@ $bg-img-sea-1920-160: url("~assets/img/sea_1920_160.png") no-repeat center cente
 $box-shadow-default: 0 .05rem .15rem rgba(0, 0, 0, .1);
 
 @function px2rem($px: 0) {
-  @return $px / 100+rem;
+  @return $px / 100 + rem;
 }
 
 @mixin pad($top: 0, $right: 0, $bottom: 0, $left: 0) {
@@ -52,6 +52,15 @@ $box-shadow-default: 0 .05rem .15rem rgba(0, 0, 0, .1);
 
   @if $left>0 {
     margin-left: px2rem($left);
+  }
+}
+
+@mixin fontSize ($fontSize, $important:false) {
+  @if $important {
+    font-size: $fontSize / 100 + rem + ' !important';
+  }
+  @else {
+    font-size: $fontSize / 100 + rem;
   }
 }
 
