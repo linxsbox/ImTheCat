@@ -5,7 +5,6 @@
     <div></div>
     <div>
       <router-link to="/">go to index</router-link>
-      
       <br>
     </div>
   </div>

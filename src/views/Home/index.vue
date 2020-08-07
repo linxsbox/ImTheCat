@@ -19,13 +19,9 @@
 // https://github.com/vuejs/vue-class-component
 import { Component, Mixins } from 'vue-property-decorator';
 import articleCard from 'cps/ArticleCard/index.vue';
-<<<<<<< HEAD
-import { MixinsArticles } from '@/mixins/articles';
-=======
 import Asidebar from 'cps/Asidebar/index.vue';
 import { MixinsArticles } from '@/mixins/articles';
 import h from './index';
->>>>>>> dev
 
 @Component({
   components: { articleCard, Asidebar },
@@ -37,12 +33,8 @@ export default class Home extends Mixins(MixinsArticles) {
   articleList: any = [];
 
   created () {
-<<<<<<< HEAD
-    console.log('%cthis is created from Home', 'color:red;font-weight:bolder;');
-=======
     console.log('this is created');
     this.articleList = h;
->>>>>>> dev
   }
   // mounted
   mounted () {
