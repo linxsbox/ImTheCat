@@ -1,13 +1,14 @@
+@import "@/assets/css/define.scss";
+
 .home-container {
   .article-card {
     &-title {
       margin: 0;
-      font-size: 16px;
     }
 
     &-summary-info {
       color: #757677;
-      font-size: 14px;
+      @include fontSize(14);
       padding-top: .04rem;
     }
   }

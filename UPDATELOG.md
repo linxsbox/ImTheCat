@@ -1213,4 +1213,24 @@ https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases
 
 ---
 
+## 2020-08-07 21:06
+提交代码的时候发现证书验证错误，命令行中提示
+```bash
+error setting certificate verify locations:
+CAfile: 文件路径/mingw64/ssl/certs/ca-bundle.crt
+CApath: none
+```
+百度了一下发现出现这个问题的朋友还不少，但是大多数是直接全局关闭证书验证：
+```bash
+git config --global http.sslverify "false"
+```
+虽然这个也不是什么大项目，但是安全问题不容忽视，所以还是决定寻找解决方案。
 
+其中一个答案是有说证书路径错误，所以我就尝试比对了一下提示的路径和我正确的证书路径。最后发现确实是路径出了问题。
+此时只要执行：
+```bash
+git config --system http.sslcainfo "路径/mingw64/ssl/certs/ca-bundle.crt"
+```
+将 **git CAfile** 指向正确的证书路径即可（注意是反斜线分割）。
+
+---
