@@ -338,11 +338,3 @@ a {
 .pointer {
   cursor: pointer;
 }
-
-.neui-box {
-  @include neuiBox(8, 6);
-}
-
-.neui-box:hover {
-  @include neuiBoxActive(6);
-}
