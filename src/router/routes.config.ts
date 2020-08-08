@@ -155,6 +155,16 @@ routeOptions.push(...[
       chunkName: 'resume',
     },
   },
+  {
+    path: '/kc',
+    name: 'kc',
+    meta: {
+      title: 'KooCatUI 效果测试',
+      isViews: true,
+      viewsPath: 'TestKooCatUI/index',
+      chunkName: 'KooCatUI',
+    },
+  },
 ]);
 
 const routes = routeOptions.map(route => {
