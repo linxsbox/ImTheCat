@@ -1,0 +1,17 @@
+@import "./utils.scss";
+
+@function neuiBaseTheme($ds, $isActive: false) {
+  $dsVal: px2rem($ds);
+  $dsValf: px2rem($ds * -1);
+  $dsVal2: px2rem($ds * 2);
+
+  @if $isActive {
+    @return inset $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .25),
+    inset $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
+  }
+
+  @else {
+    @return $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .25),
+    $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
+  }
+}

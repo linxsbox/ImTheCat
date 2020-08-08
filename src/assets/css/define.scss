@@ -67,33 +67,3 @@ $box-shadow-default: 0 .05rem .15rem rgba(0, 0, 0, .1);
 @mixin border-radius($radius: 6) {
   border-radius: px2rem($radius);
 }
-
-@function getNeui($ds, $isActive: 0) {
-  $dsVal: px2rem($ds);
-  $dsValf: px2rem($ds * -1);
-  $dsVal2: px2rem($ds * 2);
-
-  @if $isActive==0 {
-    @return $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .25),
-    $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
-  }
-
-  @else {
-    @return inset $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .25),
-    inset $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
-  }
-}
-
-@mixin neuiBox ($radius, $ds, $color: transparent) {
-  padding: px2rem($radius) px2rem($radius * 2);
-  @include border-radius($radius);
-  background-color: $color;
-  box-shadow: getNeui($ds, 0);
-}
-
-@mixin neuiBoxActive ($ds, $color: transparent) {
-  background-color: $color;
-  box-shadow: getNeui($ds, 1);
-}
-
-
