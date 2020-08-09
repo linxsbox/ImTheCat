@@ -1,0 +1,15 @@
+{
+  "name": "Cat Blog",
+  "author": "Lin.xs",
+  "years": "2016-2020",
+  "beian": [{
+      "name": "桂公网安备45090202000024号",
+      "url": "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=45090202000024",
+      "icon": "police"
+    },
+    {
+      "name": "浙ICP备15001989号",
+      "url": "http://beian.miit.gov.cn/"
+    }
+  ]
+}

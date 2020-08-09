@@ -1,0 +1,77 @@
+{
+  "template": {
+    "vueTplName": "index",
+    "cssTplName": "index",
+    "codeTplName": "index"
+  },
+  "pathAlias": {
+    "@": "./",
+    "cps": "./components/"
+  },
+  "Questions": [{
+      "Q": "组件名称？",
+      "tips": "",
+      "type": "[template]",
+      "typeList": [],
+      "defaultValue": "template",
+      "defaultDisplay": "template",
+      "field": "fileName",
+      "rulesFn": "",
+      "rulesType": "string",
+      "disable": false,
+      "diffDisplay": false
+    },
+    {
+      "Q": "指定文件夹路径？",
+      "tips": "(最大深度：4)",
+      "type": "[./views/]",
+      "typeList": [],
+      "defaultValue": "./views/",
+      "defaultDisplay": "./views/",
+      "field": "filePath",
+      "rulesFn": "",
+      "rulesType": "path",
+      "disable": false,
+      "diffDisplay": false
+    },
+    {
+      "Q": "代码文件类型？",
+      "tips": "",
+      "type": "[JS/ts]",
+      "typeList": ["js", "ts"],
+      "defaultValue": "js",
+      "defaultDisplay": "js",
+      "field": "codeType",
+      "rulesFn": "",
+      "rulesType": "list",
+      "disable": false,
+      "diffDisplay": false
+    },
+    {
+      "Q": "样式表类型？",
+      "tips": "",
+      "type": "[CSS/less/scss/sass]",
+      "typeList": ["css", "less", "scss", "sass"],
+      "defaultValue": "css",
+      "defaultDisplay": "css",
+      "field": "cssType",
+      "rulesFn": "",
+      "rulesType": "list",
+      "disable": false,
+      "diffDisplay": false
+    },
+    {
+      "Q": "是否创建单独的Api文件？",
+      "tips": "",
+      "type": "[y/N]",
+      "typeList": ["y", "n"],
+      "defaultValue": false,
+      "defaultDisplay": "N",
+      "field": "fileApi",
+      "rulesFn": "",
+      "rulesType": "confirm",
+      "disable": true,
+      "diffDisplay": true
+    }
+  ]
+}

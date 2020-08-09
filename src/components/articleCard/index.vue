@@ -1,7 +1,5 @@
 <template>
-  <section class="article-card"
-
-    v-on:click="eventClick">
+  <section class="article-card" @click="eventClick">
     <div class="article-card-media" ref="media-box">
       <img class="article-media-img"
         :src="loadImgSrc ? loadImgSrc : ''"
@@ -52,7 +50,7 @@ export default class ArticleCard extends Vue {
     // 将需要载入的图像地址传入
     tempImg.src = this.imgSrc;
     // 图像载入函数
-    tempImg.onload = eImg => {
+    tempImg.onload = () => {
       // 获取父级媒体盒子的元素
       const tempMediaBox: Element = this.$refs['media-box'] as Element;
       // 将父级盒子大小赋值给图像元素，改变图像元素的大小

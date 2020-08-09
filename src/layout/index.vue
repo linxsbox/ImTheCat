@@ -1,29 +1,22 @@
 <template>
-  <div class="main view-layout" :data-timestamp="0">
-    <!-- <layout-header></layout-header> -->
-    <router-view class="cat-view-container" :class="viewClass" v-if="isAcitve"></router-view>
-    <!-- <layout-footer></layout-footer> -->
+  <div class="main view-layout" :data-timestamp="0" :key="1">
+    <layout-header></layout-header>
+    <transition name='fade' mode="out-in">
+      <router-view class="cat-view-container" :class="viewClass" v-if="isAcitve"></router-view>
+    </transition>
+    <layout-footer></layout-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Provide } from 'vue-property-decorator';
-// import layoutHeader from './header'
-// import layoutFooter from './footer'
-
-function buildName (firstName: string = 'Tom', lastName: string) {
-    return firstName + ' ' + lastName;
-}
-const tomcat = buildName('Tom', 'Cat');
-const cat = buildName(undefined, 'Cat');
-console.log(cat);
-console.log(tomcat);
-
+import layoutHeader from './header/index.vue';
+import layoutFooter from './footer/index.vue';
 
 @Component({
   components: {
-    // layoutHeader,
-    // layoutFooter,
+    layoutHeader,
+    layoutFooter,
   },
 })
 export default class Layout extends Vue {
@@ -33,6 +26,13 @@ export default class Layout extends Vue {
 
   // Provide
   @Provide() refresh = this.refreshView;
+
+  // beforeRouteUpdate (to, from, next) {
+  //   const toDepth = to.path.split('/').length;
+  //   const fromDepth = from.path.split('/').length;
+  //   this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+  //   next();
+  // }
 
   mounted () {
     console.log('layout');

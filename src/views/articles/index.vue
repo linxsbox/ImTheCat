@@ -1,20 +1,31 @@
 <template>
   <div class="articles-container">
-    {{ msg }} {{ name }}
+    <div>{{ msg }} {{ name }}</div>
+    <article class="articles cat-flex cat-flex-wrap">
+      <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
+        @click="gotoArticleDetails(index)">
+        article {{ item }}
+      </article-card>
+    </article>
   </div>
 </template>
 
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
+import articleCard from 'cps/ArticleCard/index.vue';
+import {MixinsArticles} from '@/mixins/articles'; // Mixins
+
 // import * as h from './index';
 
-@Component
-export default class Articles extends Vue {
+@Component({
+  components: { articleCard },
+})
+export default class Articles extends Mixins(MixinsArticles) {
 
   // data
-  name = 'Articles';
+  name = 'Articles 文章列表';
   msg = '你好';
 
   @Prop(Number) readonly propA: number | undefined;
@@ -26,26 +37,11 @@ export default class Articles extends Vue {
 
   // created
   created () {
-    console.log('this is created');
+    console.log('this is created from Articles');
   }
   // mounted
   mounted () {
-    console.log('this is mounted');
-  }
-
-  // methods
-  helloWorld () {
-    return 'Hello World';
-  }
-
-  // computed
-  get helloArticles () {
-    return this.msg + 'articles';
-  }
-
-  @Emit()
-  returnValue () {
-    return 'articles';
+    console.log('this is mounted from Articles');
   }
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div class="taskList-container">
-    the aim is to do what?
     <div v-for="(item, index) in [1, 2, 3, 4, 5]" :key="index">
       {{ item }}
     </div>
@@ -11,21 +10,16 @@
 // https://github.com/vuejs/vue-class-component
 import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
 // import * as h from './index';
-
 @Component
 export default class TaskList extends Vue {
-
   // data
-  name = 'taskList';
+  name = 'TaskList';
   msg = '你好';
-
   @Prop(Number) readonly propA: number | undefined;
-
   @Watch('propA')
   onChildChanged (val: number, oldVal: number) {
     console.log(`newValue: ${val}, oldValue: ${oldVal}`);
   }
-
   // created
   created () {
     console.log('this is created');
@@ -34,17 +28,14 @@ export default class TaskList extends Vue {
   mounted () {
     console.log('this is mounted');
   }
-  
   // computed
   get helloTaskList () {
     return this.msg + 'taskList';
   }
-
   // methods
   helloWorld () {
     return 'Hello World';
   }
-
   @Emit()
   returnValue () {
     return 'taskList';

@@ -1,0 +1,17 @@
+@import "./function.scss";
+
+@mixin border-radius($radius: 6) {
+  border-radius: px2rem($radius);
+}
+
+@mixin neuiBox ($radius, $ds, $color: transparent) {
+  padding: px2rem($radius) px2rem($radius * 2);
+  @include border-radius($radius);
+  background-color: $color;
+  box-shadow: neuiBaseTheme($ds, 0);
+}
+
+@mixin neuiBoxActive ($ds, $color: transparent) {
+  background-color: $color;
+  box-shadow: neuiBaseTheme($ds, 1);
+}

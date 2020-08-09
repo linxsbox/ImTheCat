@@ -649,7 +649,9 @@ NodeJs v12.9.0 64-bit 有内存溢出问题慎用！又换了个 v11.10.0 版本
 
 ## 2019-12-27 21:15
 尝试更新引用包版本的时候发现报错了，然后看了一下错误日志，是文件引用了不存在的链接。
+
 然后使用 **npm-check -u** 命令发现 @vue 更新后变化太大，提示了我 **Major Update Potentially breaking API changes. Use caution.**
+
 然后在我尝试了几个升级后依然无法正确更新引用包，依然是是文件引用了不存在的链接。我就查看 **npm debug.log** 的日志文件发现如下包错误：
 ```
 tsserver -> typescript
@@ -671,19 +673,23 @@ node-sass
 
 ## 2019-12-28 15:48
 更新路由初始化 **import** 逻辑，原来的逻辑无法处理正确非未引入的地址。
+
 更新了 **tplgo** 生成的模板上的语法错误问题，导致生成的 **{name}.vue** 产生 **render** 错误。
 
 ---
 
 ## 2019-12-28 23:34
 将路由的组件钩子进行了注册，然后可以在组件内使用 **TypeScript** 版本的路由钩子。
+
 重新思考了 **微型 CLI** 的文件写入处理逻辑，使用 **Promise** 配合 **async/await** 获取异步文件写入结果再通过 **resolve/reject** 的方式来确认所有文件是否已经完成或者失败，最终再统一输出结果调用结束关闭命令行模式。
+
 文件构建模板重新进行编写，然后支持了 **TypeScript** 的混写方式，即可以用 **Vue.js** 的方式。
 
 ---
 
 ## 2019-12-31 20:27
 之前更新的时候把首页都给删除了，后来在本地中也没找到备份，一度都以为要重写来着了。但是没想到在查 git commit 记录的时候发现有提交记录。
+
 现在将首页内容进行重新改写，将文章卡片部分单独作为一个组件。使用了 new Image 来对图片部分进行载入，目前还没发现数量过大时产生的性能问题，未来会考虑使用异步的方式。
 
 ---
@@ -695,7 +701,9 @@ node-sass
 
 ## 2020-01-11 23:02
 将之前未完成的 **web storage** 改写成 **TypeCcript** 版本, 然后将其注册至 Vue 下。
+
 写完的时候直接使用是可以将数据写入 **web storage** 中，但是在 **.vue** 文件中未能识别出，导致在控制台会输出错误。
+
 这个主要是因为 **TypeScript** 本身不支持额外的类型定义，所以需要自己提供一个 **\*.d.ts** 文件来描述定义的类型。主要是将相关的 **export declare interface、class、type** 等在类型定义文件中重新描述。以及再通过 **declare module 'path'** 来指定关联的模块和接口，就可以完成对该类型的定义了。
 ```javascript
 export declare class WebLocals {
@@ -714,6 +722,7 @@ declare module 'vue/types/vue' {
 
 ## 2020-01-12 11:00
 昨天让小队成员尝试使用我自己封装处理了一下的 **Vue-Router** 功能，定义的一级路由的可以正常访问没有问题的，然而在使用多级路由或者子级路由的时候无法正常解析从而无法判断是否是合法跳转而导致直接**404**或者控制台输出了**错误信息**。
+
 回来了以后我好好思考了一下，又对着官方文档以及源码 **Routes** 部分尝试理解他们。最后我发现还是我想得太多了，然后导致了过度设计过度考虑，以至于是以我个人的想法来限定了使用行为，这是非常不好的。
 所以，我就用 **TypeScript** 重新将 **Router** 封装了一下，只处理必要的导航部分，对白名单、访问权限、身份等进行处理，而将过度设计的动态构建 **Routes-View** 全部删除。
 
@@ -724,7 +733,9 @@ declare module 'vue/types/vue' {
 
 ## 2020-01-18 13:42
 引用的包有大量更新，直接使用命令更新则无法完成，还会报错。
+
 要先删除既有 **node_modules** 然后使用 **npm i** 更新，更新完成后再使用 **npm-check -u** 将剩余包选择更新即可。
+
 记得先删除 **package-lock.json** 文件
 
 ---
@@ -740,7 +751,9 @@ declare module 'vue/types/vue' {
 
 ## 2020-01-20 16:32
 正式将 web storage 的逻辑从项目中移除，web storage 已提交至 npm package 可通过 npm install 方式获取使用。
+
 对 key/value 存储内容加密函数还未实现。
+
 非插件集成方式目前还未实现，未来会考虑是否可以将这部分进行补充完善。
 
 ---
@@ -750,6 +763,7 @@ declare module 'vue/types/vue' {
 例如：token，cookie，oAuth2 等。
 
 更新了项目中的配置调整构建后的基础路径以便适应web容器。
+
 重新处理了白名单的匹配机制，以便适应调整构建后的基础路径。
 
 ```nginx
@@ -768,10 +782,13 @@ location /blog {
 更新了 **shell** 脚本 **aub.sh** 作为自动化更新构建脚本
 更新了忽略规则，对脚本日志进行忽略
 
-Unbuntu npm install 权限问题
+**Unbuntu npm install 权限问题**
 应用商店自带的 nodejs 版本太低，所以就自己通过官网安装包进行配置 nodejs，随后配置完成后大部分命令使用正常。
+
 在进行构建项目的时候出现了权限问题，主要是因为 **"@vue/cli-plugin-unit-mocha": "^4.1.1",** 这个包会用到本地文件访问命令。
+
 然后百度了一下可通过修改 **node_module** 文件权限实现解决，但是然并卵。
+
 后来发现是 **node_module --global** 文件夹的所属并非为当前用户而是 **1001** ，通过 **chown** 将其修改为当前用户后，设置为默认 755 权限实现了解决。
 
 ---
@@ -802,5 +819,418 @@ fi
     ]
   }
 ```
+
+---
+
+## 2020-03-06 20:00
+之前忘记把 http 2.0 的升级记录写下来，不过另外写了一篇文章发表在了微信公众号上。
+这里就不重复写了，做个传送门即可：[HTTP 2.0 升级记录](https://mp.weixin.qq.com/s/jonc6gKWSTI8mFv0sW7ZoA)
+
+---
+
+## 2020-05-04 15:24
+**cat-vuex-decorator** 开源库已经完成了，现在引入来操作 Vuex。
+
+更新部分文件命名，只有 views、components 下的文件名称为大驼峰命名规则便于区分是否是页面或组件，其他维持小驼峰命名规则。
+
+路由新增了对于网页 title 的处理。这样可以在路由跳转时就可以对网页 title 进行修改。当然额外的我也做了单独的网页 title 进行修改的 Vuex mutation common 函数。
+
+新增了 mixins 和 filters 来专门存放此类函数，在页面需要使用是直接引入即可，可大量减少通用的函数重复编写。
+
+经过简单的测试路由的处理和页面的跳转已经是良好运行了。
+
+再来就是需要更具体的分析哪些内容需要通过 Vuex 管理了。
+
+---
+
+## 2020-05-10 11:46
+在改造 Axios 支持到项目中的时候在想：
+- 有没有必要做一个批量处理的任务队列？
+- 适用场景是什么？
+- 是否是自己臆想出来的伪需求？
+
+---
+
+## 2020-05-16 16:41
+将组件构建CLI 花了大概一天重新实现了一下（改动巨大）。
+**utils.js** 将一些通用且可修改配置的代码拆分出来，如：输入规则、路径处理、将问题配置 json 转换成问题列表、输入答案检查/默认值、代码模板字符串等。
+
+**QA2CLI.js** 将 CLI 部分单独拿出来，仅有 CLI 的处理逻辑。
+
+**config.json** 将问题的构建、路径别名、组件文件名，这类可以自定义配置的内容单独提取出来作为配置文件。
+
+**buildTpl.js** 改动最大的就是这个了。首先精简了代码，将一些耦合较高的代码全部拆分了出来。其次，新增了可以批量构建组件的处理逻辑。现存 3 个构建规则：
+- **buildTplBase** 将**答案/配置**文件信息**转换/处理**为构建组件以及代码内容所需的信息。
+- **checkFolder** 检查组件文件是否存在，如不存在则直接创建组件文件（可批量）。
+- **buildCpsFiles** 生成组件所需文件（可批量）如：index.vue、index.css、index.js等。
+
+因为 nodejs 对于文件处理 fs 都是异步的（官方不推荐使用同步），所以就需要考虑到处理异步状态的问题了。之前的实现是简单的通过 **Promise/async/await** 来进行处理，但是后来在实现批量处理的时候发现 **Promise/async/await** 无法满足需求。思来想去，发现可以通过 Proxy 监听对象属性来实现。
+```javascript
+// 我的想法就是：需要监听多少文件都是可以提前预知的，因为批量生成是可以通过配置文件中需要生成的组件数量来确定，所以就直接考虑监听长度，长度与组件数量相等即可 resolve 结束。
+
+// 检查任务列表代理
+const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
+  return new Proxy(targetArray, {
+    set(target, key, value, proxy) {
+      if (target.length === tasksNum) {
+        resolve(true);
+        return true;
+      }
+      return Reflect.set(target, key, value, proxy);
+    }
+  });
+};
+```
+
+**如何使用**
+原命令保持不动，如无命令参数则使用 QA CLI 模式生成组件。`npm run ctpl`
+
+```json
+// package.json
+"scripts": {
+  "ctpl": "node build/index.js"
+}
+```
+
+新增命令参数符 **“-c”** 加上文件路径即可。 `npm run ctpl -c a.json`
+```json
+// 单组件配置
+{
+  "fileName": "cpsName", // 组件名称
+  "filePath": "cpsPath", // 组件路径，默认为 ./viewx/ 下，支持别名 @ , cps
+  "codeType": "", // 代码类型 js / ts
+  "cssType": "", // 样式表类型 css / less / sass / scss
+  "fileApi": false // 是否生成 API 文件，生成内容规则尚未完善，目前仅生成文件
+}
+// 批量生成组件配置
+[{
+  "fileName": "cpsName1",
+  "filePath": "cpsPath1",
+  "codeType": "",
+  "cssType": "",
+  "fileApi": false
+}, {
+  "fileName": "cpsName2",
+  "filePath": "cpsPath1",
+  "codeType": "",
+  "cssType": "",
+  "fileApi": false
+}, {
+  // ......
+}]
+```
+
+---
+
+## 2020-05-30 14:58
+图标规格
+- favicon: 16x16 | 32x32
+- android-chrome: 192x192 | 512x512
+- apple-touch-icon: 60x60 | 76x76 | 120x120 | 152x152 | 180x180(default not size) 非透明底
+- safari-pinned-tab: svg
+- msapplication-icon: 144x144
+- mstile: 150x150
+
+使用
+```html
+favicon: => <link rel="icon" type="image/png" sizes="size" href="url">
+android-chrome: 
+apple-touch-icon: => <link rel="apple-touch-icon" href="url">
+safari-pinned-tab: => <link rel="mask-icon" href="url" color="color">
+msapplication-icon: => <meta name="msapplication-TileImage" content="url">
+mstile: => <meta name="msapplication-TileColor" content="color">
+
+manifest: => <link rel="manifest" href="url.json">
+```
+
+vue.config.js 中配置，即可重新设定图标 icon
+```javascript
+module.exports = {
+  // 其他配置 ......
+  pwa: {
+    // pwa
+    iconPaths: {
+      favicon32: 'favicon.ico',
+      favicon16: 'favicon.ico',
+      appleTouchIcon: 'favicon.ico',
+      maskIcon: 'favicon.ico',
+      msTileImage: 'favicon.ico'
+    }
+  }
+}
+```
+
+---
+
+## 2020-05-31 23:11
+尝试把tslint 换成了 eslint发现还是挺多问题的，我发现的主要有以下几点：
+1. 强制性不够，就算出现警告和错误，不会在控制台中输出该信息，需要自己在信息栏(vscode)中查看。
+2. 需要安装的支持包太多了，卸载了1个然后安装了4个，包括转换和语言支持以及规则。
+3. 自身冲突，如果需要达到输入即检查并提示修复方案需要再额外使用一个prettier的包，eslint配置完成后会与其冲突，然后就还需要再配置一套与eslint规则相同的prettier 规则。
+
+## 2020-06-01 22:01
+人肉探索了一波以后，终于把之前的 tslint 规则转换到 eslint 了。
+抛弃 cli 生成的内容，自定义 .eslintrc.js 内容
+1. extends 只用定义 plugin:vue/essential、eslint:recommended、@vue/typescript/recommended
+2. rules 部分未兼容合并的规则可以使用 @typescript-eslint/* 
+
+eslint 规则定义参考：https://eslint.bootcss.com/docs/rules/eslint.bootcss.com/docs/rules
+
+eslint-tslint 规则定义参考：https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
+
+```javascript
+// .eslintrc.js 配置
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es6: true,
+    node: true
+  },
+  extends: [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
+  },
+  parserOptions: {
+    ecmaVersion: 2020
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'indent': ['error', 2], // 缩进2个空格
+    'semi': ['error', 'always'], // 强制使用分号
+    'eqeqeq': 'error', // 强制使用全等操作符
+    'curly': 'error', // 强制使用大括号
+    'guard-for-in': 'error', // 强制使用 for in 约束
+    'default-case': 'error', // 强制 Switch 语句中有 Default 分支
+    'quotes': ['error', 'single', {
+      avoidEscape: true,
+      allowTemplateLiterals: true
+    }], // 尽量使用单引号
+    // 'quote-props': ['error', 'consistent-as-needed'], // 对象字面量属性名称用引号括起来
+    'object-curly-newline': ['error', { 'consistent': true }], // 对象括号换行规则
+    'array-bracket-newline': ['error', 'consistent'], // 数组括号换行规则
+    'space-before-function-paren': 'error', // 函数参数前强制空格
+    'spaced-comment': ['error', 'always'], // 注释体内强制使用空格
+    'no-var': 'error', // 禁止使用 var
+    'no-eval': 'error', // 禁止使用 eval()
+    'no-empty': 'error', // 禁止使用空的块
+    'no-empty-function': 'error', // 禁止使用空函数
+    // 'no-empty-interface': 'error', // 禁止使用空接口
+    'no-trailing-spaces': 'error', // 禁止结尾出现空格
+    'no-whitespace-before-property': 'error', // 禁止属性前出现空白
+    'no-multiple-empty-lines': 'error', // 禁止使用多个空行
+    'no-tabs': 'error', // 禁止在代码中使用 tabs 制表
+    'no-use-before-define': 'error', // 禁止在声明前使用
+    'no-undefined': 'error', // 禁止使用 undefined 作为声明标识符
+    'no-label-var': 'error', // 禁止声明与变量同名的标签
+    'no-shadow': 'error', // 禁止声明影子变量
+    'no-multi-assign': 'error', // 禁止连续赋值
+    '@typescript-eslint/no-var-requires': 0, // 允许 requires 指定包
+    '@typescript-eslint/no-explicit-any': 'off', // 允许显示使用 any
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // 显式定义模块边界类型，强制使用 return
+    '@typescript-eslint/no-empty-interface': 'error', // 禁止结尾出现空格
+    // '@typescript-eslint/no-empty': 'error', // 禁止使用空函数
+    // '@typescript-eslint/no-empty-function': 'error', // 禁止使用空接口
+    // '@typescript-eslint/class-name': 'error', // 类名与接口名必须为驼峰式
+    // '@typescript-eslint/no-unsafe-finally': 'error', // 禁止在 finally 语句块中出现控制流语句
+    // '@typescript-eslint/no-mergeable-namespace': 'error', // 禁止合并相同的命名空间
+    // '@typescript-eslint/no-trailing-whitespace': 'error',  // 禁止属性前出现空白
+    // '@typescript-eslint/no-irregular-whitespace': 'error', // 禁止不规则的空格
+  }
+};
+
+```
+
+vue.config.js 中配置
+```javascript
+module.exports = {
+  // 其他配置 ......
+  chainWebpack: config => {
+    // 其他配置 ......
+    config.module
+      .rule('eslint')
+      .use('eslint-loader')
+      .loader('eslint-loader');
+  }
+}
+```
+然而并没有什么卵用！！！
+
+---
+
+## 2020-06-06 23:21
+如何把 TSLint 换成 ESLint 
+1. VS Code 安装 ESLint，VS Code -> settings.json -> eslint.validate 新增 "typescript" - 图1 
+2. 项目中卸载原有 TSLint，tslint.json 配置文件可用完再删 
+3. Vue-cli typescript-eslint 参考意义不大 
+4. 项目新增 ESlint 支持库 - 图2 
+5. .eslintrc.js 配置重点 - 图3 
+
+```json
+// settings.json 配置新增
+"eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+],
+```
+
+```bash
+// npm i -D
+npm i -D @typescript-eslint/eslint-plugin
+npm i -D @typescript-eslint/parser
+npm i -D @vue/cli-plugin-eslint
+npm i -D @vue/eslint-config-typescript
+npm i -D eslint
+npm i -D eslint-plugin-typescript
+npm i -D eslint-plugin-vue
+```
+
+```js
+// ESLint Configuration
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es6: true,
+    node: true
+  },
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
+  },
+  extends: [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+  ],
+  plugins: ['typescript', '@typescript-eslint'],
+  parserOptions: {
+    ecmaVersion: 2020,
+    ecmaFeatures: true,
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'indent': ['error', 2], // 缩进2个空格
+    'semi': ['error', 'always'], // 强制使用分号
+    'eqeqeq': 'error', // 强制使用全等操作符
+    'curly': 'error', // 强制使用大括号
+    'guard-for-in': 'error', // 强制使用 for in 约束
+    'default-case': 'error', // 强制 Switch 语句中有 Default 分支
+    'quotes': ['error', 'single', {
+      avoidEscape: true,
+      allowTemplateLiterals: true
+    }], // 尽量使用单引号
+    // 'quote-props': ['error', 'consistent-as-needed'], // 对象字面量属性名称用引号括起来
+    'object-curly-newline': ['error', { 'consistent': true }], // 对象括号换行规则
+    'array-bracket-newline': ['error', 'consistent'], // 数组括号换行规则
+    'space-before-function-paren': 'error', // 函数参数前强制空格
+    'spaced-comment': ['error', 'always'], // 注释体内强制使用空格
+    'no-var': 'error', // 禁止使用 var
+    'no-eval': 'error', // 禁止使用 eval()
+    'no-empty': 'error', // 禁止使用空的块
+    'no-empty-function': 'error', // 禁止使用空函数
+    // 'no-empty-interface': 'error', // 禁止使用空接口
+    'no-trailing-spaces': 'error', // 禁止结尾出现空格
+    'no-whitespace-before-property': 'error', // 禁止属性前出现空白
+    'no-multiple-empty-lines': 'error', // 禁止使用多个空行
+    'no-tabs': 'error', // 禁止在代码中使用 tabs 制表
+    'no-use-before-define': 'error', // 禁止在声明前使用
+    'no-undefined': 'error', // 禁止使用 undefined 作为声明标识符
+    'no-label-var': 'error', // 禁止声明与变量同名的标签
+    'no-shadow': 'error', // 禁止声明影子变量
+    'no-multi-assign': 'error', // 禁止连续赋值
+    '@typescript-eslint/no-var-requires': 0, // 允许 requires 指定包
+    '@typescript-eslint/no-explicit-any': 'off', // 允许显示使用 any
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // 显式定义模块边界类型，强制使用 return
+    '@typescript-eslint/no-empty-interface': 'error', // 禁止结尾出现空格
+    // '@typescript-eslint/no-empty': 'error', // 禁止使用空函数
+    // '@typescript-eslint/no-empty-function': 'error', // 禁止使用空接口
+    // '@typescript-eslint/class-name': 'error', // 类名与接口名必须为驼峰式
+    // '@typescript-eslint/no-unsafe-finally': 'error', // 禁止在 finally 语句块中出现控制流语句
+    // '@typescript-eslint/no-mergeable-namespace': 'error', // 禁止合并相同的命名空间
+    // '@typescript-eslint/no-trailing-whitespace': 'error',  // 禁止属性前出现空白
+    // '@typescript-eslint/no-irregular-whitespace': 'error', // 禁止不规则的空格
+  }
+};
+```
+
+---
+
+## 2020-07-04 22:38
+将部分 css 改用 SCSS 实现
+1. 全局性重复性属性值单独提取出来作为 SCSS 变量定义
+2. 使用 @mixin 定义一些通用样式属性，例如 padding/margin/border 等，作为 @include 加入需要使用的类中
+3. 新建一个 index.scss 用于编写一些适用度较高的原子性较强的 class 定义
+
+页面 footer 实现，显示数据可通过配置 website.json 读取，虽然可能万年不改
+
+---
+
+## 2020-07-11 12:53
+删除了之前定义的 img.scss/color.scss/box.scss ，主要考虑还是因为配置过于零散，此部分如果未强制引用在编译时会将其忽略，所以将这部分内容合并起来 -> define.scss
+
+1. 主要定义了 基础颜色/图片/可复用的 @mixin 定义
+2. 实现了一个 @function px2rem 的函数定义
+3. 一些效果/风格定义也会逐渐实现加入其中
+
+关于 @function px2rem 主要还是想做一些自适应，目前将 html 字体更改为 625% 此时 1rem = 100px。为何这样考虑？主要还是因为浏览器默认字体大小限制。
+
+大部分浏览器默认字体最小号为 12px。但如果将 html 字体更改为 62.5% 看上去的话会以为 1rem = 10px 更合适控制比例，结果会是 1rem = 12px 计算起来更麻烦且如果用户更改过浏览器最小字体或者该浏览器默认最小字体不是 12px 的情况都会受到影响。
+
+```scss
+// 传入 px 时，除以 100 得到当前值 + 上 rem
+@function px2rem($px: 0) {
+  @return $px / 100+rem;
+}
+```
+
+新增了 websocket 的简单实现，使用单例模式获取 ws 的实例，避免产生多个 ws 对象同时发起连接的情况。
+
+---
+
+## 2020-07-28 23:23
+提交代码至 Github 的时候命令行报出错误信息
+```bash
+fatal: HttpRequestException encountered.
+   发送请求时出错。
+Counting objects: 6, done.
+```
+搜索得到的结果是因为：Github 禁用了TLS v1.0 and v1.1，必须更新Windows的git凭证管理器。
+https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases
+下载 [Git Credential Manager for Windows](https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases) Windows Git凭证管理器更新后即可。
+
+这个错误挺突然的，上周都还是可以正常操作的，就今天提交代码出现了这个错误。但是我发现即使出现了这个错误，但是代码还是提交到 Github 远端仓库上了并且有记录信息。
+
+这个应该可以算是一个 Bug 了，我应该是反馈给 git 呢？还是 github 呢？
+
+---
+
+## 2020-08-07 21:06
+提交代码的时候发现证书验证错误，命令行中提示
+```bash
+error setting certificate verify locations:
+CAfile: 文件路径/mingw64/ssl/certs/ca-bundle.crt
+CApath: none
+```
+百度了一下发现出现这个问题的朋友还不少，但是大多数是直接全局关闭证书验证：
+```bash
+git config --global http.sslverify "false"
+```
+虽然这个也不是什么大项目，但是安全问题不容忽视，所以还是决定寻找解决方案。
+
+其中一个答案是有说证书路径错误，所以我就尝试比对了一下提示的路径和我正确的证书路径。最后发现确实是路径出了问题。
+此时只要执行：
+```bash
+git config --system http.sslcainfo "路径/mingw64/ssl/certs/ca-bundle.crt"
+```
+将 **git CAfile** 指向正确的证书路径即可（注意是反斜线分割）。
 
 ---

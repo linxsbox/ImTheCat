@@ -38,10 +38,7 @@
     <div class="jobs-box">
       <div class="jobs-item" v-for="(item, index) in data.jobExp" :key="index">
         <header class="item-header">
-          <span class="company-name">{{item.company}}</span>
-           - 
-          <span class="job-info">{{item.jobInfo}}</span>
-          
+          <span class="company-name">{{item.company}}</span> - <span class="job-info">{{item.jobInfo}}</span>
           <span class="period">{{item.startDate}} - {{item.endDate || '至今'}}</span>
         </header>
         <div class="jobs-detail" v-html="item.description"></div>
@@ -53,9 +50,7 @@
     <div class="project-box">
       <div class="project-item" v-for="item in data.project" :key="item.projectName">
         <header class="item-header">
-          <span class="project-name">{{item.projectName}}</span>
-           - 
-          <span class="company-name">{{item.company}}</span>
+          <span class="project-name">{{item.projectName}}</span> - <span class="company-name">{{item.company}}</span>
         </header>
         <div class="project-detail"
           v-html="item.description">

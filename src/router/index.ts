@@ -10,9 +10,9 @@ Vue.use(Router);
 
 // Register hooks for vue-router component.
 Component.registerHooks([
-    'beforeRouteEnter',
-    'beforeRouteLeave',
-    'beforeRouteUpdate', // for vue-router 2.2+
+  'beforeRouteEnter',
+  'beforeRouteLeave',
+  'beforeRouteUpdate', // for vue-router 2.2+
 ]);
 
 export default router.initRouter();

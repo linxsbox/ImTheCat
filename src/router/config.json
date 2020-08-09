@@ -5,14 +5,11 @@
     "/articles", "/taskList"
   ],
   "whitelist": [
-    "/",
-    "/404",
-    "/index",
-    "/home",
-    "/login",
-    "/userResume"
+    "/", "/404", "/index", "/home", "/login"
   ],
   "other": [
-    "/t", "/test", "/resume"
+    "/t", "/test", "/resume",
+    "/articles", "/taskList", "/imgpreview",
+    "/kc"
   ]
 }
