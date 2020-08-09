@@ -9,6 +9,7 @@
   ],
   "other": [
     "/t", "/test", "/resume",
-    "/articles", "/taskList"
+    "/articles", "/taskList", "/imgpreview",
+    "/kc"
   ]
 }

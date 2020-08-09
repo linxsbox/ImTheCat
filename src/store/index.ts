@@ -5,7 +5,6 @@ import testStore from './testStore';
 const init = (Vuex: any, store?: any) => {
   if (!Vuex) {
     console.error();
-    
   }
   console.log();
 
