@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'indent': ['error', 2], // 缩进2个空格
+    'indent': ['error', 2, { 'SwitchCase': 1 }], // 缩进2个空格
     'semi': ['error', 'always'], // 强制使用分号
     'eqeqeq': 'error', // 强制使用全等操作符
     'curly': 'error', // 强制使用大括号
