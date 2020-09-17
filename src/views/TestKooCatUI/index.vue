@@ -1,53 +1,36 @@
 <template>
-  <div class="test-koocat-container">
-    {{ msg }} {{ name }}
+  <div class="testKooCatUI-container">
+    <kc-button class="kc-button-xl" :class="{'active': setActive}" @click="btnClick">
+      <span>按钮</span>
+    </kc-button>
+
+    <div class="t mag-tb20 fs024">xxx</div>
   </div>
 </template>
 
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Vue, Component, Prop, Watch, Emit } from 'vue-property-decorator';
-import * as h from './index';
+import { Vue } from 'vue-property-decorator';
+// import * as h from './index';
+import KcButton from '@/KooCatUI/packages/button/views/index.vue';
 
-@Component
-export default class TestKooCatUI extends Vue {
-
-  // data
-  name = 'TestKooCatUI';
-  msg = '你好';
-
-  @Prop(Number) readonly propA: number | undefined;
-
-  @Watch('propA')
-  onChildChanged (val: number, oldVal: number) {
-    console.log(`newValue: ${val}, oldValue: ${oldVal}`);
+export default Vue.extend({
+  name: 'TestKooCatUI',
+  data () {
+    return {
+      setActive: false,
+    };
+  },
+  components: {
+    KcButton,
+  },
+  methods: {
+    btnClick () {
+      this.setActive = !this.setActive;
+    }
   }
-
-  // created
-  created () {
-    console.log('this is created');
-  }
-  // mounted
-  mounted () {
-    console.log('this is mounted');
-  }
-
-  // methods
-  helloWorld () {
-    return 'Hello World';
-  }
-
-  // computed
-  get helloTestKooCatUI () {
-    return this.msg + 'testKooCatUI';
-  }
-
-  @Emit()
-  returnValue () {
-    return 'testKooCatUI';
-  }
-}
+});
 </script>
 
 <style lang="scss" scoped src="./index.scss">

@@ -2,6 +2,10 @@ import { isFunction, isObject, isArray } from './istype';
 
 /**
  * 拷贝/复制
+ * 通过递归遍历对象/数组属性来实现数据的拷贝/复制
+ * 1. 如果是函数类型(function)，直接返回该函数
+ * 2. 判断是对象还是数组，并创建一个新的对象/数组
+ * 3.
  * @param target 原目标对象
  * @param deep 是否深度 copy
  * @return clone 被克隆/拷贝的对象

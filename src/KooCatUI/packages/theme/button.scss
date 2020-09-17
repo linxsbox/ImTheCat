@@ -1,0 +1,21 @@
+@import "./mixins/mixins.scss";
+
+.kc-button {
+  display: inline-block;
+  padding: .12rem .2rem;
+  margin: 0;
+  font-size: .14rem;
+  border: 0;
+  @include neuiBox(16, 10);
+}
+
+.kc-button:active {
+  @include neuiBoxActive(10);
+}
+
+.kc-button.active {
+  @include neuiBoxActive(10);
+}
+.kc-button:hover {
+  // transition: box-shadow 1s 2s ease-in-out;
+}
