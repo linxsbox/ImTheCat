@@ -13,16 +13,17 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 import articleCard from 'cps/ArticleCard/index.vue';
-import {MixinsArticles} from '@/mixins/articles'; // Mixins
+import { MixinsArticles } from '@/mixins/articles'; // Mixins
 
 // import * as h from './index';
 
 @Component({
   components: { articleCard },
+  mixins: [MixinsArticles]
 })
-export default class Articles extends Mixins(MixinsArticles) {
+export default class Articles extends Vue {
 
   // data
   name = 'Articles 文章列表';

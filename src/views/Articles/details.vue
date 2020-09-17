@@ -19,7 +19,8 @@ import { toStr } from '@/filters'; // Filters
   filters: { toStr },
 })
 export default class ArticleDetails extends Vue {
-  @Commits('setWebsiteTitle') setWebsiteTitle: any;
+  @Commits('setWebsiteTitle')
+  setWebsiteTitle: any;
 
   // data
   name = 'ArticleDetails';
