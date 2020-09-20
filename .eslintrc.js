@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'indent': ['error', 2], // 缩进2个空格
+    'indent': ['error', 2, { 'SwitchCase': 1 }], // 缩进2个空格
     'semi': ['error', 'always'], // 强制使用分号
     'eqeqeq': 'error', // 强制使用全等操作符
     'curly': 'error', // 强制使用大括号
@@ -50,7 +50,7 @@ module.exports = {
     'no-use-before-define': 'error', // 禁止在声明前使用
     'no-undefined': 'error', // 禁止使用 undefined 作为声明标识符
     'no-label-var': 'error', // 禁止声明与变量同名的标签
-    'no-shadow': 'error', // 禁止声明影子变量
+    'no-shadow': 'error', // 禁止声明影子变量 // 7.9.0 版本定义 enum 会意外触发此规则
     'no-multi-assign': 'error', // 禁止连续赋值
     '@typescript-eslint/no-var-requires': 0, // 允许 requires 指定包
     '@typescript-eslint/no-explicit-any': 'off', // 允许显示使用 any

@@ -1,17 +1,22 @@
-@import "./function.scss";
+@import "./function.scss", "./utils.scss";
 
 @mixin border-radius($radius: 6) {
   border-radius: px2rem($radius);
 }
 
-@mixin neuiBox ($radius, $ds, $color: transparent) {
-  padding: px2rem($radius) px2rem($radius * 2);
+@mixin neuiBox ($radius: 6, $ds: 4, $color: transparent) {
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
   @include border-radius($radius);
   background-color: $color;
-  box-shadow: neuiBaseTheme($ds, 0);
+  box-shadow: neuiBaseTheme($ds);
 }
 
-@mixin neuiBoxActive ($ds, $color: transparent) {
+@mixin neuiBoxActive ($ds: 4, $color: transparent) {
   background-color: $color;
-  box-shadow: neuiBaseTheme($ds, 1);
+  box-shadow: neuiBaseTheme($ds, true);
 }

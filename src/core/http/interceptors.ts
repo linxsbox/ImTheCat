@@ -2,12 +2,12 @@ import { AxiosStatic } from 'axios';
 
 // Request Handle Processor function
 const requestHandleProcessor = () => {
-  // 
+  //
 };
 
 // Response Handle Processor function
 const responseHandleProcessor = () => {
-  // 
+  //
 };
 
 // Hijack function

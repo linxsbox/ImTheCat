@@ -11,7 +11,7 @@
   }
 
   @else {
-    @return $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .25),
-    $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
+    @return $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .2),
+    $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .2);
   }
 }
