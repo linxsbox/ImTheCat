@@ -11,15 +11,18 @@
 目前来说不太会，现在还是以 **vue、vuex、axios、vue-cli** 这一套为基础。
 
 变更历史：
+- **vue 2.6+ + vue-cli 4.5+ + @vue/composition-api + TypeScript** `过度状态`
 - **vue 2.0 + vue-cli 3.0 + webpack4.0 + TypeScript**
 - **vue 2.0 + vue-cli 3.0 + webpack4.0**
 - **vue 2.0 + vue-cli + webpack 3.0**
 - **vue 2.0 + vue-cli**
 - **vue 1.0**
 
-<del>未来还可能加入 <strong>typescript</strong> 使用，在更为熟悉 <strong>typescript</strong> 的时候。</del>
+<del>未来还可能加入 <strong>typescript</strong> 使用，在更为熟悉 <strong>typescript</strong> 的时候。</del>  
+<del>现已加入 **TypeScript**，尝试使用 **TypeScript** 将原来的一些逻辑进行重写实现。<del>
 
-现已加入 **TypeScript**，尝试使用 **TypeScript** 将原来的一些逻辑进行重写实现。
+将 **vue & vue-cli** 升级版本以便支持 `@vue/composition-api` 方便过度以及未来升级到 `Vue 3.0`。
+
 
 ## 怎么项目像残次品啊？
 因工作原因，更新项目的频率不是很高，但目前已经计划有一个大概的结构出来了，然后需要一步一步去实现。

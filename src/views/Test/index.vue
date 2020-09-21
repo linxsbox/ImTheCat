@@ -16,7 +16,8 @@ export default defineComponent({
   // component: {},
   data () {
     return {
-      txt: '贼牛逼！'
+      txt: '贼牛逼！',
+      tempList: [],
     };
   },
   // setup 中不再有 this，取而代之的是 context
