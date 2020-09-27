@@ -13,6 +13,7 @@
 import { defineComponent, Ref, ref } from '@vue/composition-api';
 // defineComponent 能够对 TypeScript 更好的类型推导
 export default defineComponent({
+  name: 'Test',
   // component: {},
   data () {
     return {

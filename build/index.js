@@ -30,7 +30,7 @@ if (prcArgvIndex > -1 && prcArgvIndex + 1) {
   return;
 }
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, dir);
 }
 
@@ -47,7 +47,7 @@ fs.readFile(resolve(cfgPath), 'utf-8', (err, data) => {
     item['cssType'] = item['cssType'] || 'css';
     item['fileApi'] = item['fileApi'] || false;
     return item;
-  }
+  };
 
   // 将读取文件的字符串转为 JSON
   const cfgFileJson = JSON.parse(data);
@@ -61,7 +61,7 @@ fs.readFile(resolve(cfgPath), 'utf-8', (err, data) => {
       } else { errArr.push(index); }
     });
 
-    initBuilder(cpsArr, true).then(data => {
+    initBuilder(cpsArr, true).then(() => {
       console.log('再见!');
     }).catch(err => {
       console.log(`\x1B[31m${err.message}`);
