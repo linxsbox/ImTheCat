@@ -100,17 +100,17 @@ const buildCpsFiles = (cpsBase, isBatch = false) => {
   return new Promise((resolve, reject) => {
     console.log('【信息】开始生成组件文件，请稍后……');
     // 批量写入组件文件
-    const batchWriteCpsFile = (cpsBase, tasksAsyncList = []) => {
-      cpsBase.fileList.forEach((item, index) => {
+    const batchWriteCpsFile = (cpsBaseInfo, tasksAsyncList = []) => {
+      cpsBaseInfo.fileList.forEach((item, index) => {
         // 写入文件路径，将组件目录路径和文件名合并，生成完整文件路径
-        const writeFilePath = path.join(cpsBase.folderPath, item.fileName);
+        const writeFilePath = path.join(cpsBaseInfo.folderPath, item.fileName);
         // 异步写入文件
         fs.writeFile(writeFilePath, item.content, 'utf8', err => {
           if (err) { // 如果写入失败，则表示找不到文件目录
-            console.log(`【错误】${cpsBase.fileName}\\${item.fileName} 写入失败！`, err);
+            console.log(`【错误】${cpsBaseInfo.fileName}\\${item.fileName} 写入失败！`, err);
             reject(false);
           } else { // 如果创建成功则返回成功信息用于输出控制台。
-            console.log(`【信息】${cpsBase.fileName}\\${item.fileName} 写入完成！`);
+            console.log(`【信息】${cpsBaseInfo.fileName}\\${item.fileName} 写入完成！`);
             tasksAsyncList.push(item.fileName);
             // if (isBatch) {  }
             // else { resolve(true) }

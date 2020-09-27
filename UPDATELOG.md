@@ -1244,5 +1244,5 @@ git config --system http.sslcainfo "路径/mingw64/ssl/certs/ca-bundle.crt"
 更新 cli 构建逻辑，支持构建 ts vue 3.0 组件模板
 
 将模板内容提取至 `build/template` 文件夹下，将不同类型都拆分出来可独立替换内容，让维护更清晰。
-更新将类名转换函数命名更新以更清晰的描述该函数的作用 `pascalName` -> `toPascalName`
+更新将类名转换函数命名以更清晰的描述该函数的作用 `pascalName` -> `toPascalName`
 优化最终导出项，主要是模板内容和调用逻辑部分
