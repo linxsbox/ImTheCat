@@ -29,6 +29,7 @@ import { defineComponent, Ref, ref, onMounted, h } from '@vue/composition-api';
 import { dmData, template } from './template';
 
 export default defineComponent({
+  name: 'Test',
   // component: {},
   data () {
     return {

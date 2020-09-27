@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const { template } = require('./config.json');
-const { tplString, pascalName } = require('./utils.js');
+const { getTemplate, toPascalName } = require('./utils.js');
 
 // 检查任务列表代理
 const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
   return new Proxy(targetArray, {
-    set(target, key, value, proxy) {
+    set (target, key, value, proxy) {
       if (target.length === tasksNum) {
         resolve(true);
         return true;
@@ -30,18 +30,18 @@ const buildTplBase = options => {
   // 将文件目录完整路径合并，默认在 src 下
   const folderPath = path.join(path.resolve(__dirname, '../src'), filePath);
   // 获取组件模板内容
-  let { viewTpl, cssTpl, jsTpl, apisTpl } = tplString(pascalName(fileName), fileName, codeType, cssType, fileApi);
+  let { viewTpl, cssTpl, jsTpl, apisTpl } = getTemplate(toPascalName(fileName), fileName, codeType, cssType, fileApi);
   // 生成组件文件列表：vue文件 | 样式文件 | 代码文件
   let fileList = [
     { fileName: `${template.vueTplName}.vue`, content: viewTpl },
     { fileName: `${template.cssTplName}.${cssType}`, content: cssTpl },
-    { fileName: `${template.codeTplName}.${codeType}`, content: jsTpl }
+    { fileName: `${template.codeTplName}.${codeType === 'js' ? 'js' : 'ts'}`, content: jsTpl }
   ];
   // 如果选择 “生成 API 文件” 则将 “API 文件” 也加入构建列表中
   if (fileApi) {
-    fileList.push({ fileName: `index.${codeType}`, content: apisTpl });
+    fileList.push({ fileName: `index.${codeType === 'js' ? 'js' : 'ts'}`, content: apisTpl });
   }
-  return { folderPath, fileName: pascalName(fileName), fileList };
+  return { folderPath, fileName: toPascalName(fileName), fileList };
 };
 
 /**

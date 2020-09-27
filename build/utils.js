@@ -2,6 +2,11 @@ const path = require('path');
 // CLI 配置信息：问题配置 | 路径别名配置
 const { Questions, pathAlias } = require('./config.json');
 
+const template = require('./template/index.js');
+
+// 以 TypeScript class 命名规则“大驼峰”式命名类
+const toPascalName = className => className.replace(className[0], className[0].toUpperCase());
+
 /**
  * 问题属性及说明 config.json => Questions
  * @param Q 问题文字
@@ -34,7 +39,7 @@ const pathSpecifyRules = (cpsName = '', inputPath = '', defaultValue) => {
   }
 
   // 以官网例子组件名以及组件文件夹均为“大驼峰”式命名。
-  const specifyPath = path.join(deepPath.join('/'), pascalName(cpsName));
+  const specifyPath = path.join(deepPath.join('/'), toPascalName(cpsName));
 
   return path.join(isReplaceAliasPath ? '' : defaultValue, specifyPath);
 };
@@ -110,16 +115,6 @@ const checkAnswerRules = (step, content, answer) => {
   return answer[tempItem.field];
 };
 
-// 以 TypeScript class 命名规则“大驼峰”式命名类
-const pascalName = className => className.replace(className[0], className[0].toUpperCase());
-
-const pascalMinName = className => {
-  const splitStr = className.split('');
-  const regz = /^[A-Z]+$/;
-  return splitStr.map((item, index) => {
-    return regz.test(item) ? `${index !== 0 ? '-' : ''}${item.toLowerCase()}` : item;
-  }).join('');
-};
 
 /**
  * 代码写入模板
@@ -129,131 +124,19 @@ const pascalMinName = className => {
  * @param {string} cssType 样式表类型 css/less/sass/scss
  * @param {string} fileApi Api 文件
  */
-const tplString = (pascalName, fileName, codeType, cssType, fileApi) => {
-  const tplTypeScript = `@Component
-export default class ${pascalName} extends Vue {
-
-  // data
-  name = '${pascalName}';
-  msg = '你好';
-
-  @Prop(Number) readonly propA: number | undefined;
-
-  @Watch('propA')
-  onChildChanged (val: number, oldVal: number) {
-    console.log(\`newValue: \${val}, oldValue: \${oldVal}\`);
-  }
-
-  // created
-  created () {
-    console.log('this is created');
-  }
-  // mounted
-  mounted () {
-    console.log('this is mounted');
-  }
-
-  // methods
-  helloWorld () {
-    return 'Hello World';
-  }
-
-  // computed
-  get hello${pascalName} () {
-    return this.msg + '${fileName}';
-  }
-
-  @Emit()
-  returnValue () {
-    return '${fileName}';
-  }
-}`;
-
-  const tplECMAScript = `export default Vue.extend({
-  name: '${pascalName}',
-  data () {
-    return {
-      name: '${pascalName}',
-      msg: '你好'
-    };
-  },
-  components: {}, // components 组件引用
-  props: {}, // props 暴露对象
-  watch: {}, // watch 监听对象
-  methods: {}, // methods 方法对象
-  computed: {}, // computed 计算对象
-
-  // 组件路由生命周期
-  beforeRouteEnter (to, from, next) { next(); }, // 路由进入之前
-  beforeRouteLeave (to, from, next) { next(); }, // 路由离开之前
-  beforeRouteUpdate (to, from, next) { next(); }, // 路由更新之前
-
-  // 生命周期
-  beforeCreate () { }, // 创建前执行
-  created () { }, // 创建时执行
-
-  beforeMount () { }, // 加载前执行
-  mounted () { }, // 加载时执行
-
-  beforeUpdate () { }, // 更新之前执行
-  updated () { }, // 更新时执行
-
-  beforeDestroy () { }, // 销毁前执行
-  destroyed () { }, // 销毁时执行
-});
-`;
-  // 视图模板
-  const viewTpl = `<template>
-  <div class="${pascalMinName(fileName)}-container">
-    {{ msg }} {{ name }}
-  </div>
-</template>
-
-<script lang="ts">
-// https://github.com/kaorun343/vue-property-decorator
-// https://github.com/vuejs/vue-class-component
-import { Vue${codeType === 'ts' ? ', Component, Prop, Watch, Emit' : ''} } from 'vue-property-decorator';
-import * as h from './index';
-
-${codeType === 'ts' ? tplTypeScript : tplECMAScript}
-</script>
-
-<style ${cssType !== 'css' ? 'lang="' + cssType + '"' : ''} scoped src="./index.${cssType}">
-  /* @import url('index.${cssType}'); */
-</style>
-`;
-
-  // css 模板
-  const cssTpl = `.${fileName}-container{ }`;
-
-  // js 模板
-  const jsTpl = `import * as apis from '@/apis/${fileName}';
-
-function getFn () { return ['${fileName}']; }
-
-export default getFn;
-`;
-
-  // API 模板
-  const apisTpl = fileApi ? `// ${fileName} api 集合
-function get${pascalName} (params) {
-  return http('url', {
-    data: params
-  })
-}
-function submit${pascalName} (params) {
-  return http('url', {
-    data: params
-  })
-}` : '';
-
-  return { viewTpl, cssTpl, jsTpl, apisTpl };
+const getTemplate = (pascalName, fileName, codeType, cssType, fileApi) => {
+  return {
+    viewTpl: template.build(pascalName, fileName, codeType, cssType),
+    cssTpl: template.tplCSS(fileName),
+    jsTpl: template.tplHandle(fileName),
+    apisTpl:template.tplAPI(fileApi, pascalName, fileName)
+  };
 };
 
 module.exports = {
   pathSpecifyRules,
   buildQuestionList,
   checkAnswerRules,
-  pascalName,
-  tplString
+  toPascalName,
+  getTemplate
 };

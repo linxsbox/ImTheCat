@@ -37,8 +37,8 @@
     {
       "Q": "代码文件类型？",
       "tips": "",
-      "type": "[JS/ts]",
-      "typeList": ["js", "ts"],
+      "type": "[JS/ts/tsv3]",
+      "typeList": ["js", "ts", "tsv3"],
       "defaultValue": "js",
       "defaultDisplay": "js",
       "field": "codeType",
