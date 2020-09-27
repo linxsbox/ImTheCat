@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const { template } = require('./config.json');
-const { tplString, pascalName } = require('./utils.js');
+const { getTemplate, toPascalName } = require('./utils.js');
 
 // 检查任务列表代理
 const checkTasksListProxy = (targetArray, tasksNum = -1, resolve) => {
   return new Proxy(targetArray, {
-    set(target, key, value, proxy) {
+    set (target, key, value, proxy) {
       if (target.length === tasksNum) {
         resolve(true);
         return true;
@@ -30,18 +30,18 @@ const buildTplBase = options => {
   // 将文件目录完整路径合并，默认在 src 下
   const folderPath = path.join(path.resolve(__dirname, '../src'), filePath);
   // 获取组件模板内容
-  let { viewTpl, cssTpl, jsTpl, apisTpl } = tplString(pascalName(fileName), fileName, codeType, cssType, fileApi);
+  let { viewTpl, cssTpl, jsTpl, apisTpl } = getTemplate(toPascalName(fileName), fileName, codeType, cssType, fileApi);
   // 生成组件文件列表：vue文件 | 样式文件 | 代码文件
   let fileList = [
     { fileName: `${template.vueTplName}.vue`, content: viewTpl },
     { fileName: `${template.cssTplName}.${cssType}`, content: cssTpl },
-    { fileName: `${template.codeTplName}.${codeType}`, content: jsTpl }
+    { fileName: `${template.codeTplName}.${codeType === 'js' ? 'js' : 'ts'}`, content: jsTpl }
   ];
   // 如果选择 “生成 API 文件” 则将 “API 文件” 也加入构建列表中
   if (fileApi) {
-    fileList.push({ fileName: `index.${codeType}`, content: apisTpl });
+    fileList.push({ fileName: `index.${codeType === 'js' ? 'js' : 'ts'}`, content: apisTpl });
   }
-  return { folderPath, fileName: pascalName(fileName), fileList };
+  return { folderPath, fileName: toPascalName(fileName), fileList };
 };
 
 /**
@@ -100,17 +100,17 @@ const buildCpsFiles = (cpsBase, isBatch = false) => {
   return new Promise((resolve, reject) => {
     console.log('【信息】开始生成组件文件，请稍后……');
     // 批量写入组件文件
-    const batchWriteCpsFile = (cpsBase, tasksAsyncList = []) => {
-      cpsBase.fileList.forEach((item, index) => {
+    const batchWriteCpsFile = (cpsBaseInfo, tasksAsyncList = []) => {
+      cpsBaseInfo.fileList.forEach((item, index) => {
         // 写入文件路径，将组件目录路径和文件名合并，生成完整文件路径
-        const writeFilePath = path.join(cpsBase.folderPath, item.fileName);
+        const writeFilePath = path.join(cpsBaseInfo.folderPath, item.fileName);
         // 异步写入文件
         fs.writeFile(writeFilePath, item.content, 'utf8', err => {
           if (err) { // 如果写入失败，则表示找不到文件目录
-            console.log(`【错误】${cpsBase.fileName}\\${item.fileName} 写入失败！`, err);
+            console.log(`【错误】${cpsBaseInfo.fileName}\\${item.fileName} 写入失败！`, err);
             reject(false);
           } else { // 如果创建成功则返回成功信息用于输出控制台。
-            console.log(`【信息】${cpsBase.fileName}\\${item.fileName} 写入完成！`);
+            console.log(`【信息】${cpsBaseInfo.fileName}\\${item.fileName} 写入完成！`);
             tasksAsyncList.push(item.fileName);
             // if (isBatch) {  }
             // else { resolve(true) }
