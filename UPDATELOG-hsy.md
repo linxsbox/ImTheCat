@@ -6,7 +6,7 @@
 ```command
 git remote add upstream projectUrl // 在下载后跑这行代码，这里的url替换成项目源git地址，然后跑下面两行。
 git fetch upstream // 从项目源更新
-git merge upstream/master // 与自己的分支合并
+git merge upstream/zuosi // 与自己的分支合并
 // 如果不是刚下载的话，需要从项目源更新代码时，运行下两行即可。
 ```
 4. 完成部分home/index.vue的template
@@ -48,3 +48,11 @@ git merge upstream/master // 与自己的分支合并
 2. 已经可以熟练使用vue全家桶+elementUI开发项目。
 3. 二刷了两成高程三，浏览器原理与实践和图解Google V8，入手高程四，开始学习VUE3+TS，gojs。
 4. 熟悉了VSCode常用快捷键，可以在简历中和面试中准确描述项目。
+
+---
+
+## 2020-10-08 16:00
+1. 国庆学完了vue3+ts，顺便复习了一下vue2。
+2. 今天使用vue3+ts开发了Input组件的最简单的版本，支持textarea,v-model,格式检查（可以抽成hook）
+
+---
