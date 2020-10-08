@@ -15,7 +15,6 @@
     "axios": "^0.19.2",
     "cat-web-storage": "^0.2.1",
     "core-js": "^3.6.5",
-    "node-sass": "^4.14.1",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.5",
@@ -24,6 +23,8 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.3",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
@@ -42,7 +43,9 @@
     "eslint": "^7.1.0",
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^10.0.2",
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
