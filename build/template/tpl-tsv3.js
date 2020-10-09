@@ -39,7 +39,7 @@ import { defineComponent } from '@vue/composition-api';
 // defineComponent 能够对 TypeScript 更好的类型推导
 export default defineComponent({
   name: '${pascalName}',
-  // component: {},
+  // components: {},
   // props: {},
 
   // setup 中不再有 this，取而代之的是 context
