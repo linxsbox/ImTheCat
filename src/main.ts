@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import store from './store';
+import storeVuex from './store/index-vuex';
 import router from './router';
 // import './registerServiceWorker';
+import { useProvider } from './store';
 import VueCompositionAPI from '@vue/composition-api';
 
 // web storage
@@ -20,6 +21,10 @@ Vue.use(webStorage);
 
 new Vue({
   router,
-  store: store.init(Vuex),
+  store: storeVuex.init(Vuex),
+  setup () {
+    useProvider();
+    return {};
+  },
   render: h => h(App),
 }).$mount('#app');
