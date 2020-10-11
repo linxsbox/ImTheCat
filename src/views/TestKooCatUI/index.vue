@@ -13,17 +13,18 @@
 // https://github.com/vuejs/vue-class-component
 import { defineComponent, computed, ref, Ref, toRefs } from '@vue/composition-api';
 // import * as h from './index';
-// import KcButton from '@/KooCatUI/packages/button/index';
+import KcButton from '@/KooCatUI/packages/button/index';
 
 export default defineComponent({
   name: 'TestKooCatUI',
   components: {
-    // KcButton,
+    KcButton,
   },
   setup () {
 
     let setActive: Ref<boolean> = ref(false);
-    const btnClick = () => {
+    const btnClick = (event: Event) => {
+      console.log(event);
       setActive.value = !setActive.value;
     };
 

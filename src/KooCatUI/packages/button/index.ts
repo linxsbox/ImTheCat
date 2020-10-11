@@ -5,6 +5,6 @@ const install = function (app: any) {
   app.component(KcButton.name, KcButton);
 };
 
-const mergeInstallButton = Object.assign(KcButton, {install});
+const mergeInstallButton = Object.assign(KcButton, { install });
 
 export default mergeInstallButton;
