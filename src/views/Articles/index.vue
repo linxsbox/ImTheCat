@@ -2,8 +2,10 @@
   <div class="articles-container">
     <div>{{ msg }} {{ name }}</div>
     <article class="articles cat-flex cat-flex-wrap">
-      <article-card class="cat-flex" v-for="(item, index) in 15" :key="index"
-        @click="gotoArticleDetails(index)">
+      <article-card class="cat-flex"
+        v-for="(item, index) in 15" :key="index"
+        @click="gotoArticleDetails(index)"
+      >
         article {{ item }}
       </article-card>
     </article>
