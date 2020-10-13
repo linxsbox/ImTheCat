@@ -26,7 +26,7 @@ body {
   padding-right: .2rem;
   margin-left: auto;
   margin-right: auto;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 [class*="-container"]>:last-child {
@@ -337,4 +337,12 @@ a {
 
 .pointer {
   cursor: pointer;
+}
+
+.flex-0 {
+  flex: none;
+}
+
+.flex-1 {
+  flex: auto;
 }

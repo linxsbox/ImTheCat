@@ -2,7 +2,7 @@
   "template": {
     "vueTplName": "index",
     "cssTplName": "index",
-    "codeTplName": "index"
+    "codeTplName": "handle"
   },
   "pathAlias": {
     "@": "./",
