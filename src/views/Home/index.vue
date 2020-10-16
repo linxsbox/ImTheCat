@@ -32,14 +32,20 @@ export default class Home extends Mixins(MixinsArticles) {
   msg = '你好';
   articleList: any = [];
 
+  beforeCreate () { console.log('this is Home beforeCreate'); } // 创建前执行
   created () {
-    console.log('this is created');
+    console.log('this is Home created');
     this.articleList = h;
   }
   // mounted
+  beforeMount () { console.log('this is Home beforeMount'); } // 加载前执行
   mounted () {
-    console.log('this is mounted');
+    console.log('this is Home mounted');
   }
+  beforeUpdate () { console.log('this is Home beforeUpdate'); } // 更新之前执行
+  updated () { console.log('this is Home updated'); } // 更新时执行
+  beforeDestroy () { console.log('this is Home beforeDestroy'); } // 销毁前执行
+  destroyed () { console.log('this is Home destroyed'); } // 销毁时执行
 }
 </script>
 
