@@ -1246,3 +1246,20 @@ git config --system http.sslcainfo "路径/mingw64/ssl/certs/ca-bundle.crt"
 将模板内容提取至 `build/template` 文件夹下，将不同类型都拆分出来可独立替换内容，让维护更清晰。
 更新将类名转换函数命名以更清晰的描述该函数的作用 `pascalName` -> `toPascalName`
 优化最终导出项，主要是模板内容和调用逻辑部分
+
+---
+
+## 2020-10-13 17:02
+更新了 app 下的 `layout` 结构，之前设计是想要将 `header` `footer` `container` 三部分以统一 `layout` 的方式引入，然后在 layout 里编写一些操作逻辑便于控制。
+
+在翻阅了大多知名站点的结构设计时发现自己之前这样设计有点多余了。重新修改了对拆解后的 layout 的样式支持。
+
+CLI 构建生成组件配置部分将 js/ts 文件的命名改为 handle。
+
+---
+
+## 2020-10-16 23:27
+自从添加了 `husky` 插件后 `lint-staged` 就不生效了，应该是有版本上的冲突问题，目前尚未解决，后来是将 `husky` 卸载后再将 `node_module` 删除重新安装才恢复工作正常。
+
+- 更新了代码提交的检查规则，包括 `js, jsx, vue, ts, tsx` & `css, scss, sass, less`。
+- 新增了对编辑器的格式化规则控制文件 `.jsbeautifyrc` & `.editorconfig` 可以通过配置文件的方式让参与的小组成员在使用编辑器格式化的时候能够统一。
