@@ -23,7 +23,6 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.3",
@@ -43,12 +42,12 @@
     "eslint": "^7.1.0",
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-plugin-vue": "^6.2.2",
-    "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.2",
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.18.0",
     "typescript": "^4.0.2",
     "vue-template-compiler": "^2.6.12"
   },
@@ -58,23 +57,16 @@
     }
   },
   "lint-staged": {
-    "*.{js, ts}": [
-      "vue-cli-service lint"
-    ],
-    "*.vue": [
-      "vue-cli-service lint"
-    ],
-    "*.css": [
+    "*.{css,scss,sass,less}": [
       "stylelint"
     ],
-    "*.scss": [
-      "stylelint --syntax=scss"
-    ],
-    "*.sass": [
-      "stylelint --syntax=sass"
-    ],
-    "*.less": [
-      "stylelint --syntax=less"
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint"
     ]
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

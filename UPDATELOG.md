@@ -1255,3 +1255,11 @@ git config --system http.sslcainfo "路径/mingw64/ssl/certs/ca-bundle.crt"
 在翻阅了大多知名站点的结构设计时发现自己之前这样设计有点多余了。重新修改了对拆解后的 layout 的样式支持。
 
 CLI 构建生成组件配置部分将 js/ts 文件的命名改为 handle。
+
+---
+
+## 2020-10-16 23:27
+自从添加了 `husky` 插件后 `lint-staged` 就不生效了，应该是有版本上的冲突问题，目前尚未解决，后来是将 `husky` 卸载后再将 `node_module` 删除重新安装才恢复工作正常。
+
+- 更新了代码提交的检查规则，包括 `js, jsx, vue, ts, tsx` & `css, scss, sass, less`。
+- 新增了对编辑器的格式化规则控制文件 `.jsbeautifyrc` & `.editorconfig` 可以通过配置文件的方式让参与的小组成员在使用编辑器格式化的时候能够统一。
