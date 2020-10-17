@@ -1263,3 +1263,5 @@ CLI 构建生成组件配置部分将 js/ts 文件的命名改为 handle。
 
 - 更新了代码提交的检查规则，包括 `js, jsx, vue, ts, tsx` & `css, scss, sass, less`。
 - 新增了对编辑器的格式化规则控制文件 `.jsbeautifyrc` & `.editorconfig` 可以通过配置文件的方式让参与的小组成员在使用编辑器格式化的时候能够统一。
+
+关于 [jsbeautifyrc](https://github.com/HookyQR/VSCodeBeautify/blob/master/Settings.md) 支持的配置项信息。
