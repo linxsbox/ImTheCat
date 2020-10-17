@@ -1,6 +1,11 @@
 {
+  "indent_size": 2,
+  "js": {
+    "space_after_anon_function": true,
+    "space_after_named_function": true,
+    "end_with_newline": true
+  },
   "css": {
-    "indent_size": 2,
     "space_around_combinator": true,
     "end_with_newline": true
   }
