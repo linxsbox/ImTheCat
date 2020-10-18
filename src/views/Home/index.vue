@@ -32,6 +32,11 @@ export default class Home extends Mixins(MixinsArticles) {
   msg = '你好';
   articleList: any = [];
 
+  // keep-alive hooks
+  activated () { console.log('this is Home activated'); } // 初始化后在 mounted 之后执行，然后代替 created、mounted 等生命周期
+  deactivated () { console.log('this is Home deactivated'); } // 初始化后在离开视图前执行，代替了 destroyed 生命周期
+
+  // lifecycle
   beforeCreate () { console.log('this is Home beforeCreate'); } // 创建前执行
   created () {
     console.log('this is Home created');

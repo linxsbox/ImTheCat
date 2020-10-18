@@ -11,7 +11,7 @@
 <script lang="ts">
 // https://github.com/kaorun343/vue-property-decorator
 // https://github.com/vuejs/vue-class-component
-import { defineComponent, computed, ref, Ref, toRefs } from '@vue/composition-api';
+import { defineComponent, computed, ref, Ref, toRefs, onMounted } from '@vue/composition-api';
 // import * as h from './index';
 import KcButton from '@/KooCatUI/packages/button/index';
 
@@ -27,6 +27,10 @@ export default defineComponent({
       console.log(event);
       setActive.value = !setActive.value;
     };
+
+    onMounted(()=> {
+      console.log('onMounted');
+    });
 
     return {
       setActive,
