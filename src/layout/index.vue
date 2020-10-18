@@ -1,7 +1,14 @@
 <template>
   <div class="main view-layout" :data-timestamp="0" :key="1">
     <transition name='fade' mode="out-in">
-      <router-view :class="viewClass" v-if="isAcitve"></router-view>
+      <template v-if="$route.meta.keepAlive">
+        <keep-alive>
+          <router-view :class="viewClass" v-if="isAcitve"></router-view>
+        </keep-alive>
+      </template>
+      <template v-else>
+        <router-view :class="viewClass" v-if="isAcitve"></router-view>
+      </template>
     </transition>
   </div>
 </template>

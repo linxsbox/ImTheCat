@@ -153,6 +153,7 @@ routeOptions.push(...[
       isViews: true,
       viewsPath: 'Test/index',
       chunkName: 'resume',
+      keepAlive: false
     },
   },
   {
@@ -163,11 +164,16 @@ routeOptions.push(...[
       isViews: true,
       viewsPath: 'TestKooCatUI/index',
       chunkName: 'KooCatUI',
+      keepAlive: false
     },
   },
 ]);
 
 const routes = routeOptions.map(route => {
+  // 默认 keepAlive 为 true，指定为 false 后才为 非缓存
+  if (!route.meta.keepAlive && route.meta.keepAlive !== false) {
+    route.meta.keepAlive = true;
+  }
   const prefix = route.meta.isViews
     ? `views/` : ``;
   return {
