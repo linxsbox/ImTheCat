@@ -1,6 +1,5 @@
 <template>
   <div class="main view-layout" :data-timestamp="0" :key="1">
-    {{$route.meta.keepAlive}}
     <transition name='fade' mode="out-in">
         <keep-alive>
           <router-view :class="viewClass" v-if="$route.meta.keepAlive && isAcitve"></router-view>
