@@ -29,7 +29,7 @@ body {
   box-sizing: border-box;
 }
 
-[class*="-container"]>:last-child {
+[class*="-container"] > :last-child {
   margin-bottom: 0;
 }
 
@@ -41,6 +41,14 @@ body {
 
 a {
   color: inherit;
+}
+
+body::-webkit-scrollbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
 }
 
 /* padding defalut setting */
