@@ -7,6 +7,14 @@ const template = require('./template/index.js');
 // 以 TypeScript class 命名规则“大驼峰”式命名类
 const toPascalName = className => className.replace(className[0], className[0].toUpperCase());
 
+const pascalMinName = className => {
+  const splitStr = className.split('');
+  const regz = /^[A-Z]+$/;
+  return splitStr.map((item, index) => {
+    return regz.test(item) ? `${index !== 0 ? '-' : ''}${item.toLowerCase()}` : item;
+  }).join('');
+};
+
 /**
  * 问题属性及说明 config.json => Questions
  * @param Q 问题文字
