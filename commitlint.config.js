@@ -32,6 +32,7 @@ module.exports = {
         'revert', // 退回提交信息
         'style', // 样式更新或变更
         'test', // 测试信息
+        'merge', // 同步代码
       ],
     ],
   },
