@@ -48,6 +48,11 @@ module.exports = {
       .use('eslint-loader')
       .loader('eslint-loader');
 
+    // config.module
+    //   .rule('stylelint')
+    //   .use('eslint-loader')
+    //   .loader('eslint-loader');
+
     // 删除构建时默认产生的 preload & prefetch 类型是 link 的标签。
     config.plugins.delete('preload');
     config.plugins.delete('prefetch');
