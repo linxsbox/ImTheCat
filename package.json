@@ -1,7 +1,25 @@
 {
-  "name": "catblog",
-  "version": "0.1.0",
+  "name": "imthecat",
+  "version": "0.4.1",
+  "description": "一只猫的博客？",
+  "author": "Lin.xs",
+  "license": "MIT",
+  "keywords": [
+    "Blog",
+    "Vue",
+    "TypeScrpit",
+    "Composition-API"
+  ],
+  "main": "./src/main.ts",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linxsbox/ImTheCat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/linxsbox/ImTheCat/issues"
+  },
+  "homepage": "https://github.com/linxsbox/ImTheCat#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
