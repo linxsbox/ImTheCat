@@ -1265,3 +1265,25 @@ CLI 构建生成组件配置部分将 js/ts 文件的命名改为 handle。
 - 新增了对编辑器的格式化规则控制文件 `.jsbeautifyrc` & `.editorconfig` 可以通过配置文件的方式让参与的小组成员在使用编辑器格式化的时候能够统一。
 
 关于 [jsbeautifyrc](https://github.com/HookyQR/VSCodeBeautify/blob/master/Settings.md) 支持的配置项信息。
+
+---
+
+## 2020-10-18 16:07
+当使用 `<keep-alive></keep-alive>` 包裹的视图/组件时，该视图/组件会获得 **keep-alive** 的两个生命周期钩子函数 `activated & deactivated`。
+
+- **activated** 会在初始化后在原生命周期钩子函数 `mounted` 之后执行一次，再次进入该视图/组件后，`activated` 会承担原生命周期 `beforeCreate, created, beforeMounte, mounted` 的工作。
+- **deactivated** 会在初始化后在原生命周期钩子函数之后承担原生命周期 `beforeDestroy, destroyed` 的工作。
+
+---
+
+## 2020-10-25 22:08
+VS Code 无法通过 GitLens 工具添加以 `.` 开头的文件，但是可以通过命令 `Add` 指定文件进行添加到暂存区。
+
+```bash
+fatal: 路径: '路径' is outside repository
+```
+
+经过搜索结果来看，大概是 Git 版本不支持的关系。
+[阿里镜像](https://npm.taobao.org/mirrors/git-for-windows/)
+
+原版本 `git version 2.17.0.windows.1` 更新为 `git version 2.29.1.windows.1` 版本后不再出现这个问题。
