@@ -56,3 +56,9 @@ git merge upstream/zuosi // 与自己的分支合并
 2. 今天使用vue3+ts开发了Input组件的最简单的版本，支持textarea,v-model,格式检查（可以抽成hook）
 
 ---
+
+## 2020-11-16 21:16
+1. 高程三一刷了47%，高程四一刷迭代器，set和map，DOM样式，入门了gojs，学习了BEM命名法。
+2. 使用ts + vue3完成了时钟页面。
+
+---

@@ -165,6 +165,16 @@ routeOptions.push(...[
       chunkName: 'KooCatUI',
     },
   },
+  {
+    path: '/clock',
+    name: 'clock',
+    meta: {
+      title: '时钟',
+      isViews: true,
+      viewsPath: 'Clock/index',
+      chunkName: 'resume',
+    },
+  },
 ]);
 
 const routes = routeOptions.map(route => {
