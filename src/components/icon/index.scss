@@ -1,0 +1,98 @@
+.asidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.cat-icon {
+  width: 5px;
+  height: 5px;
+  background-color: green;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?v6dbwl');
+  src:
+    url('fonts/icomoon.eot?v6dbwl#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?v6dbwl') format('truetype'),
+    url('fonts/icomoon.woff?v6dbwl') format('woff'),
+    url('fonts/icomoon.svg?v6dbwl#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.cat-icon- {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: inherit !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  width: 50px;
+  height: 50px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cat-icon-home::before {
+  content: "\e900";
+  background: green;
+  width: 50px;
+  height: 50px;
+}
+
+.cat-icon-pencil::before {
+  content: "\e905";
+}
+
+.cat-icon-folder-download::before {
+  content: "\e933";
+}
+
+.cat-icon-folder-upload::before {
+  content: "\e934";
+}
+
+.cat-icon-laptop::before {
+  content: "\e957";
+}
+
+.cat-icon-mobile::before {
+  content: "\e958";
+}
+
+.cat-icon-mobile2::before {
+  content: "\e959";
+}
+
+.cat-icon-undo2::before {
+  content: "\e967";
+}
+
+.cat-icon-redo2::before {
+  content: "\e968";
+}
+
+.cat-icon-users::before {
+  content: "\e972";
+}
+
+.cat-icon-user-plus::before {
+  content: "\e973";
+}
+
+.cat-icon-tree::before {
+  content: "\e9bc";
+}
+
+.cat-icon-cross::before {
+  content: "\ea0f";
+}
+
+.cat-icon-checkmark::before {
+  content: "\ea10";
+}
