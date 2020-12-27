@@ -1,7 +1,9 @@
 <template>
-  <div class="input-container">
+  <div class="kc-input">
     <textarea
+      class="kc-input__textarea"
       v-if="isTextarea"
+      v-bind="$attrs"
       :value="value"
       @input="onInput"
       :class="[stateName]"
@@ -10,6 +12,7 @@
     <input
       type="text"
       v-else
+      v-bind="$attrs"
       :value="value"
       @input="onInput"
       :class="[stateName]"
@@ -23,6 +26,8 @@
 import { defineComponent, computed, ref } from '@vue/composition-api';
 
 export default defineComponent({
+  name: 'KcInput',
+  inheritAttrs: false,
   props: {
     type: {
       type: String,
@@ -30,6 +35,7 @@ export default defineComponent({
     },
     value: {
       type: String,
+      defalut: ''
     }
   },
   // emits: {
@@ -65,6 +71,14 @@ export default defineComponent({
       Info: 'input-info',
       Required: 'input-required',
     };
+    // enum StateName {
+    //   Primary,
+    //   Warning,
+    //   Waiting,
+    //   Disabled,
+    //   Info,
+    //   Required,
+    // }
     const stateName = ref(StateName.Primary);
     const onInput = (e: any) => {
       const value = e.target.value;

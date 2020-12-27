@@ -1,0 +1,47 @@
+@import '@/assets/css/hsyDefine.scss';
+
+.reviewer-container {
+  .kc-reviewer__avatar { margin-right: 10px; }
+  .kc-reviewer__input { margin-right: 10px; }
+
+  .kc-review__btn {
+    width: 80px;
+    height: 80px;
+    border-radius: $borderRadius;
+    background-color: $blue;
+    color: $white;
+    border-color: $blue;
+    vertical-align: bottom;
+  }
+  .kc-text__avatar { float: left; }
+
+  .kc-text__container {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .kc-text {
+    display: inline-block;
+    overflow: hidden;
+    width: calc(100% - 50px);
+    padding-left: 10px;
+  }
+
+  .kc-text__name {
+    font-size: 16px;
+    color: $pink;
+    font-weight: bold;
+  }
+  .kc-text__text { font-size: 14px; }
+
+  .kc-text__msg {
+    font-size: 12px;
+    color: $gray--deep;
+  }
+
+  .kc-text__btn {
+    float: right;
+    background-color: transparent;
+    border: none;
+  }
+}

@@ -1,0 +1,27 @@
+// colors
+$blue: #409eff;
+$white: #fff;
+$gray: #999;
+$gray--deep: #666;
+$pink: rgb(248, 107, 107);
+// number
+$borderRadius: 5px;
+$borderRadius--round: 50%;
+
+.kc-avatar {
+  display: inline-block;
+
+  .kc-avatar--image,
+  .kc-avatar--text {
+    border: 1px solid $gray;
+    border-radius: $borderRadius--round;
+  }
+
+  .kc-avatar--text {
+    background: $blue;
+    text-align: center;
+    overflow: hidden;
+    white-space: pre-line;
+    word-break: break-all;
+  }
+}

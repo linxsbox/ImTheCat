@@ -166,12 +166,12 @@ routeOptions.push(...[
     },
   },
   {
-    path: '/clock',
-    name: 'clock',
+    path: '/hsyClock',
+    name: 'hsyClock',
     meta: {
       title: '时钟',
       isViews: true,
-      viewsPath: 'Clock/index',
+      viewsPath: 'HsyClock/index',
       chunkName: 'resume',
     },
   },

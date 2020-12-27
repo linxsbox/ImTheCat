@@ -1,3 +1,10 @@
-.input-container{
-  .input-warning {background-color: rgb(238, 75, 75);}
+.kc-input {
+  display: inline-block;
+  .input-warning { background-color: rgb(238, 75, 75); }
+  .input-primary { background-color: rgb(255, 255, 255); }
+
+  .kc-input__textarea {
+    width: 200px;
+    height: 70px;
+  }
 }
