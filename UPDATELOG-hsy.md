@@ -68,3 +68,12 @@ git merge upstream/zuosi // 与自己的分支合并
 2. 实现了头像、评论组件，时间/时间差格式化公用函数。
 
 ---
+
+## 2020-1-24 18:00
+1. 熟悉了绝大部分vue2 api，熟悉了sass的函数。
+2. nrm ls // 查看代理列表
+3. nrm use taobao // 使用淘宝镜像
+4. npx juejin-theme-devtool xxx.css // 下载掘金主题开发工具
+5. 用sass函数生成原子类。
+
+---

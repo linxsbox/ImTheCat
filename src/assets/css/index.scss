@@ -29,7 +29,7 @@ body {
   box-sizing: content-box;
 }
 
-[class*="-container"]>:last-child {
+[class*="-container"] > :last-child {
   margin-bottom: 0;
 }
 
@@ -44,113 +44,7 @@ a {
 }
 
 /* padding defalut setting */
-// padding-top
-.pad-t04 {
-  @include pad(4, 0, 0, 0);
-}
-
-.pad-t06 {
-  @include pad(6, 0, 0, 0);
-}
-
-.pad-t08 {
-  @include pad(8, 0, 0, 0);
-}
-
-.pad-t10 {
-  @include pad(10, 0, 0, 0);
-}
-
-.pad-t15 {
-  @include pad(15, 0, 0, 0);
-}
-
-.pad-t20 {
-  @include pad(20, 0, 0, 0);
-}
-
-.pad-t40 {
-  @include pad(40, 0, 0, 0);
-}
-
-// padding-right
-.pad-r04 {
-  @include pad(0, 4, 0, 0);
-}
-
-.pad-r06 {
-  @include pad(0, 6, 0, 0);
-}
-
-.pad-r08 {
-  @include pad(0, 8, 0, 0);
-}
-
-.pad-r10 {
-  @include pad(0, 10, 0, 0);
-}
-
-.pad-r15 {
-  @include pad(0, 15, 0, 0);
-}
-
-.pad-r20 {
-  @include pad(0, 20, 0, 0);
-}
-
-// padding-bottom
-.pad-b04 {
-  @include pad(0, 0, 4, 0);
-}
-
-.pad-b06 {
-  @include pad(0, 0, 6, 0);
-}
-
-.pad-b08 {
-  @include pad(0, 0, 8, 0);
-}
-
-.pad-b10 {
-  @include pad(0, 0, 10, 0);
-}
-
-.pad-b15 {
-  @include pad(0, 0, 15, 0);
-}
-
-.pad-b20 {
-  @include pad(0, 0, 20, 0);
-}
-
-.pad-b40 {
-  @include pad(0, 0, 40, 0);
-}
-
-// padding-left
-.pad-l04 {
-  @include pad(0, 0, 0, 4);
-}
-
-.pad-l06 {
-  @include pad(0, 0, 0, 6);
-}
-
-.pad-l08 {
-  @include pad(0, 0, 0, 8);
-}
-
-.pad-l10 {
-  @include pad(0, 0, 0, 10);
-}
-
-.pad-l15 {
-  @include pad(0, 0, 0, 15);
-}
-
-.pad-l20 {
-  @include pad(0, 0, 0, 20);
-}
+@include padAtom();
 
 // padding-top,bottom
 .pad-tb10 {
@@ -305,29 +199,7 @@ a {
   @include mag(0, 20, 0, 20);
 }
 
-.fs012 {
-  @include fontSize(12, true);
-}
-
-.fs014 {
-  @include fontSize(14, true);
-}
-
-.fs016 {
-  @include fontSize(16, true);
-}
-
-.fs018 {
-  @include fontSize(18, true);
-}
-
-.fs020 {
-  @include fontSize(20, true);
-}
-
-.fs024 {
-  @include fontSize(24, true);
-}
+@include fsAtom();
 
 .ellipsis {
   white-space: nowrap;

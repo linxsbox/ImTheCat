@@ -59,6 +59,7 @@ $box-shadow-default: 0 .05rem .15rem rgba(0, 0, 0, .1);
   @if $important {
     font-size: $fontSize / 100 + rem + ' !important';
   }
+
   @else {
     font-size: $fontSize / 100 + rem;
   }
@@ -66,4 +67,49 @@ $box-shadow-default: 0 .05rem .15rem rgba(0, 0, 0, .1);
 
 @mixin border-radius($radius: 6) {
   border-radius: px2rem($radius);
+}
+
+/* const */
+$fsList: 12 14 16 18 20 24;
+$padList: 4 6 8 10 15 20 40;
+$directions: (t:top, r:right, b:bottom,l: left);
+$dirs: t r b l;
+
+/* function */
+@mixin fsAtom() {
+  @each $i in $fsList {
+    .fs0#{$i} {
+      @include fontSize($i, true);
+    }
+  }
+}
+
+@function addZero($num) {
+  @if $num > 9 {
+    @return $num;
+  }
+
+  @else {
+    @return '0' + $num;
+  }
+}
+
+@mixin padCreator($num, $prefix) {
+  @each $dir in $dirs {
+    $direction: map-get($directions, $dir);
+
+    @if $prefix == $dir {
+      .pad-#{$prefix+addZero($num)} {
+        padding-#{$direction}: px2rem($num);
+      }
+    }
+  }
+}
+
+@mixin padAtom() {
+  @each $dir in $dirs {
+    @each $num in $padList {
+      @include padCreator($num, $dir);
+    }
+  }
 }
