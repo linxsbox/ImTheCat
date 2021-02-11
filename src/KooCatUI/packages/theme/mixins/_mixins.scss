@@ -11,7 +11,9 @@
   outline: none;
   box-sizing: border-box;
   cursor: pointer;
+
   @include border-radius($radius);
+
   background-color: $color;
   box-shadow: neuiBaseTheme($ds);
 }
