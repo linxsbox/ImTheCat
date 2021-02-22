@@ -1,6 +1,9 @@
 @import "@/assets/css/define.scss";
 
 .home-container {
+  .container {
+    padding-top: 40px;
+  }
   .article-card {
     &-title {
       margin: 0;

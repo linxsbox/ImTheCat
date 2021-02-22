@@ -26,10 +26,10 @@ body {
   padding-right: .2rem;
   margin-left: auto;
   margin-right: auto;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
-[class*="-container"]>:last-child {
+[class*="-container"] > :last-child {
   margin-bottom: 0;
 }
 
@@ -43,291 +43,18 @@ a {
   color: inherit;
 }
 
+body::-webkit-scrollbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+}
+
 /* padding defalut setting */
-// padding-top
-.pad-t04 {
-  @include pad(4, 0, 0, 0);
-}
+@include buildAtomRuleFont;
 
-.pad-t06 {
-  @include pad(6, 0, 0, 0);
-}
-
-.pad-t08 {
-  @include pad(8, 0, 0, 0);
-}
-
-.pad-t10 {
-  @include pad(10, 0, 0, 0);
-}
-
-.pad-t15 {
-  @include pad(15, 0, 0, 0);
-}
-
-.pad-t20 {
-  @include pad(20, 0, 0, 0);
-}
-
-.pad-t40 {
-  @include pad(40, 0, 0, 0);
-}
-
-// padding-right
-.pad-r04 {
-  @include pad(0, 4, 0, 0);
-}
-
-.pad-r06 {
-  @include pad(0, 6, 0, 0);
-}
-
-.pad-r08 {
-  @include pad(0, 8, 0, 0);
-}
-
-.pad-r10 {
-  @include pad(0, 10, 0, 0);
-}
-
-.pad-r15 {
-  @include pad(0, 15, 0, 0);
-}
-
-.pad-r20 {
-  @include pad(0, 20, 0, 0);
-}
-
-// padding-bottom
-.pad-b04 {
-  @include pad(0, 0, 4, 0);
-}
-
-.pad-b06 {
-  @include pad(0, 0, 6, 0);
-}
-
-.pad-b08 {
-  @include pad(0, 0, 8, 0);
-}
-
-.pad-b10 {
-  @include pad(0, 0, 10, 0);
-}
-
-.pad-b15 {
-  @include pad(0, 0, 15, 0);
-}
-
-.pad-b20 {
-  @include pad(0, 0, 20, 0);
-}
-
-.pad-b40 {
-  @include pad(0, 0, 40, 0);
-}
-
-// padding-left
-.pad-l04 {
-  @include pad(0, 0, 0, 4);
-}
-
-.pad-l06 {
-  @include pad(0, 0, 0, 6);
-}
-
-.pad-l08 {
-  @include pad(0, 0, 0, 8);
-}
-
-.pad-l10 {
-  @include pad(0, 0, 0, 10);
-}
-
-.pad-l15 {
-  @include pad(0, 0, 0, 15);
-}
-
-.pad-l20 {
-  @include pad(0, 0, 0, 20);
-}
-
-// padding-top,bottom
-.pad-tb10 {
-  @include pad(10, 0, 10, 0);
-}
-
-.pad-tb15 {
-  @include pad(15, 0, 15, 0);
-}
-
-.pad-tb20 {
-  @include pad(20, 0, 20, 0);
-}
-
-// padding-left,right
-.pad-lr10 {
-  @include pad(0, 10, 0, 10);
-}
-
-.pad-lr15 {
-  @include pad(0, 15, 0, 15);
-}
-
-.pad-lr20 {
-  @include pad(0, 20, 0, 20);
-}
-
-/* margin defalut setting */
-// margin-top
-.mag-t04 {
-  @include mag(4, 0, 0, 0);
-}
-
-.mag-t06 {
-  @include mag(6, 0, 0, 0);
-}
-
-.mag-t08 {
-  @include mag(8, 0, 0, 0);
-}
-
-.mag-t10 {
-  @include mag(10, 0, 0, 0);
-}
-
-.mag-t15 {
-  @include mag(15, 0, 0, 0);
-}
-
-.mag-t20 {
-  @include mag(20, 0, 0, 0);
-}
-
-// margin-right
-.mag-r04 {
-  @include mag(0, 4, 0, 0);
-}
-
-.mag-r06 {
-  @include mag(0, 6, 0, 0);
-}
-
-.mag-r08 {
-  @include mag(0, 8, 0, 0);
-}
-
-.mag-r10 {
-  @include mag(0, 10, 0, 0);
-}
-
-.mag-r15 {
-  @include mag(0, 15, 0, 0);
-}
-
-.mag-r20 {
-  @include mag(0, 20, 0, 0);
-}
-
-// margin-bottom
-.mag-b04 {
-  @include mag(0, 0, 4, 0);
-}
-
-.mag-b06 {
-  @include mag(0, 0, 6, 0);
-}
-
-.mag-b08 {
-  @include mag(0, 0, 8, 0);
-}
-
-.mag-b10 {
-  @include mag(0, 0, 10, 0);
-}
-
-.mag-b15 {
-  @include mag(0, 0, 15, 0);
-}
-
-.mag-b20 {
-  @include mag(0, 0, 20, 0);
-}
-
-// margin-left
-.mag-l04 {
-  @include mag(0, 0, 0, 4);
-}
-
-.mag-l06 {
-  @include mag(0, 0, 0, 6);
-}
-
-.mag-l08 {
-  @include mag(0, 0, 0, 8);
-}
-
-.mag-l10 {
-  @include mag(0, 0, 0, 10);
-}
-
-.mag-l15 {
-  @include mag(0, 0, 0, 15);
-}
-
-.mag-l20 {
-  @include mag(0, 0, 0, 20);
-}
-
-// margin-top,bottom
-.mag-tb10 {
-  @include mag(10, 0, 10, 0);
-}
-
-.mag-tb15 {
-  @include mag(15, 0, 15, 0);
-}
-
-.mag-tb20 {
-  @include mag(20, 0, 20, 0);
-}
-
-// margin-left,right
-.mag-lr10 {
-  @include mag(0, 10, 0, 10);
-}
-
-.mag-lr15 {
-  @include mag(0, 15, 0, 15);
-}
-
-.mag-lr20 {
-  @include mag(0, 20, 0, 20);
-}
-
-.fs012 {
-  @include fontSize(12, true);
-}
-
-.fs014 {
-  @include fontSize(14, true);
-}
-
-.fs016 {
-  @include fontSize(16, true);
-}
-
-.fs018 {
-  @include fontSize(18, true);
-}
-
-.fs020 {
-  @include fontSize(20, true);
-}
-
-.fs024 {
-  @include fontSize(24, true);
-}
+@include buildSpaceAtomRules;
 
 .ellipsis {
   white-space: nowrap;
@@ -337,4 +64,12 @@ a {
 
 .pointer {
   cursor: pointer;
+}
+
+.flex-0 {
+  flex: none;
+}
+
+.flex-1 {
+  flex: auto;
 }

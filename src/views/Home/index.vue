@@ -32,11 +32,18 @@ export default class Home extends Mixins(MixinsArticles) {
   msg = '你好';
   articleList: any = [];
 
+  // keep-alive hooks
+  activated () { console.log('this is Home activated'); } // 初始化后在 mounted 之后执行，然后代替 created、mounted 等生命周期
+  deactivated () { console.log('this is Home deactivated'); } // 初始化后在离开视图前执行，代替了 destroyed 生命周期
+
+  // lifecycle
+  beforeCreate () { console.log('this is Home beforeCreate'); } // 创建前执行
   created () {
-    console.log('this is created');
+    console.log('this is Home created');
     this.articleList = h;
   }
   // mounted
+  beforeMount () { console.log('this is Home beforeMount'); } // 加载前执行
   mounted () {
     console.log('%cthis is mounted from Home', 'color:red;font-weight:bolder;');
   }
@@ -54,6 +61,10 @@ export default class Home extends Mixins(MixinsArticles) {
   goToResume (): void {
     this.$router.push({name: 'userResume'});
   }
+  beforeUpdate () { console.log('this is Home beforeUpdate'); } // 更新之前执行
+  updated () { console.log('this is Home updated'); } // 更新时执行
+  beforeDestroy () { console.log('this is Home beforeDestroy'); } // 销毁前执行
+  destroyed () { console.log('this is Home destroyed'); } // 销毁时执行
 }
 </script>
 

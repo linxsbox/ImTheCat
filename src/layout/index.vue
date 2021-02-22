@@ -1,24 +1,20 @@
 <template>
   <div class="main view-layout" :data-timestamp="0" :key="1">
-    <layout-header></layout-header>
     <transition name='fade' mode="out-in">
-      <router-view class="cat-view-container" :class="viewClass" v-if="isAcitve"></router-view>
+        <keep-alive>
+          <router-view :class="viewClass" v-if="$route.meta.keepAlive && isAcitve"></router-view>
+        </keep-alive>
     </transition>
-    <layout-footer></layout-footer>
+    <transition name='fade' mode="out-in">
+      <router-view :class="viewClass" v-if="!$route.meta.keepAlive && isAcitve"></router-view>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Provide } from 'vue-property-decorator';
-import layoutHeader from './header/index.vue';
-import layoutFooter from './footer/index.vue';
 
-@Component({
-  components: {
-    layoutHeader,
-    layoutFooter,
-  },
-})
+@Component
 export default class Layout extends Vue {
   name = 'layout';
   isAcitve = true;

@@ -1,4 +1,4 @@
-import { isFunction, isObject, isArray } from './istype';
+import { isFunction, isObject, isArray } from './checkType';
 
 /**
  * 拷贝/复制
