@@ -1,0 +1,14 @@
+.kc-goTop{
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  .kc-goTop-btn {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #000;
+  }
+}

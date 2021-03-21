@@ -89,6 +89,7 @@
     <kc-avatar size="middle" text="pikaqiu"></kc-avatar>
     <kc-avatar size="small" text="pikaqiu"></kc-avatar>
     <kc-avatar size="mini" text="pikaqiu"></kc-avatar>
+    <KcGoTop/>
     <!-- </keep-alive> -->
   </div>
 </template>
@@ -100,12 +101,14 @@ import { defineComponent } from '@vue/composition-api';
 import KcReview from '@/components/Review/index.vue';
 import KcAvatar from 'cps/Avatar/index.vue';
 import KcReviewer from 'cps/Reviewer/index.vue';
+import KcGoTop from 'cps/GoTop/index.vue';
 
 export default defineComponent({
   components: {
     KcReview,
     KcAvatar,
-    KcReviewer
+    KcReviewer,
+    KcGoTop
   }
 });
 </script>

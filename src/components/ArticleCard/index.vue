@@ -35,13 +35,23 @@ export default class ArticleCard extends Vue {
 
   // created
   created () {
-    // console.log('this is created');
+    console.log('this is ArticleCard created');
   }
 
   // mounted
   mounted () {
     this.loadImage();
+    console.log('this is ArticleCard mounted');
   }
+
+  beforeCreate () { console.log('this is ArticleCard beforeCreate'); } // 创建前执行
+
+  // mounted
+  beforeMount () { console.log('this is ArticleCard beforeMount'); } // 加载前执行
+  beforeUpdate () { console.log('this is ArticleCard beforeUpdate'); } // 更新之前执行
+  updated () { console.log('this is ArticleCard updated'); } // 更新时执行
+  beforeDestroy () { console.log('this is ArticleCard beforeDestroy'); } // 销毁前执行
+  destroyed () { console.log('this is ArticleCard destroyed'); } // 销毁时执行
 
   // load Image src evenet
   loadImage () {

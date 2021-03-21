@@ -7,11 +7,11 @@
 
   @if $isActive {
     @return inset $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .25),
-    inset $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
+      inset $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .15);
   }
 
   @else {
     @return $dsVal $dsVal $dsVal2 rgba(0, 0, 0, .2),
-    $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .2);
+      $dsValf $dsValf $dsVal2 rgba(255, 255, 255, .2);
   }
 }

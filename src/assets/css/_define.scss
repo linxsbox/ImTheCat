@@ -1,0 +1,108 @@
+@use "sass:map";
+
+$color-white: #fff;
+$color-666: #666;
+$color-ef: #efefef;
+$color-e3: #e3e3e3;
+$color-666: #666;
+$color-666: #666;
+$color-nav: #626e7b;
+$color-666: #5e6f7d;
+
+$icon-ggwab: url("~assets/img/ggwab.png") no-repeat;
+$bg-img-sea-1920-160: url("~assets/img/sea_1920_160.png") no-repeat center center;
+// background-size-cover: auto; // 自动分配占比
+// background-size-contain: contain; // 容纳图片，即会缩放至与容器等宽显示完全
+// background-size-cover: cover; // 根据 background-postion 设定的 x,y 展示内容
+
+$box-shadow-default: 0 .05rem .15rem rgba(0, 0, 0, .1);
+
+$fontSize: 12 14 16 18 20 24;
+$spaces: 4 6 8 10 12 14 15 16 20;
+
+@function px2rem($px: 0) {
+  @return $px / 100 + rem;
+}
+
+@mixin fontSize ($fontSize, $important:false) {
+  @if $important {
+    font-size: $fontSize / 100 + rem + ' !important';
+  }
+  @else {
+    font-size: $fontSize / 100 + rem;
+  }
+}
+
+@mixin border-radius($radius: 6) {
+  border-radius: px2rem($radius);
+}
+
+@function buildRules ($typeName, $list, $options) {
+  $tempMap: ();
+
+  @if $typeName != 'fs' {
+    @each $item in $list {
+      $keyItem: '';
+
+      @if ($item < 10) {
+        $keyItem: '0' + $item;
+      }
+
+      @else {
+        $keyItem: $item;
+      }
+
+      @each $prefix, $suffix in $options {
+        $tempItem: ();
+        $tempItemAll: ();
+        $tempItem: map.set($tempItem, '-' + $suffix, $item);
+        @if not map.has-key($tempMap, #{$typeName}#{$keyItem}) {
+          $tempMap: map.set($tempMap, #{$typeName}#{$keyItem}, map.set($tempItemAll, 'all', $item));
+        }
+        $tempMap: map.set($tempMap, #{$typeName}-#{$prefix}#{$keyItem}, $tempItem);
+      }
+    }
+
+    @return $tempMap;
+  }
+
+  @else {
+    @each $item in $list {
+      $tempMap: map.set($tempMap, #{$typeName}#{$item}, $item);
+    }
+
+    @return $tempMap;
+  }
+}
+
+@mixin getProperty ($key, $list, $property) {
+  .#{$key} {
+    @each $suffix, $value in $list {
+      @if $suffix == 'all' {
+        #{$property}: px2rem($value);
+      }
+
+      @else {
+        #{$property}#{$suffix}: px2rem($value);
+      }
+    }
+  }
+}
+
+@mixin buildAtomRuleFont {
+  @each $key, $value in buildRules('fs', $fontSize, '') {
+    .#{$key} {
+      @include fontSize($value, true);
+    }
+  }
+}
+
+@mixin buildSpaceAtomRules {
+  $protertyList: (pad: 'padding', mag: 'margin');
+  $directions: (t: 'top', r: 'right', b: 'bottom', l: 'left');
+  @each $k, $v in $protertyList {
+    @each $key, $attribute in buildRules($k, $spaces, $directions) {
+      @include getProperty($key, $attribute, $v);
+    }
+  }
+}

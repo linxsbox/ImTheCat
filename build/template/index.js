@@ -6,14 +6,6 @@ const tplHandle = require('./tpl-handle.js').default;
 const tplCSS = require('./tpl-css.js').default;
 const tplAPI = require('./tpl-api.js').default;
 
-const pascalMinName = className => {
-  const splitStr = className.split('');
-  const regz = /^[A-Z]+$/;
-  return splitStr.map((item, index) => {
-    return regz.test(item) ? `${index !== 0 ? '-' : ''}${item.toLowerCase()}` : item;
-  }).join('');
-};
-
 const build = (pascalName, fileName, codeType, cssType) => {
   const switchType = (str) => {
     switch (str) {
@@ -30,7 +22,7 @@ const build = (pascalName, fileName, codeType, cssType) => {
   const { lang, template } = switchType(codeType);
 
   return `<template>
-  <div class="${pascalMinName(fileName)}-container">
+  <div class="${fileName}-container">
     {{ msg }} {{ name }}
   </div>
 </template>

@@ -31,3 +31,5 @@ output.js
 
 # github security vulnerability warn
 package-lock.json
+debug.log
+*ignore
