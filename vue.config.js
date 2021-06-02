@@ -27,7 +27,7 @@ module.exports = {
   // https://github.com/neutrinojs/webpack-chain
   chainWebpack: config => {
     config.resolve.alias // 别名配置
-      // @  .  ~ 三者在默认环境中以实现相关配置规则，覆盖则会导致错误
+      // @  .  ~ 三者在默认环境中已实现相关配置规则，覆盖则会导致错误
       // https://cli.vuejs.org/zh/guide/html-and-static-assets.html#url-%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99
       .set('cps', resolve('./src/components'))
       .set('assets', resolve('./src/assets'));
@@ -57,14 +57,4 @@ module.exports = {
     config.plugins.delete('preload');
     config.plugins.delete('prefetch');
   },
-  pwa: {
-    // pwa
-    iconPaths: {
-      favicon32: 'favicon.ico',
-      favicon16: 'favicon.ico',
-      appleTouchIcon: 'favicon.ico',
-      maskIcon: 'favicon.ico',
-      msTileImage: 'favicon.ico'
-    }
-  }
 };

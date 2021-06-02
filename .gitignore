@@ -16,6 +16,7 @@ selenium-debug.log
 # Editor directories and files
 .idea
 .vscode
+.eslintignore
 *.suo
 *.ntvs*
 *.njsproj
