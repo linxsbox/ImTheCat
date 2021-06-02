@@ -14,7 +14,7 @@
     "outDir": "./dist/",
     "types": [
       "webpack-env",
-      "mocha"
+      // "mocha"
       // "chai"
     ],
     "paths": {
