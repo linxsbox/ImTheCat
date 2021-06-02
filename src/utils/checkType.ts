@@ -10,7 +10,18 @@ enum dataTypeEnum {
   symbol = 'symbol',
   function = 'function',
   object = 'object',
-  array = 'array'
+  array = 'array',
+  date = 'date',
+  regexp = 'regexp',
+  htmlcollection = 'htmlcollection',
+  error = 'error',
+  math = 'math',
+  json = 'json',
+  set = 'set',
+  weakset = 'weakset',
+  map = 'map',
+  weakmap = 'weakmap',
+  promise = 'promise',
 }
 
 export function isType (value?: any) {
@@ -20,7 +31,7 @@ export function isType (value?: any) {
     .replace(/\[|\]/ig, '').split(' ')[1];
   return typeValue !== 'object'
     ? typeValue : value !== null
-      ? splitTypeStr.toLowerCase() : null;
+      ? splitTypeStr.toLowerCase() : 'null';
 }
 
 function equalType (type?: dataTypeEnum) {
@@ -37,3 +48,14 @@ export const isSymbol = equalType(dataTypeEnum.symbol);
 export const isFunction = equalType(dataTypeEnum.function);
 export const isObject = equalType(dataTypeEnum.object);
 export const isArray = Array.isArray;
+export const isDate = equalType(dataTypeEnum.date)
+export const isRegExp = equalType(dataTypeEnum.regexp);
+export const isHtmlCollection = equalType(dataTypeEnum.htmlcollection);
+export const isError = equalType(dataTypeEnum.error);
+export const isMath = equalType(dataTypeEnum.math);
+export const isJson = equalType(dataTypeEnum.json);
+export const isSet = equalType(dataTypeEnum.set);
+export const isWeakSet = equalType(dataTypeEnum.weakset);
+export const isMap = equalType(dataTypeEnum.map);
+export const isWeakMap = equalType(dataTypeEnum.weakmap);
+export const isPromise = equalType(dataTypeEnum.promise);
