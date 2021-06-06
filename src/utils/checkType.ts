@@ -59,3 +59,6 @@ export const isWeakSet = equalType(dataTypeEnum.weakset);
 export const isMap = equalType(dataTypeEnum.map);
 export const isWeakMap = equalType(dataTypeEnum.weakmap);
 export const isPromise = equalType(dataTypeEnum.promise);
+
+export const isIterable = (x:any) => x[Symbol.iterator] !== undefined;
+export const isArrayLike = (x:any) => x.length !== undefined;
