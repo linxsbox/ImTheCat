@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { template } = require('./config.json');
+const { template } = require('../config.json');
 const { getTemplate, toPascalName } = require('./utils.js');
 
 // 检查任务列表代理

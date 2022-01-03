@@ -1,0 +1,11 @@
+{
+  "name": "template-cli",
+  "version": "1.0.1",
+  "description": "模板构建 CLI",
+  "author": "Lin.xs",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "ctpl": "node index.js"
+  }
+}

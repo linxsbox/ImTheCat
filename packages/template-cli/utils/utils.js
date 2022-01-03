@@ -1,8 +1,8 @@
 const path = require('path');
 // CLI 配置信息：问题配置 | 路径别名配置
-const { Questions, pathAlias } = require('./config.json');
+const { Questions, pathAlias } = require('../config.json');
 
-const template = require('./template/index.js');
+const template = require('../template/index.js');
 
 // 以 TypeScript class 命名规则“大驼峰”式命名类
 const toPascalName = className => className.replace(className[0], className[0].toUpperCase());
